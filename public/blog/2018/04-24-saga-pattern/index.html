@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>Saga Pattern - 道法自然</title>
+    <meta property="og:title" content="Saga Pattern - 道法自然">
+    
+
+    
+      
+    
+
+    
+
+    
+    
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.14.1/styles/googlecode.min.css' rel='stylesheet' type='text/css' />
+
+
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+
+  </head>
+
+  
+  <body class="blog">
+    <header class="masthead">
+      <h1 class="headimg">
+    
+    <a href="/"><img src="/img/headimg.png" alt="Fuhui "></a>
+</h1>
+
+
+
+      <nav class="menu">
+        <input id="menu-check" type="checkbox" />
+        <label id="menu-label" for="menu-check" class="unselectable">
+          <span class="icon close-icon">✕</span>
+          <span class="icon open-icon">☰</span>
+          <span class="text">Menu</span>
+        </label>
+        <ul>
+        
+        
+        <li><a href="/blog/">Blog</a></li>
+        
+        <li><a href="/life/">Life</a></li>
+        
+        <li><a href="/categories/">Categories</a></li>
+        
+        <li><a href="/tags/">Tags</a></li>
+        
+        <li><a href="/about/">About</a></li>
+        
+        
+
+
+        </ul>
+      </nav>
+    </header>
+
+    <article class="main">
+      <header class="title">
+      <h1>Saga Pattern</h1>
+
+
+
+
+    
+    
+    <section class="post-meta">
+        <span class="post-author">付辉
+        
+            
+            
+             /  2018-04-24
+            
+        </span>
+        
+        <a href="/tags/transaction">transaction</a>
+        
+    </section>
+    
+
+
+
+<hr>
+      </header>
+
+
+
+
+<p>在微服务中，用的比较多的分布式事务模式：<a href="https://www.cs.cornell.edu/andru/cs711/2002fa/reading/sagas.pdf"><code>SAGA</code></a>。下面是<code>lysu/go-saga</code>库中的描述：</p>
+
+<blockquote>
+<p>Saga is a long-lived transaction came up with many small sub-transaction.ExecutionCoordinator(SEC) is coordinator for sub-transactions execute and saga-log written.Sub-transaction is normal business operation, it contain a Action and action&rsquo;s Compensate. Saga-Log is used to record saga process, and SEC will use it to decide next step and how to recovery from error.Log presents Saga Log. Saga Log used to log execute status for saga, and SEC use it to compensate and retry.</p>
+</blockquote>
+
+<h2 id="引言">引言</h2>
+
+<p><code>saga</code>是一个本地事务的序列，每个事务都在各个微服务内部完成。通过外部的请求来开始第一个事务，且当前面的事务完成后，后面的事务就会被触发。</p>
+
+<p>它的核心思想：</p>
+
+<ol>
+<li>将事务进行拆分，划分成更小的事务粒度。</li>
+<li>补偿逻辑。对失败的事务进行补偿</li>
+</ol>
+
+<p>简要描述一下：</p>
+
+<pre><code># 中心系统 - 充当分布式事务管理中心
+1. 请求 - 订单服务 - 用户下单
+2. 请求 - 库存服务 - 减少库存
+</code></pre>
+
+<p>下面介绍实现<code>saga</code>最流行的两种方式：</p>
+
+<ol>
+<li><code>Events</code> 不需要一个中心调度系统，每个服务生产、监听别的服务产生的事件，决定下一步怎么处理。</li>
+<li><code>Command</code> 有一个中心服务来协调管理业务逻辑，做<code>saga</code>决策。</li>
+</ol>
+
+<h2 id="events"><code>Events</code></h2>
+
+<p>在<code>Events</code>的方式中，各个服务执行完成事务之后，会发布一个<code>event</code>。其他服务会监听这个<code>event</code>，然后执行自己本地的事务，发布一个新的<code>event</code>。</p>
+
+<p>当最后一个服务执行了本地事务，没有发布新的<code>event</code>,或者发布了其他服务不监听的<code>event</code>。分布式事务终止。</p>
+
+<p>对这种方式来说，有效跟踪事务的执行状态是一个痛点。但实际工作中，确实需要明确知道事务的执行路径。两种解决办法：</p>
+
+<ol>
+<li>每个服务都更新当前的事务记录，记录可以存储在<code>DB</code>中，有几个服务，记录就应该有几个状态。</li>
+<li>插入一个服务，监听所有服务的<code>event</code>。</li>
+</ol>
+
+<h3 id="补偿逻辑">补偿逻辑</h3>
+
+<p>分布式事务执行过程中，当其中一个事务执行失败之后，事务需要触发补偿逻辑。其原理还是发送一个<code>event</code>，只不过其他服务监听到之后，处发事务的补偿逻辑，回滚之前的本地操作。</p>
+
+<h3 id="实现方式">实现方式</h3>
+
+<p>采用消息队列实现，以<code>NSQ</code>为例，可以这样考虑：</p>
+
+<ol>
+<li><code>event</code>应该有一个唯一的身份标识。</li>
+<li>每个服务至少应该监听一个<code>topic</code>，且至少作为一个<code>topic</code>的<code>producer</code>。</li>
+<li>可以考虑一个统一的<code>topic</code>，多个<code>channel</code>的实现方式。</li>
+</ol>
+
+<h3 id="总结">总结</h3>
+
+<p>当服务比较多的时候，<code>topic</code>可能会有很多，程序复杂性提高了不少。而且，一个留神，很可能让监听变成了一个死循环。</p>
+
+<h2 id="command"><code>command</code></h2>
+
+
+  <footer>
+  
+<nav class="post-nav">
+  <span class="nav-prev">&larr; <a href="/blog/2018/04-20-docker%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">docker基本使用</a></span>
+  <span class="nav-next"><a href="/blog/2018/05-02-go-test%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95/">Go test基础用法</a> &rarr;</span>
+</nav>
+
+
+
+
+
+<script src="//yihui.name/js/math-code.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script async src="//yihui.name/js/center-img.js"></script>
+
+  
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/yaml.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/tex.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/go.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+  
+  <hr>
+  <div class="copyright">&copy; 2019 | <a href="https://github.com/shengulong">Github</a> | <a href="https://www.cnblogs.com/shengulong/">cnblogs</a> | <a href="https://shengulong.github.io/">Github Pages</a></div>
+  
+  </footer>
+  </article>
+  
+  </body>
+</html>
+

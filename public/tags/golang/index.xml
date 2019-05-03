@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>golang on 道法自然</title>
+    <link>/tags/golang/</link>
+    <description>Recent content in golang on 道法自然</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 27 Apr 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>mongo EOF</title>
+      <link>/blog/2019/2019-04-27-mongo-eof/</link>
+      <pubDate>Sat, 27 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2019/2019-04-27-mongo-eof/</guid>
+      <description>很多事情仅仅的是严肃的提出问题都感觉很难，更何况还得要先发现它。
+ Question 描述 项目中使用：github.com/globalsign/mgo这个库，在一次主从切换之后，mongo后续的操作都失败了, 错误信息输出：EOF。
+引用网上遇到同样问题的其他描述：
+ The problem I have is, when the connection to the mongodb server fails (the server drops the connection sometimes or mongodb server fails), then my pointer to the session variable doesn&#39;t work anymore. Even if the internet connection comes back, mgo driver doesn&#39;t reconnect anymore, instead of this I get the error (when I do Find().One() method call): &amp;quot;EOF&amp;quot;
+ 解决思路   Call Refresh on the session, which makes it discard (or put back in the pool, if the connection is good) the connection it&amp;rsquo;s holding, and pick a new one when necessary.</description>
+    </item>
+    
+    <item>
+      <title>How to use godog</title>
+      <link>/blog/2018/12-29-how-to-use-godog/</link>
+      <pubDate>Sat, 29 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/12-29-how-to-use-godog/</guid>
+      <description>首先访问Git的地址：Godog，它也是用来做Go Test一样的事情，只是换了一种形式。引入了一个概念：BDD。通俗的讲，就是虚拟现实场景，完成一个业务的测试。
+Godog了解 首先介绍Godog是用来干什么的，我也是根据版本库提供的README来解释的，建议大家自己去看看。首先，我们要定义一个场景：feature。这里我们创建一个文件夹feature，专门用来存储这类文件。然后创建一个文件：godogs.feature。文件内容如下：
+# file: $GOPATH/src/godogs/features/godogs.feature Feature: 购买红酒 这里是一堆对这个Feature的描述 描述的继续... Scenario: 买一瓶红酒 Given Neojos Has 5 coins When I buy Red wine Then should be 1 remaining  在控制台执行godog时，控制台会输出默认建议的代码。输出如下：
+You can implement step definitions for undefined steps with these snippets: func neojosHasCoins(arg1 int) error { return godog.ErrPending } func iBuyRedWine() error { return godog.ErrPending } func shouldBeRemaining(arg1 int) error { return godog.ErrPending } func FeatureContext(s *godog.Suite) { s.Step(`^Neojos Has (\d+) coins$`, neojosHasCoins) s.</description>
+    </item>
+    
+    <item>
+      <title>Net Transport</title>
+      <link>/blog/2018/12-08-net-transport/</link>
+      <pubDate>Sat, 08 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/12-08-net-transport/</guid>
+      <description>版本 0.02
+在调用第三方请求时，正确使用Client也不是一件非常容易的事。
+下面是截取的一段描述，建议Client或Transport在整个服务期间最好是全局单例的，Transport本身会维护连接的状态，而且线程安全。强烈建议，不要使用系统提供的任何默认值。
+ The Client&amp;rsquo;s Transport typically has internal state (cached TCP connections), so Clients should be reused instead of created as needed. Clients are safe for concurrent use by multiple goroutines.
+ Transport 如下是官方的简要描述。Transport字段在Client中被声明为接口类型，而实现这个接口的是Transport类型（略显绕）。在net包内部也提供了默认的实现变量：DefaultTransport。
+// Transport specifies the mechanism by which individual // HTTP requests are made. // If nil, DefaultTransport is used. Transport RoundTripper  看一下RoundTripper这个接口，官方描述：
+ RoundTripper is an interface representing the ability to execute a single HTTP transaction, obtaining the Response for a given Request.</description>
+    </item>
+    
+  </channel>
+</rss>

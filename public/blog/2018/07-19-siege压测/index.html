@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>siege压测 - 道法自然</title>
+    <meta property="og:title" content="siege压测 - 道法自然">
+    
+
+    
+      
+    
+
+    
+
+    
+    
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.14.1/styles/googlecode.min.css' rel='stylesheet' type='text/css' />
+
+
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+
+  </head>
+
+  
+  <body class="blog">
+    <header class="masthead">
+      <h1 class="headimg">
+    
+    <a href="/"><img src="/img/headimg.png" alt="Fuhui "></a>
+</h1>
+
+
+
+      <nav class="menu">
+        <input id="menu-check" type="checkbox" />
+        <label id="menu-label" for="menu-check" class="unselectable">
+          <span class="icon close-icon">✕</span>
+          <span class="icon open-icon">☰</span>
+          <span class="text">Menu</span>
+        </label>
+        <ul>
+        
+        
+        <li><a href="/blog/">Blog</a></li>
+        
+        <li><a href="/life/">Life</a></li>
+        
+        <li><a href="/categories/">Categories</a></li>
+        
+        <li><a href="/tags/">Tags</a></li>
+        
+        <li><a href="/about/">About</a></li>
+        
+        
+
+
+        </ul>
+      </nav>
+    </header>
+
+    <article class="main">
+      <header class="title">
+      <h1>siege压测</h1>
+
+
+
+
+    
+    
+    <section class="post-meta">
+        <span class="post-author">付辉
+        
+            
+            
+             /  2018-07-19
+            
+        </span>
+        
+        <a href="/tags/tools">tools</a>
+        
+        <a href="/tags/net">net</a>
+        
+    </section>
+    
+
+
+
+<hr>
+      </header>
+
+
+
+
+<p>关于压测，首先要了解<code>TPS</code>和并发用户数之间的关系：</p>
+
+<blockquote>
+<p><code>TPS</code>就是每秒事务数，但是事务是基于虚拟用户数的。假如1个虚拟用户在1秒内完成1笔事务，那么<code>TPS</code>明显就是1；如果某笔业务响应时间是1ms，那么1个用户在1秒内能完成1000笔事务，<code>TPS</code>就是1000了；如果某笔业务响应时间是1s,那么1个用户在1秒内只能完 成1笔事务，要想达到1000<code>TPS</code>，至少需要1000个用户；因此可以说1个用户可以产生1000TPS，1000个用户也可以产生1000<code>TPS</code>，无非是看响应时间快慢。</p>
+</blockquote>
+
+<p>针对上面的描述，引申出了命令的三个属性：</p>
+
+<pre><code>-c : This option allows you to set the concurrent number of users
+-r : This option tells each siege user how times it should run.
+-t : This option specify the number of times each user should run
+</code></pre>
+
+<p>对于<code>linux</code>的命令，其实<code>man</code>查看就足够了。</p>
+
+<h2 id="example"><code>example</code></h2>
+
+<p>提交<code>json</code>格式的数据请求到服务器。<code>POST</code>后跟数据内容，不需要使用引号处理。</p>
+
+<pre><code># linux下执行命令
+siege -f ./url.txt  -H &quot;Content-Type: application/json&quot;
+
+# url.txt中的内容
+HOST=neojos.com
+$(HOST)/v1/buy POST {&quot;bid&quot;: 0, &quot;type&quot;: 13 }
+</code></pre>
+
+
+  <footer>
+  
+<nav class="post-nav">
+  <span class="nav-prev">&larr; <a href="/blog/2018/07-14-kafka%E7%9A%84offset%E5%88%9D%E7%AA%A51/">Kafka的offset初窥(1)</a></span>
+  <span class="nav-next"><a href="/blog/2018/07-24-%E9%87%8D%E8%AF%95/">重试</a> &rarr;</span>
+</nav>
+
+
+
+
+
+<script src="//yihui.name/js/math-code.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script async src="//yihui.name/js/center-img.js"></script>
+
+  
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/yaml.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/tex.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/go.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+  
+  <hr>
+  <div class="copyright">&copy; 2019 | <a href="https://github.com/shengulong">Github</a> | <a href="https://www.cnblogs.com/shengulong/">cnblogs</a> | <a href="https://shengulong.github.io/">Github Pages</a></div>
+  
+  </footer>
+  </article>
+  
+  </body>
+</html>
+
