@@ -122,4 +122,8 @@
     <loc>/about/</loc>
   </url>
   
+  <url>
+    <loc>/resource/</loc>
+  </url>
+  
 </urlset>

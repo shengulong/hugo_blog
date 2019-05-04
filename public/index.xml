@@ -126,5 +126,15 @@ You can implement step definitions for undefined steps with these snippets: func
 使用介绍：  Hugo快速入手 博客模版 theme:hugo-ivy 主题hugo-ivy借鉴ivy：Ivy is a static website generator built in Python. It&#39;s small, elegant, and easy to use. hugo 编译 hugo server 本地启动服务  注意事项(和网站相比存在问题)：  date是当天,则无法展示博客  </description>
     </item>
     
+    <item>
+      <title>SGL&#39;s reference resource</title>
+      <link>/resource/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/resource/</guid>
+      <description> 人总是需要不断的学习，完成自我成长，或读一本好书，或读一篇博文，或聆听牛人垂询，或参加一场讨论， 或聆听宣讲
+blog  https://neojos.com/ https://yihui.name/cn/  java go python </description>
+    </item>
+    
   </channel>
 </rss>
