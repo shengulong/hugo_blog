@@ -6,10 +6,37 @@
     <description>Recent content in Tags on 道法自然</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 03 May 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 11 May 2019 00:36:45 +0800</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>个税</title>
+      <link>/tags/%E4%B8%AA%E7%A8%8E/</link>
+      <pubDate>Sat, 11 May 2019 00:36:45 +0800</pubDate>
+      
+      <guid>/tags/%E4%B8%AA%E7%A8%8E/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>markdown</title>
+      <link>/tags/markdown/</link>
+      <pubDate>Fri, 10 May 2019 21:18:52 +0800</pubDate>
+      
+      <guid>/tags/markdown/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>shell</title>
+      <link>/tags/shell/</link>
+      <pubDate>Fri, 10 May 2019 20:52:10 +0800</pubDate>
+      
+      <guid>/tags/shell/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>子女教育</title>

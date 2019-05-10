@@ -18,4 +18,23 @@ title: "About"
 
 注意事项([和网站相比存在问题](https://neojos.com/))：
 ---
-1. date是当天,则无法展示博客
+1. 如果date是当天,则这篇博客无法显示？
+
+<font color="#0222ff">字体颜色</font>
+
+    ```
+        
+    title: Kafka中消息分配策略
+    
+    date: 2019-04-24
+    
+    categories: 2019-04
+    
+    tags: [Think]
+    
+    author: shengulong
+
+    <th>sd</th>
+   
+        
+    ```
