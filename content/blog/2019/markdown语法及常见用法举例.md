@@ -217,7 +217,7 @@ author: shengulong
         This is [an example](http://example.com/ "Title") inline link.
         [This link](http://example.net/) has no title attribute.
     
-    图片：![]() ![图片描述(可忽略)](链接的地址)
+    图片：![]() ![图片描述(可忽略)](http://mouapp.com/Mou_128.png)
     
     链接：[]() [链接描述](链接的地址)
     
@@ -359,6 +359,8 @@ author: shengulong
 
     10.1 字体
     
+    > 字体颜色参考<http://www.w3school.com.cn/tags/html_ref_colornames.asp>，还可以查看某个颜色背景下其他颜色的表现
+    
         <font face="微软雅黑" color="red" size="6">字体及字体颜色和大小</font>
         
         <font color="#0000ff">字体颜色</font>
@@ -409,7 +411,7 @@ author: shengulong
     
     \*literal asterisks\*
             
-13. 锁进{#13}
+13. 缩进
 
             信仰          正常没有缩进的
             
@@ -488,14 +490,88 @@ author: shengulong
     
     
     
-16. 序列图
+16. 时序图Sequence diagrams
+    
+        <div class="mermaid">
+            sequenceDiagram
+                Alice->>John: Hello John, how are you?
+                John-->>Alice: Great!
+        </div>
+    
+    
+    <div class="mermaid">
+    sequenceDiagram
+        Alice->>John: Hello John, how are you?
+        John-->>Alice: Great!
+    </div>    
 
-17. 插入公式
+17. 插入公式***Latex***
 
-18. 插入甘特图
+    参考这几篇文章，后续用的时候再添加
+    1. [使用Pandoc和KaTeX为HUGO添加LaTeX支持](https://lowentropy.me/flight-rules/20181130-%E4%BD%BF%E7%94%A8pandoc%E5%92%8Ckatex%E4%B8%BAhugo%E6%B7%BB%E5%8A%A0latex%E6%94%AF%E6%8C%81/)
+    2. [MathJax with Hugo](https://gohugo.io/content-management/formats/) 
+   
+    
 
-19. 插入流水线       
+18. 插入甘特图Gant diagrams
 
-20. 插入emoj
+        <div class="mermaid">
+                gantt
+                    title A Gantt Diagram
+                    dateFormat  YYYY-MM-DD
+                    section Section
+                    A task           :a1, 2014-01-01, 30d
+                    Another task     :after a1  , 20d
+                    section Another
+                    Task in sec      :2014-01-12  , 12d
+                    another task      : 24d
+        </div>
+
+    <div class="mermaid">
+        gantt
+            title A Gantt Diagram
+            dateFormat  YYYY-MM-DD
+            section Section
+            A task           :a1, 2014-01-01, 30d
+            Another task     :after a1  , 20d
+            section Another
+            Task in sec      :2014-01-12  , 12d
+            another task      : 24d
+    </div>
+
+19. 插入流程图Flowcharts  
+
+    >hugo加入[mermaid](https://mermaidjs.github.io/)作图,[github](https://github.com/knsv/mermaid)
+    
+        vi ./themes/hugo-ivy/layouts/partials/footer.html 
+        添加下面代码
+        <!-- mermaid JS -->
+        <script src="https://mermaidjs.github.io/scripts/mermaid.min.js"></script>
+        <script>
+            mermaid.initialize({ startOnLoad: true });
+        </script>
+        
+        源码
+        <div class="mermaid">
+        graph LR
+            A --- B
+            B-->C[fa:fa-ban forbidden]
+            B-->D(fa:fa-spinner);
+        </div>
+    
+    效果
+
+    <div class="mermaid">
+    graph LR
+        A --- B
+        B-->C[fa:fa-ban forbidden]
+        B-->D(fa:fa-spinner);
+    </div>     
+
+20. 插入emoji
+
+21. 思维导图
+    
+    [Hugo 中使用思维导图](https://wocai.de/post/dev/make-hugo-blog-add-mindmap/)
 
 

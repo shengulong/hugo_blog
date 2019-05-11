@@ -103,6 +103,17 @@
 <li>hugo server 本地启动服务</li>
 </ol>
 
+<h2 id="评论系统">评论系统</h2>
+
+<p>如果需要，可以考虑<a href="https://posativ.org/isso/">isso</a>，因为涉及交互，就不再是静态网站了，需要存储系统，就需要放存储系统的服务器。暂时不考虑。
+评论系统效果<a href="https://lowentropy.me/flight-rules/20181130-%E4%BD%BF%E7%94%A8pandoc%E5%92%8Ckatex%E4%B8%BAhugo%E6%B7%BB%E5%8A%A0latex%E6%94%AF%E6%8C%81/">参考</a></p>
+
+<h2 id="优化方向">优化方向</h2>
+
+<ol>
+<li>里面内嵌了很多js，需要删除无用的，把有用的js链接本地化，减少网络依赖</li>
+</ol>
+
 <h2 id="注意事项-和网站相比存在问题-https-neojos-com">注意事项(<a href="https://neojos.com/">和网站相比存在问题</a>)：</h2>
 
 <ol>
@@ -165,5 +176,11 @@ author: shengulong
   </article>
   
   </body>
-</html>
+  
+  <script src="https://mermaidjs.github.io/scripts/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+
+  </html>
 

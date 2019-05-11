@@ -367,7 +367,7 @@ This is [an example](http://example.com/ &quot;Title&quot;) inline link.
 [This link](http://example.net/) has no title attribute.
 </code></pre>
 
-<p>图片：![]() <img src="链接的地址" alt="图片描述(可忽略)" /></p>
+<p>图片：![]() <img src="http://mouapp.com/Mou_128.png" alt="图片描述(可忽略)" /></p>
 
 <p>链接：[]() <a href="链接的地址">链接描述</a></p>
 
@@ -542,6 +542,10 @@ _____
 
 <p>10.1 字体</p>
 
+<blockquote>
+<p>字体颜色参考<a href="http://www.w3school.com.cn/tags/html_ref_colornames.asp">http://www.w3school.com.cn/tags/html_ref_colornames.asp</a>，还可以查看某个颜色背景下其他颜色的表现</p>
+</blockquote>
+
 <pre><code>&lt;font face=&quot;微软雅黑&quot; color=&quot;red&quot; size=&quot;6&quot;&gt;字体及字体颜色和大小&lt;/font&gt;
 
 &lt;font color=&quot;#0000ff&quot;&gt;字体颜色&lt;/font&gt;
@@ -602,7 +606,7 @@ _____
 
 <p>*literal asterisks*</p></li>
 
-<li><p>锁进{#13}</p>
+<li><p>缩进</p>
 
 <pre><code>    信仰          正常没有缩进的
 
@@ -681,15 +685,96 @@ _____
 <table><tr><td bgcolor=orange>背景色是：orange</td></tr></table>
     </li>
 
-<li><p>序列图</p></li>
+<li><p>时序图Sequence diagrams</p>
 
-<li><p>插入公式</p></li>
+<pre><code>&lt;div class=&quot;mermaid&quot;&gt;
+    sequenceDiagram
+        Alice-&gt;&gt;John: Hello John, how are you?
+        John--&gt;&gt;Alice: Great!
+&lt;/div&gt;
+</code></pre>
 
-<li><p>插入甘特图</p></li>
+<div class="mermaid">
+sequenceDiagram
+    Alice->>John: Hello John, how are you?
+    John-->>Alice: Great!
+</div>    </li>
 
-<li><p>插入流水线</p></li>
+<li><p>插入公式<strong><em>Latex</em></strong></p>
 
-<li><p>插入emoj</p></li>
+<p>参考这几篇文章，后续用的时候再添加</p>
+
+<ol>
+<li><a href="https://lowentropy.me/flight-rules/20181130-%E4%BD%BF%E7%94%A8pandoc%E5%92%8Ckatex%E4%B8%BAhugo%E6%B7%BB%E5%8A%A0latex%E6%94%AF%E6%8C%81/">使用Pandoc和KaTeX为HUGO添加LaTeX支持</a></li>
+<li><a href="https://gohugo.io/content-management/formats/">MathJax with Hugo</a>
+<br />
+<br /></li>
+</ol></li>
+
+<li><p>插入甘特图Gant diagrams</p>
+
+<pre><code>&lt;div class=&quot;mermaid&quot;&gt;
+        gantt
+            title A Gantt Diagram
+            dateFormat  YYYY-MM-DD
+            section Section
+            A task           :a1, 2014-01-01, 30d
+            Another task     :after a1  , 20d
+            section Another
+            Task in sec      :2014-01-12  , 12d
+            another task      : 24d
+&lt;/div&gt;
+</code></pre>
+
+<div class="mermaid">
+    gantt
+        title A Gantt Diagram
+        dateFormat  YYYY-MM-DD
+        section Section
+        A task           :a1, 2014-01-01, 30d
+        Another task     :after a1  , 20d
+        section Another
+        Task in sec      :2014-01-12  , 12d
+        another task      : 24d
+</div></li>
+
+<li><p>插入流程图Flowcharts</p>
+
+<blockquote>
+<p>hugo加入<a href="https://mermaidjs.github.io/">mermaid</a>作图,<a href="https://github.com/knsv/mermaid">github</a></p>
+</blockquote>
+
+<pre><code>vi ./themes/hugo-ivy/layouts/partials/footer.html 
+添加下面代码
+&lt;!-- mermaid JS --&gt;
+&lt;script src=&quot;https://mermaidjs.github.io/scripts/mermaid.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    mermaid.initialize({ startOnLoad: true });
+&lt;/script&gt;
+
+源码
+&lt;div class=&quot;mermaid&quot;&gt;
+graph LR
+    A --- B
+    B--&gt;C[fa:fa-ban forbidden]
+    B--&gt;D(fa:fa-spinner);
+&lt;/div&gt;
+</code></pre>
+
+<p>效果</p>
+
+<div class="mermaid">
+graph LR
+    A --- B
+    B-->C[fa:fa-ban forbidden]
+    B-->D(fa:fa-spinner);
+</div>     </li>
+
+<li><p>插入emoji</p></li>
+
+<li><p>思维导图</p>
+
+<p><a href="https://wocai.de/post/dev/make-hugo-blog-add-mindmap/">Hugo 中使用思维导图</a></p></li>
 </ol>
 <div class="footnotes">
 
@@ -742,5 +827,11 @@ _____
   </article>
   
   </body>
-</html>
+  
+  <script src="https://mermaidjs.github.io/scripts/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+
+  </html>
 

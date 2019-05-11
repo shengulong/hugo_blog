@@ -165,7 +165,8 @@ You can implement step definitions for undefined steps with these snippets: func
       <description> 网站是使用hugo + GitHub搭建的静态网页。在这之前，一直用的是cnblogs，自从无意间看到了https://neojos.com/about/。不得不说，自己被博主的优秀以及博客的简单明了折服的一塌糊涂。
 简单了解hugo之后，发现它更简单、更方便，所以将自己的博客也做了迁移。
 直接git clone git@github.com:GitHubSi/blog.git,然后简单修改里面的内容，删除掉作者的博客，添加自己的博客
-使用介绍：  Hugo快速入手 博客模版 theme:hugo-ivy 主题hugo-ivy借鉴ivy：Ivy is a static website generator built in Python. It&#39;s small, elegant, and easy to use. hugo 编译 hugo server 本地启动服务  注意事项(和网站相比存在问题)：  如果date是当天,则这篇博客无法显示？  字体颜色
+使用介绍：  Hugo快速入手 博客模版 theme:hugo-ivy 主题hugo-ivy借鉴ivy：Ivy is a static website generator built in Python. It&#39;s small, elegant, and easy to use. hugo 编译 hugo server 本地启动服务  评论系统 如果需要，可以考虑isso，因为涉及交互，就不再是静态网站了，需要存储系统，就需要放存储系统的服务器。暂时不考虑。 评论系统效果参考
+优化方向  里面内嵌了很多js，需要删除无用的，把有用的js链接本地化，减少网络依赖  注意事项(和网站相比存在问题)：  如果date是当天,则这篇博客无法显示？  字体颜色
 ``` title: Kafka中消息分配策略 date: 2019-04-24 categories: 2019-04 tags: [Think] author: shengulong &amp;lt;th&amp;gt;sd&amp;lt;/th&amp;gt; ```  </description>
     </item>
     

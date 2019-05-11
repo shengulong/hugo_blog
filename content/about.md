@@ -16,6 +16,15 @@ title: "About"
 1. hugo 编译
 2. hugo server 本地启动服务
 
+评论系统
+----
+如果需要，可以考虑[isso](https://posativ.org/isso/)，因为涉及交互，就不再是静态网站了，需要存储系统，就需要放存储系统的服务器。暂时不考虑。
+评论系统效果[参考](https://lowentropy.me/flight-rules/20181130-%E4%BD%BF%E7%94%A8pandoc%E5%92%8Ckatex%E4%B8%BAhugo%E6%B7%BB%E5%8A%A0latex%E6%94%AF%E6%8C%81/)
+
+优化方向
+----
+1. 里面内嵌了很多js，需要删除无用的，把有用的js链接本地化，减少网络依赖
+
 注意事项([和网站相比存在问题](https://neojos.com/))：
 ---
 1. 如果date是当天,则这篇博客无法显示？
