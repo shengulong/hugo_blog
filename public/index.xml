@@ -6,10 +6,38 @@
     <description>Recent content in 蜗牛保持乐观才会爬的更远 on 道法自然</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 11 May 2019 00:36:45 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 13 May 2019 11:02:34 +0800</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Curl常用操作</title>
+      <link>/blog/2019/curl%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</link>
+      <pubDate>Mon, 13 May 2019 11:02:34 +0800</pubDate>
+      
+      <guid>/blog/2019/curl%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</guid>
+      <description>curl &amp;ndash;help/&amp;ndash;manual查看完整信息
+  使用curl post上传文件，multipart/form-data
+ 如果不设置filename，默认的filename值就是file的名字，本例的&amp;rdquo;go.sum&amp;rdquo;
+ curl -x 127.0.0.1:6060 -F &amp;ldquo;appkey=xxxx&amp;rdquo; -F &amp;ldquo;projectCode=platformtool&amp;rdquo; -F &amp;ldquo;appsecret=xxxx&amp;rdquo; -F &amp;ldquo;file=@go.sum;filename=test&amp;rdquo; http://xxxx.tongdun.me/v1/resource/upload
+报文内容： POST /v1/resource/upload HTTP/1.1 Host: xxxx.tongdun.me User-Agent: curl/7.54.0 Accept: */* Content-Length: 15262 Expect: 100-continue Content-Type: multipart/form-data; boundary=------------------------7bba7e03d249b584 Connection: close --------------------------7bba7e03d249b584 Content-Disposition: form-data; name=&amp;quot;appkey&amp;quot; xxxx --------------------------7bba7e03d249b584 Content-Disposition: form-data; name=&amp;quot;projectCode&amp;quot; platformtool --------------------------7bba7e03d249b584 Content-Disposition: form-data; name=&amp;quot;appsecret&amp;quot; xxxx --------------------------7bba7e03d249b584 Content-Disposition: form-data; name=&amp;quot;file&amp;quot;; filename=&amp;quot;test&amp;quot; Content-Type: application/octet-stream cloud.google.com/go v0.34.0/go.mod h1:aQUYkXzVsufM+DwF1aE+0xfcU+56JwCaLick0ClmMTw= github.com/BurntSushi/toml v0.3.1 h1:WXkYYl6Yr3qBf1K79EBnL4mak0OimBfB0XUf9Vl28OQ= github.com/BurntSushi/toml v0.</description>
+    </item>
+    
+    <item>
+      <title>Mac常用操作</title>
+      <link>/blog/2019/mac%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</link>
+      <pubDate>Mon, 13 May 2019 10:43:39 +0800</pubDate>
+      
+      <guid>/blog/2019/mac%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</guid>
+      <description> 在Finder中显示/隐藏隐藏文件
+defaults write com.apple.Finder AppleShowAllFiles YES/NO
+killall Finder
+ 打开多个实例
+open -n /Applications/xxx.app
+  3.
+   </description>
+    </item>
     
     <item>
       <title>个人所得税2019</title>
@@ -162,7 +190,7 @@ You can implement step definitions for undefined steps with these snippets: func
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/about/</guid>
-      <description> 网站是使用hugo + GitHub搭建的静态网页。在这之前，一直用的是cnblogs，自从无意间看到了https://neojos.com/about/。不得不说，自己被博主的优秀以及博客的简单明了折服的一塌糊涂。
+      <description> 网站是使用hugo + GitHub搭建的静态网页。在这之前，一直用的是cnblogs，自从无意间看到了https://neojos.com/about/, 其实来源是blog,参考github,github。 不得不说，自己被博主的优秀以及博客的简单明了折服的一塌糊涂。
 简单了解hugo之后，发现它更简单、更方便，所以将自己的博客也做了迁移。
 直接git clone git@github.com:GitHubSi/blog.git,然后简单修改里面的内容，删除掉作者的博客，添加自己的博客
 使用介绍：  Hugo快速入手 博客模版 theme:hugo-ivy 主题hugo-ivy借鉴ivy：Ivy is a static website generator built in Python. It&#39;s small, elegant, and easy to use. hugo 编译 hugo server 本地启动服务  评论系统 如果需要，可以考虑isso，因为涉及交互，就不再是静态网站了，需要存储系统，就需要放存储系统的服务器。暂时不考虑。 评论系统效果参考

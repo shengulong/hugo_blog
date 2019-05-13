@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>Curl常用操作 - 道法自然</title>
+    <meta property="og:title" content="Curl常用操作 - 道法自然">
+    
+
+    
+      
+    
+
+    
+
+    
+    
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.14.1/styles/googlecode.min.css' rel='stylesheet' type='text/css' />
+
+
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+
+  </head>
+
+  
+  <body class="blog">
+    <header class="masthead">
+      <h1 class="headimg">
+    
+    <a href="/"><img src="/img/headimg.png" alt="Fuhui "></a>
+</h1>
+
+
+
+      <nav class="menu">
+        <input id="menu-check" type="checkbox" />
+        <label id="menu-label" for="menu-check" class="unselectable">
+          <span class="icon close-icon">✕</span>
+          <span class="icon open-icon">☰</span>
+          <span class="text">Menu</span>
+        </label>
+        <ul>
+        
+        
+        <li><a href="/blog/">Blog</a></li>
+        
+        <li><a href="/life/">Life</a></li>
+        
+        <li><a href="/resource/">Resource</a></li>
+        
+        <li><a href="/categories/">Categories</a></li>
+        
+        <li><a href="/tags/">Tags</a></li>
+        
+        <li><a href="/about/">About</a></li>
+        
+        
+
+
+        </ul>
+      </nav>
+    </header>
+
+    <article class="main">
+      <header class="title">
+      <h1>Curl常用操作</h1>
+
+
+
+
+    
+    
+    <section class="post-meta">
+        <span class="post-author">shengulong
+        
+            
+            
+             /  2019-05-13
+            
+        </span>
+        
+        <a href="/tags/linux">linux</a>
+        
+    </section>
+    
+
+
+
+<hr>
+      </header>
+
+
+<blockquote>
+<p>curl &ndash;help/&ndash;manual查看完整信息</p>
+</blockquote>
+
+<ol>
+<li><p>使用curl post上传文件，multipart/form-data</p>
+
+<blockquote>
+<p>如果不设置filename，默认的filename值就是file的名字，本例的&rdquo;go.sum&rdquo;</p>
+</blockquote>
+
+<p>curl -x 127.0.0.1:6060 -F &ldquo;appkey=xxxx&rdquo; -F &ldquo;projectCode=platformtool&rdquo; -F &ldquo;appsecret=xxxx&rdquo; -F &ldquo;file=@go.sum;filename=test&rdquo; <a href="http://xxxx.tongdun.me/v1/resource/upload">http://xxxx.tongdun.me/v1/resource/upload</a></p>
+
+<pre><code>报文内容：   
+
+POST /v1/resource/upload HTTP/1.1
+Host: xxxx.tongdun.me
+User-Agent: curl/7.54.0
+Accept: */*
+Content-Length: 15262
+Expect: 100-continue
+Content-Type: multipart/form-data; boundary=------------------------7bba7e03d249b584
+Connection: close
+
+--------------------------7bba7e03d249b584
+Content-Disposition: form-data; name=&quot;appkey&quot;
+
+xxxx
+--------------------------7bba7e03d249b584
+Content-Disposition: form-data; name=&quot;projectCode&quot;
+
+platformtool
+--------------------------7bba7e03d249b584
+Content-Disposition: form-data; name=&quot;appsecret&quot;
+
+xxxx
+--------------------------7bba7e03d249b584
+Content-Disposition: form-data; name=&quot;file&quot;; filename=&quot;test&quot;
+Content-Type: application/octet-stream
+
+cloud.google.com/go v0.34.0/go.mod h1:aQUYkXzVsufM+DwF1aE+0xfcU+56JwCaLick0ClmMTw=
+github.com/BurntSushi/toml v0.3.1 h1:WXkYYl6Yr3qBf1K79EBnL4mak0OimBfB0XUf9Vl28OQ=
+github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
+github.com/DataDog/zstd v1.3.5 h1:DtpNbljikUepEPD16hD4LvIcmhnhdLTiW/5pHgbmp14=
+github.com/DataDog/zstd v1.3.5/go.mod h1:1jcaCB/ufaK+sKp1NBhlGmpz41jOoPQ35bpF36t7BBo=
+
+
+--------------------------7bba7e03d249b584--
+</code></pre></li>
+
+<li><p>使用curl post上传application/json文件</p>
+
+<p>curl -x 127.0.0.1:6060 -H &ldquo;Content-Type: application/json&rdquo; -X POST &ndash;data &lsquo;{&ldquo;projectCode&rdquo;:&ldquo;platformtool&rdquo;,&ldquo;location&rdquo;:&ldquo;/user/xxxx/users/cicd/requirements.txt&rdquo;,&ldquo;type&rdquo;:&ldquo;personal&rdquo;}&rsquo; <a href="http://xxxx.tongdun.me/v1/resource/exist?appsecret=xxxx&amp;appkey=xxxx&amp;projectCode=platformtool">http://xxxx.tongdun.me/v1/resource/exist?appsecret=xxxx&amp;appkey=xxxx&amp;projectCode=platformtool</a></p>
+
+<pre><code>报文内容：
+
+POST /v1/resource/exist?appsecret=xxxx&amp;appkey=xxxx&amp;projectCode=platformtool HTTP/1.1
+Host: xxxx.tongdun.me
+User-Agent: curl/7.54.0
+Accept: */*
+Content-Type: application/json
+Content-Length: 107
+Connection: close
+
+{&quot;projectCode&quot;:&quot;platformtool&quot;,&quot;location&quot;:&quot;/user/xxxx/users/cicd/requirements.txt&quot;,&quot;type&quot;:&quot;personal&quot;}
+</code></pre></li>
+
+<li><p>使用curl post上传文件，application/x-www-url-encoded</p>
+
+<p>curl -x 127.0.0.1:6060  -d &ldquo;action=del&rdquo; -d &ldquo;id=12&rdquo; <a href="http://localhost/test">http://localhost/test</a></p>
+
+<p>curl -x 127.0.0.1:6060  -d &ldquo;action=del&amp;id=12&rdquo; <a href="http://localhost/test">http://localhost/test</a></p>
+
+<pre><code>POST /test HTTP/1.1
+Host: localhost
+User-Agent: curl/7.54.0
+Accept: */*
+Content-Length: 16
+Content-Type: application/x-www-form-urlencoded
+Connection: close
+
+action=del&amp;id=12
+</code></pre>
+
+<p>curl -x 127.0.0.1:6060  -d &lsquo;{&ldquo;action&rdquo;:&ldquo;del&rdquo;,&ldquo;id&rdquo;:12}&rsquo; <a href="http://localhost/test">http://localhost/test</a></p>
+
+<pre><code>POST /test HTTP/1.1
+Host: localhost
+User-Agent: curl/7.54.0
+Accept: */*
+Content-Length: 24
+Content-Type: application/x-www-form-urlencoded
+Connection: close
+
+{&quot;action&quot;:&quot;del&quot;,&quot;id&quot;:12}
+</code></pre></li>
+
+<li><p>显示时间：</p>
+
+<p>curl -v &ndash;trace-time <a href="https://www.baidu.com">https://www.baidu.com</a></p></li>
+
+<li><p>结束请求后输出信息：</p>
+
+<p>curl -w &ldquo;Type: %{content_type}\nCode: %{response_code}\n&rdquo; <a href="https://www.baidu.com">https://www.baidu.com</a></p></li>
+
+<li><p>分块下载</p>
+
+<blockquote>
+<p>0-499     specifies the first 500 bytes<br />
+500-999   specifies the second 500 bytes<br />
+-500      specifies the last 500 bytes<br />
+9500-     specifies the bytes from offset 9500 and forward<br />
+0-0,-1    specifies the first and last byte only(<em>)(HTTP)<br />
+100-199,500-599 specifies two separate 100-byte ranges(</em>) (HTTP)</p>
+</blockquote>
+
+<pre><code>curl -r  0-10240  -o &quot;zhao.part1&quot;  http://mydomain.net/~zzh/zhao1.mp3 
+&amp; curl -r 10241-20480  -o &quot;zhao.part1&quot;  http://mydomain.net/~zzh/zhao1.mp3 
+&amp; curl -r 20481 -40960  -o &quot;zhao.part1&quot;  http://mydomain.net/~zzh/zhao1.mp3 
+&amp; curl -r 40961- -o  &quot;zhao.part1&quot;  http://mydomain.net/~zzh/zhao1.mp3
+
+合成一个
+cat zhao.part* &gt; zhao.mp3
+</code></pre></li>
+
+<li><p>断点续传-C，</p></li>
+
+<li><p>循环下载，循环匹配下载</p>
+
+<p>curl -O <a href="http://mydomain.net/~zzh/screen[1-10].JPG">http://mydomain.net/~zzh/screen[1-10].JPG</a></p>
+
+<p>curl -O <a href="http://mydomain.net/~{zzh,nick}/[001-201].JPG">http://mydomain.net/~{zzh,nick}/[001-201].JPG</a>     # &gt;like zzh/001.JPG</p></li>
+
+<li><p>循环引用下载</p>
+
+<p>curl -o #2_#1.jpg <a href="http://mydomain.net/~{zzh,nick}/[001-201].JPG">http://mydomain.net/~{zzh,nick}/[001-201].JPG</a> # like &gt;001_zzh.jpg</p></li>
+
+<li><p>注意选项-o和-O的区别，-O自动获取远程文件名字作为本地文件名字</p>
+
+<p>curl -o home.html  <a href="http://www.sina.com.cn">http://www.sina.com.cn</a>  当前目录生成本地文件home.html</p>
+
+<p>curl -O <a href="http://www.mydomain.com/linux/index.html">http://www.mydomain.com/linux/index.html</a>     当前目录生成本地文件index.html</p></li>
+
+<li><p>显示抓取错误</p>
+
+<pre><code>curl -f http://www.sina.com.cn/asdf
+curl: (22) The requested URL returned error: 404 Not Found
+</code></pre></li>
+
+<li><p>伪造来源referer</p>
+
+<pre><code>curl -e www.coolsite.com http://www.showme.com/                     
+</code></pre></li>
+</ol>
+
+
+  <footer>
+  
+<nav class="post-nav">
+  <span class="nav-prev">&larr; <a href="/blog/2019/mac%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/">Mac常用操作</a></span>
+  <span class="nav-next"></span>
+</nav>
+
+
+
+
+
+<script src="//yihui.name/js/math-code.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script async src="//yihui.name/js/center-img.js"></script>
+
+  
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/yaml.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/tex.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/go.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+  
+  <hr>
+  <div class="copyright">&copy; 2019 | <a href="https://github.com/shengulong">Github</a> | <a href="https://www.cnblogs.com/shengulong/">cnblogs</a> | <a href="https://shengulong.github.io/">Github Pages</a></div>
+  
+  </footer>
+  </article>
+  
+  </body>
+  
+  <script src="https://mermaidjs.github.io/scripts/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+
+  </html>
+

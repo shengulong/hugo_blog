@@ -6,10 +6,28 @@
     <description>Recent content in Tags on 道法自然</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 11 May 2019 00:36:45 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 13 May 2019 11:02:34 +0800</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>linux</title>
+      <link>/tags/linux/</link>
+      <pubDate>Mon, 13 May 2019 11:02:34 +0800</pubDate>
+      
+      <guid>/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mac</title>
+      <link>/tags/mac/</link>
+      <pubDate>Mon, 13 May 2019 10:43:39 +0800</pubDate>
+      
+      <guid>/tags/mac/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>个税</title>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mac on 道法自然</title>
+    <link>/tags/mac/</link>
+    <description>Recent content in mac on 道法自然</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 13 May 2019 10:43:39 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/mac/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Mac常用操作</title>
+      <link>/blog/2019/mac%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</link>
+      <pubDate>Mon, 13 May 2019 10:43:39 +0800</pubDate>
+      
+      <guid>/blog/2019/mac%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</guid>
+      <description> 在Finder中显示/隐藏隐藏文件
+defaults write com.apple.Finder AppleShowAllFiles YES/NO
+killall Finder
+ 打开多个实例
+open -n /Applications/xxx.app
+  3.
+   </description>
+    </item>
+    
+  </channel>
+</rss>
