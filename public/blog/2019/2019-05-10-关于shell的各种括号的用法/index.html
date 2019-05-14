@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>关于shell的各种括号的用法 - 道法自然</title>
+    <meta property="og:title" content="关于shell的各种括号的用法 - 道法自然">
+    
+
+    
+      
+    
+
+    
+
+    
+    
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.14.1/styles/googlecode.min.css' rel='stylesheet' type='text/css' />
+
+
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+
+  </head>
+
+  
+  <body class="blog">
+    <header class="masthead">
+      <h1 class="headimg">
+    
+    <a href="/"><img src="/img/headimg.png" alt="Fuhui "></a>
+</h1>
+
+
+
+      <nav class="menu">
+        <input id="menu-check" type="checkbox" />
+        <label id="menu-label" for="menu-check" class="unselectable">
+          <span class="icon close-icon">✕</span>
+          <span class="icon open-icon">☰</span>
+          <span class="text">Menu</span>
+        </label>
+        <ul>
+        
+        
+        <li><a href="/blog/">Blog</a></li>
+        
+        <li><a href="/life/">Life</a></li>
+        
+        <li><a href="/resource/">Resource</a></li>
+        
+        <li><a href="/categories/">Categories</a></li>
+        
+        <li><a href="/tags/">Tags</a></li>
+        
+        <li><a href="/about/">About</a></li>
+        
+        
+
+
+        </ul>
+      </nav>
+    </header>
+
+    <article class="main">
+      <header class="title">
+      <h1>关于shell的各种括号的用法</h1>
+
+
+
+
+    
+    
+    <section class="post-meta">
+        <span class="post-author">shengulong
+        
+            
+            
+             /  2019-05-10
+            
+        </span>
+        
+        <a href="/tags/shell">shell</a>
+        
+    </section>
+    
+
+
+
+<hr>
+      </header>
+
+
+
+
+<blockquote>
+<p>大部分情况可以通用，建议使用双中括号<code>[[]]</code>，不同的shell表现也不尽相同</p>
+</blockquote>
+
+<h2 id="正确的用法">正确的用法</h2>
+
+<pre><code>1. 逻辑与：[ &quot;2&quot; = &quot;2&quot; -a &quot;3&quot; = '3' ]、[[ &quot;2&quot; = &quot;2&quot; &amp;&amp; &quot;3&quot; = '3' ]]、[ &quot;2&quot; = &quot;2&quot; ] &amp;&amp; [ &quot;3&quot; = '3' ]
+2. 逻辑或：[ &quot;2&quot; = &quot;2&quot; -o &quot;3&quot; = '3' ]、[[ &quot;2&quot; = &quot;2&quot; || &quot;3&quot; = '3' ]]、[ &quot;2&quot; = &quot;2&quot; ] || [ &quot;3&quot; = '3' ]
+3. []可以替换为test :if [ -e zshrctest ];then;echo &quot;yes&quot;;fi 
+             等价于 if test -e zshrctest;then;echo &quot;yes&quot;;fi
+3. var=name;[[ $var = na?? ]] 问号代表一个字符
+4. arrary=(aa bb cc);${arrary[@]}表示全部数组元素;echo ${arrary[1]}表示第一个元素，注意是从1开始的
+</code></pre>
+
+<h2 id="错误的用法">错误的用法</h2>
+
+<pre><code>[[ &quot;2&quot; = &quot;2&quot; -o &quot;3&quot; = '3' ]]
+var=name;[ $var = na?? ]
+</code></pre>
+
+<h2 id="小括号用法">小括号用法</h2>
+
+<pre><code>1.  `pwd`等同于(pwd)
+2.  数组初始化arrary=(aa bb cc)
+3.  for i in $(seq 0 4);do echo $i;done 
+    for i in `seq 0 4`;do echo $i;done 
+    for ((i=0;i&lt;5;i++));do echo $i;done 
+    for i in {0..4};do echo $i;done
+4.  (pwd;ls) 新开一个shell顺序执行命令组
+</code></pre>
+
+<h2 id="大括号用法">大括号用法</h2>
+
+<pre><code>1. touch {a,b}.txt 结果为a.txt b.txt ; touch {a..d}.txt 结果为a.txt b.txt c.txt d.txt
+2. 尽量使用${a}代替$a 
+3. 代码块 { pwd;ls }  同一个shell中顺序执行代码块
+</code></pre>
+
+
+  <footer>
+  
+<nav class="post-nav">
+  <span class="nav-prev">&larr; <a href="/blog/2019/2019-04-24-kafka%E4%B8%AD%E6%B6%88%E6%81%AF%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/">Kafka中消息分配策略</a></span>
+  <span class="nav-next"><a href="/blog/2019/markdown%E8%AF%AD%E6%B3%95%E5%8F%8A%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95%E4%B8%BE%E4%BE%8B/">Markdown语法及常见用法举例</a> &rarr;</span>
+</nav>
+
+
+
+
+
+<script src="//yihui.name/js/math-code.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script async src="//yihui.name/js/center-img.js"></script>
+
+  
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/yaml.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/tex.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/go.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+  
+  <hr>
+  <div class="copyright">&copy; 2019 | <a href="https://github.com/shengulong">Github</a> | <a href="https://www.cnblogs.com/shengulong/">cnblogs</a> | <a href="https://shengulong.github.io/">Github Pages</a></div>
+  
+  </footer>
+  </article>
+  
+  </body>
+  
+  <script src="https://mermaidjs.github.io/scripts/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+
+  </html>
+

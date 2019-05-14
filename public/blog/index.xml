@@ -6,10 +6,21 @@
     <description>Recent content in SGL&#39;s Blog on 道法自然</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 13 May 2019 11:02:34 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 14 May 2019 21:41:40 +0800</lastBuildDate>
     
 	<atom:link href="/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Zsh启动优化</title>
+      <link>/blog/2019/2019-05-14-zsh%E5%90%AF%E5%8A%A8%E4%BC%98%E5%8C%96/</link>
+      <pubDate>Tue, 14 May 2019 21:41:40 +0800</pubDate>
+      
+      <guid>/blog/2019/2019-05-14-zsh%E5%90%AF%E5%8A%A8%E4%BC%98%E5%8C%96/</guid>
+      <description>主要优化方法  偶尔执行一次的sh脚本，不要每次都执行，需要的时候再执行，举例：
+# 下面的配置保证每次打开终端的时候，都可以执行python虚拟环境的workon/mkvirtualenv/rmvirtualenv等命令 # source /usr/local/bin/virtualenvwrapper.sh # source /Library/Frameworks/Python.framework/Versions/3.6/bin/virtualenvwrapper.sh # 修改为函数的形式，需要执行python虚拟环境命令的时候再执行这个函数 start_virtualenvwrapper() { source /Library/Frameworks/Python.framework/Versions/3.6/bin/virtualenvwrapper.sh }  懒加载。有些命令需要的时候再加载，举例：k8s命令kubectl
+# lazy load begin if [ $commands[kubectl] ]; then # Placeholder &#39;kubectl&#39; shell function: # Will only be executed on the first call to &#39;kubectl&#39; kubectl() { # Remove this function, subsequent calls will execute &#39;kubectl&#39; directly unfunction &amp;quot;$0&amp;quot; # Load auto-completion source &amp;lt;(kubectl completion zsh) # Execute &#39;kubectl&#39; binary $0 &amp;quot;$@&amp;quot; } fi # lazy load end  把类似$(brew &amp;ndash;prefix dvm)的命令直接修改为其执行后的路径值，因为这条命令执行比较耗时</description>
+    </item>
     
     <item>
       <title>Curl常用操作</title>
@@ -59,12 +70,13 @@ open -n /Applications/xxx.app
     </item>
     
     <item>
-      <title>关于shell的单双中括号</title>
-      <link>/blog/2019/2019-05-10-%E5%85%B3%E4%BA%8Eshell%E7%9A%84%E5%8D%95%E5%8F%8C%E4%B8%AD%E6%8B%AC%E5%8F%B7/</link>
+      <title>关于shell的各种括号的用法</title>
+      <link>/blog/2019/2019-05-10-%E5%85%B3%E4%BA%8Eshell%E7%9A%84%E5%90%84%E7%A7%8D%E6%8B%AC%E5%8F%B7%E7%9A%84%E7%94%A8%E6%B3%95/</link>
       <pubDate>Fri, 10 May 2019 20:52:10 +0800</pubDate>
       
-      <guid>/blog/2019/2019-05-10-%E5%85%B3%E4%BA%8Eshell%E7%9A%84%E5%8D%95%E5%8F%8C%E4%B8%AD%E6%8B%AC%E5%8F%B7/</guid>
-      <description>主要区别： 1. 2. 3.</description>
+      <guid>/blog/2019/2019-05-10-%E5%85%B3%E4%BA%8Eshell%E7%9A%84%E5%90%84%E7%A7%8D%E6%8B%AC%E5%8F%B7%E7%9A%84%E7%94%A8%E6%B3%95/</guid>
+      <description>大部分情况可以通用，建议使用双中括号[[]]，不同的shell表现也不尽相同
+ 正确的用法 1. 逻辑与：[ &amp;quot;2&amp;quot; = &amp;quot;2&amp;quot; -a &amp;quot;3&amp;quot; = &#39;3&#39; ]、[[ &amp;quot;2&amp;quot; = &amp;quot;2&amp;quot; &amp;amp;&amp;amp; &amp;quot;3&amp;quot; = &#39;3&#39; ]]、[ &amp;quot;2&amp;quot; = &amp;quot;2&amp;quot; ] &amp;amp;&amp;amp; [ &amp;quot;3&amp;quot; = &#39;3&#39; ] 2. 逻辑或：[ &amp;quot;2&amp;quot; = &amp;quot;2&amp;quot; -o &amp;quot;3&amp;quot; = &#39;3&#39; ]、[[ &amp;quot;2&amp;quot; = &amp;quot;2&amp;quot; || &amp;quot;3&amp;quot; = &#39;3&#39; ]]、[ &amp;quot;2&amp;quot; = &amp;quot;2&amp;quot; ] || [ &amp;quot;3&amp;quot; = &#39;3&#39; ] 3. []可以替换为test :if [ -e zshrctest ];then;echo &amp;quot;yes&amp;quot;;fi 等价于 if test -e zshrctest;then;echo &amp;quot;yes&amp;quot;;fi 3.</description>
     </item>
     
     <item>

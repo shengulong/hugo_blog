@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>zsh on 道法自然</title>
+    <link>/tags/zsh/</link>
+    <description>Recent content in zsh on 道法自然</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 14 May 2019 21:41:40 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/zsh/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Zsh启动优化</title>
+      <link>/blog/2019/2019-05-14-zsh%E5%90%AF%E5%8A%A8%E4%BC%98%E5%8C%96/</link>
+      <pubDate>Tue, 14 May 2019 21:41:40 +0800</pubDate>
+      
+      <guid>/blog/2019/2019-05-14-zsh%E5%90%AF%E5%8A%A8%E4%BC%98%E5%8C%96/</guid>
+      <description>主要优化方法  偶尔执行一次的sh脚本，不要每次都执行，需要的时候再执行，举例：
+# 下面的配置保证每次打开终端的时候，都可以执行python虚拟环境的workon/mkvirtualenv/rmvirtualenv等命令 # source /usr/local/bin/virtualenvwrapper.sh # source /Library/Frameworks/Python.framework/Versions/3.6/bin/virtualenvwrapper.sh # 修改为函数的形式，需要执行python虚拟环境命令的时候再执行这个函数 start_virtualenvwrapper() { source /Library/Frameworks/Python.framework/Versions/3.6/bin/virtualenvwrapper.sh }  懒加载。有些命令需要的时候再加载，举例：k8s命令kubectl
+# lazy load begin if [ $commands[kubectl] ]; then # Placeholder &#39;kubectl&#39; shell function: # Will only be executed on the first call to &#39;kubectl&#39; kubectl() { # Remove this function, subsequent calls will execute &#39;kubectl&#39; directly unfunction &amp;quot;$0&amp;quot; # Load auto-completion source &amp;lt;(kubectl completion zsh) # Execute &#39;kubectl&#39; binary $0 &amp;quot;$@&amp;quot; } fi # lazy load end  把类似$(brew &amp;ndash;prefix dvm)的命令直接修改为其执行后的路径值，因为这条命令执行比较耗时</description>
+    </item>
+    
+  </channel>
+</rss>

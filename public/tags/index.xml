@@ -6,10 +6,19 @@
     <description>Recent content in Tags on 道法自然</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 13 May 2019 11:02:34 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 14 May 2019 21:41:40 +0800</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>zsh</title>
+      <link>/tags/zsh/</link>
+      <pubDate>Tue, 14 May 2019 21:41:40 +0800</pubDate>
+      
+      <guid>/tags/zsh/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>linux</title>
