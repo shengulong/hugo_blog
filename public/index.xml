@@ -93,19 +93,6 @@ open -n /Applications/xxx.app
     </item>
     
     <item>
-      <title>mongo EOF</title>
-      <link>/blog/2019/2019-04-27-mongo-eof/</link>
-      <pubDate>Sat, 27 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/blog/2019/2019-04-27-mongo-eof/</guid>
-      <description>很多事情仅仅的是严肃的提出问题都感觉很难，更何况还得要先发现它。
- Question 描述 项目中使用：github.com/globalsign/mgo这个库，在一次主从切换之后，mongo后续的操作都失败了, 错误信息输出：EOF。
-引用网上遇到同样问题的其他描述：
- The problem I have is, when the connection to the mongodb server fails (the server drops the connection sometimes or mongodb server fails), then my pointer to the session variable doesn&#39;t work anymore. Even if the internet connection comes back, mgo driver doesn&#39;t reconnect anymore, instead of this I get the error (when I do Find().One() method call): &amp;quot;EOF&amp;quot;
- 解决思路   Call Refresh on the session, which makes it discard (or put back in the pool, if the connection is good) the connection it&amp;rsquo;s holding, and pick a new one when necessary.</description>
-    </item>
-    
-    <item>
       <title>Kafka中消息分配策略</title>
       <link>/blog/2019/2019-04-24-kafka%E4%B8%AD%E6%B6%88%E6%81%AF%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/</link>
       <pubDate>Wed, 24 Apr 2019 00:00:00 +0000</pubDate>
