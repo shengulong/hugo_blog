@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>SGL&#39;s Blog on 道法自然</title>
+    <title>SGL&#39;s Blog on 持之以恒</title>
     <link>/blog/</link>
-    <description>Recent content in SGL&#39;s Blog on 道法自然</description>
+    <description>Recent content in SGL&#39;s Blog on 持之以恒</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 14 May 2019 21:41:40 +0800</lastBuildDate>
@@ -13,10 +13,10 @@
     
     <item>
       <title>Zsh启动优化</title>
-      <link>/blog/2019/2019-05-14-zsh%E5%90%AF%E5%8A%A8%E4%BC%98%E5%8C%96/</link>
+      <link>/blog/2019/05/14/zsh%E5%90%AF%E5%8A%A8%E4%BC%98%E5%8C%96/</link>
       <pubDate>Tue, 14 May 2019 21:41:40 +0800</pubDate>
       
-      <guid>/blog/2019/2019-05-14-zsh%E5%90%AF%E5%8A%A8%E4%BC%98%E5%8C%96/</guid>
+      <guid>/blog/2019/05/14/zsh%E5%90%AF%E5%8A%A8%E4%BC%98%E5%8C%96/</guid>
       <description>主要优化方法  偶尔执行一次的sh脚本，不要每次都执行，需要的时候再执行，举例：
 # 下面的配置保证每次打开终端的时候，都可以执行python虚拟环境的workon/mkvirtualenv/rmvirtualenv等命令 # source /usr/local/bin/virtualenvwrapper.sh # source /Library/Frameworks/Python.framework/Versions/3.6/bin/virtualenvwrapper.sh # 修改为函数的形式，需要执行python虚拟环境命令的时候再执行这个函数 start_virtualenvwrapper() { source /Library/Frameworks/Python.framework/Versions/3.6/bin/virtualenvwrapper.sh }  懒加载。有些命令需要的时候再加载，举例：k8s命令kubectl
 # lazy load begin if [ $commands[kubectl] ]; then # Placeholder &#39;kubectl&#39; shell function: # Will only be executed on the first call to &#39;kubectl&#39; kubectl() { # Remove this function, subsequent calls will execute &#39;kubectl&#39; directly unfunction &amp;quot;$0&amp;quot; # Load auto-completion source &amp;lt;(kubectl completion zsh) # Execute &#39;kubectl&#39; binary $0 &amp;quot;$@&amp;quot; } fi # lazy load end  把类似$(brew &amp;ndash;prefix dvm)的命令直接修改为其执行后的路径值，因为这条命令执行比较耗时</description>
@@ -24,10 +24,10 @@
     
     <item>
       <title>Curl常用操作</title>
-      <link>/blog/2019/curl%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</link>
+      <link>/blog/2019/05/13/curl%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</link>
       <pubDate>Mon, 13 May 2019 11:02:34 +0800</pubDate>
       
-      <guid>/blog/2019/curl%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</guid>
+      <guid>/blog/2019/05/13/curl%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</guid>
       <description>curl &amp;ndash;help/&amp;ndash;manual查看完整信息
   使用curl post上传文件，multipart/form-data
  如果不设置filename，默认的filename值就是file的名字，本例的&amp;rdquo;go.sum&amp;rdquo;
@@ -37,10 +37,10 @@
     
     <item>
       <title>Mac常用操作</title>
-      <link>/blog/2019/mac%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</link>
+      <link>/blog/2019/05/13/mac%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</link>
       <pubDate>Mon, 13 May 2019 10:43:39 +0800</pubDate>
       
-      <guid>/blog/2019/mac%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</guid>
+      <guid>/blog/2019/05/13/mac%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</guid>
       <description> 在Finder中显示/隐藏隐藏文件
 defaults write com.apple.Finder AppleShowAllFiles YES/NO
 killall Finder
@@ -52,10 +52,10 @@ open -n /Applications/xxx.app
     
     <item>
       <title>Markdown语法及常见用法举例</title>
-      <link>/blog/2019/markdown%E8%AF%AD%E6%B3%95%E5%8F%8A%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95%E4%B8%BE%E4%BE%8B/</link>
+      <link>/blog/2019/05/10/markdown%E8%AF%AD%E6%B3%95%E5%8F%8A%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95%E4%B8%BE%E4%BE%8B/</link>
       <pubDate>Fri, 10 May 2019 21:18:52 +0800</pubDate>
       
-      <guid>/blog/2019/markdown%E8%AF%AD%E6%B3%95%E5%8F%8A%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95%E4%B8%BE%E4%BE%8B/</guid>
+      <guid>/blog/2019/05/10/markdown%E8%AF%AD%E6%B3%95%E5%8F%8A%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95%E4%B8%BE%E4%BE%8B/</guid>
       <description>缩进 标题（Headers）
  Markdown 标题支持两种形式：
  1.1 用1~6个#标记
@@ -71,20 +71,20 @@ open -n /Applications/xxx.app
     
     <item>
       <title>关于shell的各种括号的用法</title>
-      <link>/blog/2019/2019-05-10-%E5%85%B3%E4%BA%8Eshell%E7%9A%84%E5%90%84%E7%A7%8D%E6%8B%AC%E5%8F%B7%E7%9A%84%E7%94%A8%E6%B3%95/</link>
+      <link>/blog/2019/05/10/%E5%85%B3%E4%BA%8Eshell%E7%9A%84%E5%90%84%E7%A7%8D%E6%8B%AC%E5%8F%B7%E7%9A%84%E7%94%A8%E6%B3%95/</link>
       <pubDate>Fri, 10 May 2019 20:52:10 +0800</pubDate>
       
-      <guid>/blog/2019/2019-05-10-%E5%85%B3%E4%BA%8Eshell%E7%9A%84%E5%90%84%E7%A7%8D%E6%8B%AC%E5%8F%B7%E7%9A%84%E7%94%A8%E6%B3%95/</guid>
+      <guid>/blog/2019/05/10/%E5%85%B3%E4%BA%8Eshell%E7%9A%84%E5%90%84%E7%A7%8D%E6%8B%AC%E5%8F%B7%E7%9A%84%E7%94%A8%E6%B3%95/</guid>
       <description>大部分情况可以通用，建议使用双中括号[[]]，不同的shell表现也不尽相同
  正确的用法 1. 逻辑与：[ &amp;quot;2&amp;quot; = &amp;quot;2&amp;quot; -a &amp;quot;3&amp;quot; = &#39;3&#39; ]、[[ &amp;quot;2&amp;quot; = &amp;quot;2&amp;quot; &amp;amp;&amp;amp; &amp;quot;3&amp;quot; = &#39;3&#39; ]]、[ &amp;quot;2&amp;quot; = &amp;quot;2&amp;quot; ] &amp;amp;&amp;amp; [ &amp;quot;3&amp;quot; = &#39;3&#39; ] 2. 逻辑或：[ &amp;quot;2&amp;quot; = &amp;quot;2&amp;quot; -o &amp;quot;3&amp;quot; = &#39;3&#39; ]、[[ &amp;quot;2&amp;quot; = &amp;quot;2&amp;quot; || &amp;quot;3&amp;quot; = &#39;3&#39; ]]、[ &amp;quot;2&amp;quot; = &amp;quot;2&amp;quot; ] || [ &amp;quot;3&amp;quot; = &#39;3&#39; ] 3. []可以替换为test :if [ -e zshrctest ];then;echo &amp;quot;yes&amp;quot;;fi 等价于 if test -e zshrctest;then;echo &amp;quot;yes&amp;quot;;fi 3.</description>
     </item>
     
     <item>
       <title>Kafka中消息分配策略</title>
-      <link>/blog/2019/2019-04-24-kafka%E4%B8%AD%E6%B6%88%E6%81%AF%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/</link>
+      <link>/blog/2019/04/24/kafka%E4%B8%AD%E6%B6%88%E6%81%AF%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/</link>
       <pubDate>Wed, 24 Apr 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/2019/2019-04-24-kafka%E4%B8%AD%E6%B6%88%E6%81%AF%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/</guid>
+      <guid>/blog/2019/04/24/kafka%E4%B8%AD%E6%B6%88%E6%81%AF%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/</guid>
       <description>非淡泊无以明，非宁静无以致远
  Question 关于kafka中partation和consumer的是如何执行分配的。今早骑自行车的时候突然想起这个问题。它是怎么分配的，我记得我看到好几次相关的介绍文章，现在却想不起来？
 sense 很多时候，我们在看完一篇技术文档时，感觉对其中的内容都了解了，其实不然。这也是所谓的被动输入和主动输出的区别所在。相比主动输出而言，被动输入缺少了深层思考的态度。得到一些老师的课里就谈到过主动输出的重要性。
@@ -102,10 +102,10 @@ Thinking partaion是数据的存储单位，一个topic至少存在一个partati
     
     <item>
       <title>How to use godog</title>
-      <link>/blog/2018/12-29-how-to-use-godog/</link>
+      <link>/blog/2018/12/29/how-to-use-godog/</link>
       <pubDate>Sat, 29 Dec 2018 00:00:00 +0000</pubDate>
       
-      <guid>/blog/2018/12-29-how-to-use-godog/</guid>
+      <guid>/blog/2018/12/29/how-to-use-godog/</guid>
       <description>首先访问Git的地址：Godog，它也是用来做Go Test一样的事情，只是换了一种形式。引入了一个概念：BDD。通俗的讲，就是虚拟现实场景，完成一个业务的测试。
 Godog了解 首先介绍Godog是用来干什么的，我也是根据版本库提供的README来解释的，建议大家自己去看看。首先，我们要定义一个场景：feature。这里我们创建一个文件夹feature，专门用来存储这类文件。然后创建一个文件：godogs.feature。文件内容如下：
 # file: $GOPATH/src/godogs/features/godogs.feature Feature: 购买红酒 这里是一堆对这个Feature的描述 描述的继续... Scenario: 买一瓶红酒 Given Neojos Has 5 coins When I buy Red wine Then should be 1 remaining  在控制台执行godog时，控制台会输出默认建议的代码。输出如下：
@@ -114,10 +114,10 @@ You can implement step definitions for undefined steps with these snippets: func
     
     <item>
       <title>Net Transport</title>
-      <link>/blog/2018/12-08-net-transport/</link>
+      <link>/blog/2018/12/08/net-transport/</link>
       <pubDate>Sat, 08 Dec 2018 00:00:00 +0000</pubDate>
       
-      <guid>/blog/2018/12-08-net-transport/</guid>
+      <guid>/blog/2018/12/08/net-transport/</guid>
       <description>版本 0.02
 在调用第三方请求时，正确使用Client也不是一件非常容易的事。
 下面是截取的一段描述，建议Client或Transport在整个服务期间最好是全局单例的，Transport本身会维护连接的状态，而且线程安全。强烈建议，不要使用系统提供的任何默认值。

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>Zsh启动优化 - 持之以恒</title>
+    <meta property="og:title" content="Zsh启动优化 - 持之以恒">
+    
+
+    
+      
+    
+
+    
+
+    
+    
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.14.1/styles/googlecode.min.css' rel='stylesheet' type='text/css' />
+
+
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+
+  </head>
+
+  
+  <body class="blog">
+    <header class="masthead">
+      <h1 class="headimg">
+    
+    <a href="/"><img src="/img/headimg.png" alt="Fuhui "></a>
+</h1>
+
+
+
+      <nav class="menu">
+        <input id="menu-check" type="checkbox" />
+        <label id="menu-label" for="menu-check" class="unselectable">
+          <span class="icon close-icon">✕</span>
+          <span class="icon open-icon">☰</span>
+          <span class="text">Menu</span>
+        </label>
+        <ul>
+        
+        
+        <li><a href="/blog/">Blog</a></li>
+        
+        <li><a href="/life/">Life</a></li>
+        
+        <li><a href="/resource/">Resource</a></li>
+        
+        <li><a href="/categories/">Categories</a></li>
+        
+        <li><a href="/tags/">Tags</a></li>
+        
+        <li><a href="/about/">About</a></li>
+        
+        
+
+
+        </ul>
+      </nav>
+    </header>
+
+    <article class="main">
+      <header class="title">
+      <h1>Zsh启动优化</h1>
+
+
+
+
+    
+    
+    <section class="post-meta">
+        <span class="post-author">shengulong
+        
+            
+            
+             /  2019-05-14
+            
+        </span>
+        
+        <a href="/tags/zsh">zsh</a>
+        
+    </section>
+    
+
+
+
+<hr>
+      </header>
+
+
+
+
+<h2 id="主要优化方法">主要优化方法</h2>
+
+<ol>
+<li><p>偶尔执行一次的sh脚本，不要每次都执行，需要的时候再执行，举例：</p>
+
+<pre><code># 下面的配置保证每次打开终端的时候，都可以执行python虚拟环境的workon/mkvirtualenv/rmvirtualenv等命令
+# source /usr/local/bin/virtualenvwrapper.sh
+# source /Library/Frameworks/Python.framework/Versions/3.6/bin/virtualenvwrapper.sh
+# 修改为函数的形式，需要执行python虚拟环境命令的时候再执行这个函数
+start_virtualenvwrapper()
+{
+  source /Library/Frameworks/Python.framework/Versions/3.6/bin/virtualenvwrapper.sh
+}
+</code></pre></li>
+
+<li><p>懒加载。有些命令需要的时候再加载，举例：k8s命令kubectl</p>
+
+<pre><code># lazy load begin
+if [ $commands[kubectl] ]; then
+
+  # Placeholder 'kubectl' shell function:
+  # Will only be executed on the first call to 'kubectl'
+  kubectl() {
+
+    # Remove this function, subsequent calls will execute 'kubectl' directly
+    unfunction &quot;$0&quot;
+
+    # Load auto-completion
+    source &lt;(kubectl completion zsh)
+
+    # Execute 'kubectl' binary
+    $0 &quot;$@&quot;
+  }
+fi
+# lazy load end
+</code></pre></li>
+
+<li><p>把类似$(brew &ndash;prefix dvm)的命令直接修改为其执行后的路径值，因为这条命令执行比较耗时</p></li>
+
+<li><p>zsh的插件按需加载</p>
+
+<pre><code>plugins=(git z node npm brew osx extract kubectl)
+</code></pre></li>
+</ol>
+
+<h2 id="具体优化措施">具体优化措施</h2>
+
+<blockquote>
+<p>参考<a href="https://best33.com/283.moe">zshrc 启动速度分析和优化</a>这篇文章</p>
+</blockquote>
+
+<ol>
+<li><p>计算启动时间</p>
+
+<ul>
+<li><p>真实的启动时间 time zsh -i -c exit</p></li>
+
+<li><p>不加载任何启动命令脚本的启动时间 time zsh &ndash;no-rcs -i -c exit</p></li>
+</ul></li>
+
+<li><p>使用zshprof的时候，直接使用github上源码的说明，不要根据<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>里面的内容</p></li>
+
+<li><p>参考文章<sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup><sup class="footnote-ref" id="fnref:3"><a href="#fn:3">3</a></sup><sup class="footnote-ref" id="fnref:4"><a href="#fn:4">4</a></sup><sup class="footnote-ref" id="fnref:5"><a href="#fn:5">5</a></sup></p></li>
+</ol>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1"><a href="https://best33.com/283.moe">zshrc 启动速度分析和优化</a><br />
+ <a class="footnote-return" href="#fnref:1">↩</a></li>
+<li id="fn:2"><a href="https://peterlyons.com/problog/2018/01/zsh-lazy-loading/">zsh lazy loading</a>
+ <a class="footnote-return" href="#fnref:2">↩</a></li>
+<li id="fn:3"><a href="https://frederic-hemberger.de/articles/speed-up-initial-zsh-startup-with-lazy-loading/">Speed up initial zsh startup with lazy-loading</a>
+ <a class="footnote-return" href="#fnref:3">↩</a></li>
+<li id="fn:4"><a href="https://github.com/raboof/zshprof">zshprof</a>
+ <a class="footnote-return" href="#fnref:4">↩</a></li>
+<li id="fn:5"><a href="https://xebia.com/blog/profiling-zsh-shell-scripts/">profiling zsh shell scripts</a><br />
+ <a class="footnote-return" href="#fnref:5">↩</a></li>
+</ol>
+</div>
+
+
+  <footer>
+  
+<nav class="post-nav">
+  <span class="nav-prev">&larr; <a href="/blog/2019/05/13/curl%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/">Curl常用操作</a></span>
+  <span class="nav-next"></span>
+</nav>
+
+
+
+
+
+<script src="//yihui.name/js/math-code.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script async src="//yihui.name/js/center-img.js"></script>
+
+  
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/yaml.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/tex.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/go.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+  
+  <hr>
+  <div class="copyright">&copy; 2019 | <a href="https://github.com/shengulong">Github</a> | <a href="https://www.cnblogs.com/shengulong/">cnblogs</a> | <a href="https://shengulong.github.io/">Github Pages</a></div>
+  
+  </footer>
+  </article>
+  
+  </body>
+  
+  <script src="https://mermaidjs.github.io/scripts/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+
+  </html>
+

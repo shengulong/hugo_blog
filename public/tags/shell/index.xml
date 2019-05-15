@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>shell on 道法自然</title>
+    <title>shell on 持之以恒</title>
     <link>/tags/shell/</link>
-    <description>Recent content in shell on 道法自然</description>
+    <description>Recent content in shell on 持之以恒</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 10 May 2019 20:52:10 +0800</lastBuildDate>
@@ -13,10 +13,10 @@
     
     <item>
       <title>关于shell的各种括号的用法</title>
-      <link>/blog/2019/2019-05-10-%E5%85%B3%E4%BA%8Eshell%E7%9A%84%E5%90%84%E7%A7%8D%E6%8B%AC%E5%8F%B7%E7%9A%84%E7%94%A8%E6%B3%95/</link>
+      <link>/blog/2019/05/10/%E5%85%B3%E4%BA%8Eshell%E7%9A%84%E5%90%84%E7%A7%8D%E6%8B%AC%E5%8F%B7%E7%9A%84%E7%94%A8%E6%B3%95/</link>
       <pubDate>Fri, 10 May 2019 20:52:10 +0800</pubDate>
       
-      <guid>/blog/2019/2019-05-10-%E5%85%B3%E4%BA%8Eshell%E7%9A%84%E5%90%84%E7%A7%8D%E6%8B%AC%E5%8F%B7%E7%9A%84%E7%94%A8%E6%B3%95/</guid>
+      <guid>/blog/2019/05/10/%E5%85%B3%E4%BA%8Eshell%E7%9A%84%E5%90%84%E7%A7%8D%E6%8B%AC%E5%8F%B7%E7%9A%84%E7%94%A8%E6%B3%95/</guid>
       <description>大部分情况可以通用，建议使用双中括号[[]]，不同的shell表现也不尽相同
  正确的用法 1. 逻辑与：[ &amp;quot;2&amp;quot; = &amp;quot;2&amp;quot; -a &amp;quot;3&amp;quot; = &#39;3&#39; ]、[[ &amp;quot;2&amp;quot; = &amp;quot;2&amp;quot; &amp;amp;&amp;amp; &amp;quot;3&amp;quot; = &#39;3&#39; ]]、[ &amp;quot;2&amp;quot; = &amp;quot;2&amp;quot; ] &amp;amp;&amp;amp; [ &amp;quot;3&amp;quot; = &#39;3&#39; ] 2. 逻辑或：[ &amp;quot;2&amp;quot; = &amp;quot;2&amp;quot; -o &amp;quot;3&amp;quot; = &#39;3&#39; ]、[[ &amp;quot;2&amp;quot; = &amp;quot;2&amp;quot; || &amp;quot;3&amp;quot; = &#39;3&#39; ]]、[ &amp;quot;2&amp;quot; = &amp;quot;2&amp;quot; ] || [ &amp;quot;3&amp;quot; = &#39;3&#39; ] 3. []可以替换为test :if [ -e zshrctest ];then;echo &amp;quot;yes&amp;quot;;fi 等价于 if test -e zshrctest;then;echo &amp;quot;yes&amp;quot;;fi 3.</description>
     </item>

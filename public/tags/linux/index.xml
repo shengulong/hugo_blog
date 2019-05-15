@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>linux on 道法自然</title>
+    <title>linux on 持之以恒</title>
     <link>/tags/linux/</link>
-    <description>Recent content in linux on 道法自然</description>
+    <description>Recent content in linux on 持之以恒</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 13 May 2019 11:02:34 +0800</lastBuildDate>
@@ -13,10 +13,10 @@
     
     <item>
       <title>Curl常用操作</title>
-      <link>/blog/2019/curl%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</link>
+      <link>/blog/2019/05/13/curl%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</link>
       <pubDate>Mon, 13 May 2019 11:02:34 +0800</pubDate>
       
-      <guid>/blog/2019/curl%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</guid>
+      <guid>/blog/2019/05/13/curl%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</guid>
       <description>curl &amp;ndash;help/&amp;ndash;manual查看完整信息
   使用curl post上传文件，multipart/form-data
  如果不设置filename，默认的filename值就是file的名字，本例的&amp;rdquo;go.sum&amp;rdquo;

@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <title>About - 道法自然</title>
-    <meta property="og:title" content="About - 道法自然">
+    <title>About - 持之以恒</title>
+    <meta property="og:title" content="About - 持之以恒">
     
 
     
@@ -116,31 +116,32 @@
 <li>里面内嵌了很多js，需要删除无用的，把有用的js链接本地化，减少网络依赖</li>
 </ol>
 
-<h2 id="注意事项-和网站相比存在问题-https-neojos-com">注意事项(<a href="https://neojos.com/">和网站相比存在问题</a>)：</h2>
+<h2 id="注意事项">注意事项：</h2>
 
 <ol>
-<li>如果date是当天,则这篇博客无法显示？</li>
-</ol>
+<li><p>修改hugo new xx.md的模版</p>
 
-<p><font color="#0222ff">字体颜色</font></p>
+<blockquote>
+<p>位于archetypes/default.md,参考<a href="https://gohugo.io/functions/format/">.Format</a></p>
+</blockquote>
 
-<pre><code>```
-
-title: Kafka中消息分配策略
-
-date: 2019-04-24
-
-categories: 2019-04
-
-tags: [Think]
-
+<pre><code>---
+title: &quot;{{ replace .Name &quot;-&quot; &quot; &quot; | title }}&quot;
+date: {{ .Date }}
+categories: {{ dateFormat &quot;2006-01&quot; .Date }}   这里必须是&quot;2006-01&quot;,即必须是2006年，必须是1月
+tags: []
 author: shengulong
+---
+</code></pre></li>
 
-&lt;th&gt;sd&lt;/th&gt;
+<li><p>修改样式</p>
 
+<p>位于static/css/*.css</p></li>
 
-```
-</code></pre>
+<li><p>hugo配置config.toml含义：<a href="https://gohugo.io/getting-started/configuration/">https://gohugo.io/getting-started/configuration/</a></p>
+
+<p><a href="https://github.com/toml-lang/toml">toml文件</a></p></li>
+</ol>
 
 
   <footer>
