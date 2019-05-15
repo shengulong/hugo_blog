@@ -1,16 +1,14 @@
+# 配置解释：https://gohugo.io/getting-started/configuration/
 baseurl = "/"
 languageCode = "en-us"
-title = "道法自然"
+title = "持之以恒"
 theme = "hugo-ivy"
-googleAnalytics = ""
-disqusShortname = ""
 ignoreFiles = ["\\.Rmd$", "_files$", "_cache$"]
-preserveTaxonomyNames = true
 footnotereturnlinkcontents = "↩"
 
 [permalinks]
-    post = "/post/:year/:month/:day/:slug/"
-    note = "/note/:year/:month/:day/:slug/"
+    blog = "/blog/:year/:month/:day/:slug/"
+    life = "/life/:year/:month/:day/:slug/"
 
 [[menu.main]]
     name = "Blog"
@@ -39,10 +37,11 @@ footnotereturnlinkcontents = "↩"
 
 [params]
     description = ""
-	author = "道道法"
+	author = "shengulong"
 #    footer = "&copy; [SGL](http://neojos.com) 2017 | [Github](https://github.com/GitHubSi) | [CSDN](http://blog.csdn.net/whynottrythis) | [segmentfault](https://segmentfault.com/u/neojos)"
     footer = "&copy; 2019 | [Github](https://github.com/shengulong) | [cnblogs](https://www.cnblogs.com/shengulong/) | [Github Pages](https://shengulong.github.io/)"
-  highlightjsVersion = "9.14.1"
-  highlightjsCDN = "//cdn.bootcss.com"
-  highlightjsLang = ["r", "yaml", "tex", "go"]
-  highlightjsTheme = "googlecode"
+
+    highlightjsVersion = "9.14.1"
+    highlightjsCDN = "//cdn.bootcss.com"
+    highlightjsLang = ["r", "yaml", "tex", "go"]
+    highlightjsTheme = "googlecode"
