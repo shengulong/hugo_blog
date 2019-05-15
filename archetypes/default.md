@@ -1,6 +1,7 @@
 ---
 title: "{{ replace .Name "-" " " | title }}"
 date: {{ .Date }}
-draft: true
+categories: {{ dateFormat "2006-01" .Date }}
+tags: []
+author: shengulong
 ---
-
