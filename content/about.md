@@ -27,25 +27,25 @@ title: "About"
 ----
 1. 里面内嵌了很多js，需要删除无用的，把有用的js链接本地化，减少网络依赖
 
-注意事项([和网站相比存在问题](https://neojos.com/))：
+注意事项：
 ---
-1. 如果date是当天,则这篇博客无法显示？
+1. 修改hugo new xx.md的模版
 
-<font color="#0222ff">字体颜色</font>
+    >位于archetypes/default.md,参考[.Format](https://gohugo.io/functions/format/)
+    
+        ---
+        title: "{{ replace .Name "-" " " | title }}"
+        date: {{ .Date }}
+        categories: {{ dateFormat "2006-01" .Date }}   这里必须是"2006-01",即必须是2006年，必须是1月
+        tags: []
+        author: shengulong
+        ---
 
-    ```
-        
-    title: Kafka中消息分配策略
-    
-    date: 2019-04-24
-    
-    categories: 2019-04
-    
-    tags: [Think]
-    
-    author: shengulong
 
-    <th>sd</th>
-   
-        
-    ```
+2. 修改样式
+
+    位于static/css/*.css
+    
+3. hugo配置config.toml含义：https://gohugo.io/getting-started/configuration/
+    
+    [toml文件](https://github.com/toml-lang/toml)        
