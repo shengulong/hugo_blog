@@ -37,7 +37,7 @@ footnotereturnlinkcontents = "↩"
 
 [params]
     description = ""
-	author = "shengulong"
+	author = "sgl"
 #    footer = "&copy; [SGL](http://neojos.com) 2017 | [Github](https://github.com/GitHubSi) | [CSDN](http://blog.csdn.net/whynottrythis) | [segmentfault](https://segmentfault.com/u/neojos)"
     footer = "&copy; 2019 | [Github](https://github.com/shengulong) | [cnblogs](https://www.cnblogs.com/shengulong/) | [Github Pages](https://shengulong.github.io/)"
 

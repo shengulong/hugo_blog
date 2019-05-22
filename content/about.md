@@ -38,14 +38,40 @@ title: "About"
         date: {{ .Date }}
         categories: {{ dateFormat "2006-01" .Date }}   这里必须是"2006-01",即必须是2006年，必须是1月
         tags: []
-        author: shengulong
+        author: sgl
         ---
 
 
 2. 修改样式
 
-    位于static/css/*.css
+    位于static/css/*.css，比如：
+    + 博客界面的整体宽度：        
+        static/css/style.css
+                
+            body {
+              width: 1360px;
+              margin: 0 auto;
+              padding: 30px 0;
+            }
+    + 博客界面右侧边栏的宽度：
+        static/css/style.css
     
+            .main {
+              width: 400px;
+              padding: 32px 10px 20px 50px;
+              margin-left: 260px;
+              border-left: 3px solid black;
+              min-height: calc(100vh - 60px);
+            }
+        
+    + 博客界面左侧边栏的宽度：        
+        static/css/style.css    
+                      
+            .masthead {
+              width: 60px;
+              padding: 20px 50px 20px 10px;
+              float: left;
+            }
 3. hugo配置config.toml含义：https://gohugo.io/getting-started/configuration/
     
     [toml文件](https://github.com/toml-lang/toml)        

@@ -2,7 +2,7 @@
 title: "Curl常用操作"
 date: 2019-05-13T11:02:34+08:00
 categories: 2019-05
-author: shengulong
+author: sgl
 
 tags: [linux]
 ---

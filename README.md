@@ -1,4 +1,4 @@
-# shengulong's blog
+# sgl's blog
 
 Hugo是由Go语言实现的静态网站生成器。它能非常方便的把markdown文件转换为html。
 这个仓库包含hugo的源码.md和编译后的的html，直接执行hugo server命令，可以本地打开博客。也可以直接访问线上https://shengulong.github.io/

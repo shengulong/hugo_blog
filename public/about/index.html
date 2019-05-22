@@ -130,13 +130,47 @@ title: &quot;{{ replace .Name &quot;-&quot; &quot; &quot; | title }}&quot;
 date: {{ .Date }}
 categories: {{ dateFormat &quot;2006-01&quot; .Date }}   这里必须是&quot;2006-01&quot;,即必须是2006年，必须是1月
 tags: []
-author: shengulong
+author: sgl
 ---
 </code></pre></li>
 
 <li><p>修改样式</p>
 
-<p>位于static/css/*.css</p></li>
+<p>位于static/css/*.css，比如：</p>
+
+<ul>
+<li><p>博客界面的整体宽度：<br />
+static/css/style.css</p>
+
+<pre><code>body {
+  width: 1360px;
+  margin: 0 auto;
+  padding: 30px 0;
+}
+</code></pre></li>
+
+<li><p>博客界面右侧边栏的宽度：
+static/css/style.css</p>
+
+<pre><code>.main {
+  width: 400px;
+  padding: 32px 10px 20px 50px;
+  margin-left: 260px;
+  border-left: 3px solid black;
+  min-height: calc(100vh - 60px);
+}
+</code></pre></li>
+
+<li><p>博客界面左侧边栏的宽度：<br />
+static/css/style.css</p>
+
+<pre><code>.masthead {
+  width: 60px;
+  padding: 20px 50px 20px 10px;
+  float: left;
+}
+</code></pre></li>
+</ul></li>
 
 <li><p>hugo配置config.toml含义：<a href="https://gohugo.io/getting-started/configuration/">https://gohugo.io/getting-started/configuration/</a></p>
 

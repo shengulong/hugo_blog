@@ -6,10 +6,19 @@
     <description>Recent content in Tags on 持之以恒</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 14 May 2019 21:41:40 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 22 May 2019 21:22:49 +0800</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>crack</title>
+      <link>/tags/crack/</link>
+      <pubDate>Wed, 22 May 2019 21:22:49 +0800</pubDate>
+      
+      <guid>/tags/crack/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>zsh</title>

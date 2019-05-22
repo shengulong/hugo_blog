@@ -4,7 +4,7 @@ date: 2019-05-13T10:43:39+08:00
 
 categories: 2019-05
 tags: [mac,]
-author: shengulong
+author: sgl
 ---
 
 1. 在Finder中显示/隐藏隐藏文件

@@ -7,7 +7,7 @@ categories: 2018-12
 
 tags: [translate,golang]
 
-author: shengulong
+author: sgl
 
 ---
 
