@@ -6,15 +6,24 @@
     <description>Recent content in Categories on 持之以恒</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 22 May 2019 21:22:49 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 06 Jul 2019 15:06:23 +0800</lastBuildDate>
     
 	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>2019-07</title>
+      <link>/categories/2019-07/</link>
+      <pubDate>Sat, 06 Jul 2019 15:06:23 +0800</pubDate>
+      
+      <guid>/categories/2019-07/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>2019-05</title>
       <link>/categories/2019-05/</link>
-      <pubDate>Wed, 22 May 2019 21:22:49 +0800</pubDate>
+      <pubDate>Sun, 26 May 2019 00:57:43 +0800</pubDate>
       
       <guid>/categories/2019-05/</guid>
       <description></description>

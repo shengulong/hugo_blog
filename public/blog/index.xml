@@ -6,10 +6,83 @@
     <description>Recent content in SGL&#39;s Blog on 持之以恒</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 22 May 2019 21:22:49 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 06 Jul 2019 15:06:23 +0800</lastBuildDate>
     
 	<atom:link href="/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>长连接</title>
+      <link>/blog/2019/07/06/%E9%95%BF%E8%BF%9E%E6%8E%A5/</link>
+      <pubDate>Sat, 06 Jul 2019 15:06:23 +0800</pubDate>
+      
+      <guid>/blog/2019/07/06/%E9%95%BF%E8%BF%9E%E6%8E%A5/</guid>
+      <description>-[ ] 服务器断开后，客户端是如何保持长连接的？</description>
+    </item>
+    
+    <item>
+      <title>Maven自定义插件实现</title>
+      <link>/blog/2019/07/06/maven%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8F%92%E4%BB%B6%E5%AE%9E%E7%8E%B0/</link>
+      <pubDate>Sat, 06 Jul 2019 07:49:23 +0800</pubDate>
+      
+      <guid>/blog/2019/07/06/maven%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8F%92%E4%BB%B6%E5%AE%9E%E7%8E%B0/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Jenkins分布式实现</title>
+      <link>/blog/2019/07/06/jenkins%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%9E%E7%8E%B0/</link>
+      <pubDate>Sat, 06 Jul 2019 07:43:00 +0800</pubDate>
+      
+      <guid>/blog/2019/07/06/jenkins%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%9E%E7%8E%B0/</guid>
+      <description>思路 查看jenkins源代码，把jenkins依赖单机的代码内容，修改为依赖分布式机器的内容； 这样做到应用本身无存储状态，容器化后可以做到随便创建和删除。参阅jenkins&amp;rsquo;s blog
+jenkins开发相关知识Extend Jenkins、开发者文档  jenkins本身开发指导说明  java8 mavne&amp;gt;=3.5.3 OpenJDK  jenkins插件开发指导说明  step 1: Preparing for Plugin Development step 2: Create a Plugin step 3: Build and Run the Plugin step 4: Extend the Plugin Plugin tutorial Plugin Cookbook Create a new Plugin with a custom build Step Plugin Structure Making your plugin behave in distributed Jenkins IntelliJ IDEA plugin for Stapler方便在idea里开发jenkins的插件 Exposing data to the remote API Manage global settings and tools installations Debugging native Maven jobs Remote debugging a Java application  快速打包jenkins.</description>
+    </item>
+    
+    <item>
+      <title>Gerrit分布式实现</title>
+      <link>/blog/2019/07/06/gerrit%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%9E%E7%8E%B0/</link>
+      <pubDate>Sat, 06 Jul 2019 07:39:37 +0800</pubDate>
+      
+      <guid>/blog/2019/07/06/gerrit%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%9E%E7%8E%B0/</guid>
+      <description>思路 查看gerrit源代码，把gerrit依赖单机的代码内容，修改为依赖分布式机器的内容； 这样做到应用本身无存储状态，容器化后可以做到随便创建和删除。</description>
+    </item>
+    
+    <item>
+      <title>Goroutine和进程、线程、协程</title>
+      <link>/blog/2019/05/26/goroutine%E5%92%8C%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E5%8D%8F%E7%A8%8B/</link>
+      <pubDate>Sun, 26 May 2019 00:57:43 +0800</pubDate>
+      
+      <guid>/blog/2019/05/26/goroutine%E5%92%8C%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E5%8D%8F%E7%A8%8B/</guid>
+      <description>进程  内核进行调度，有CPU时间片的概念，进行抢占式调度（有多种调度算法）  线程  内核进行调度(内核级线程)，有CPU时间片的概念，进行抢占式调度（有多种调度算法）  协程  用户级线程，对内核是透明的，也就是系统并不知道有协程的存在，是完全由用户的程序自己调度的；因为是由用户程序自己控制，那么就很难像抢占式 调度那样做到强制的CPU控制权切换到其他进程/线程，通常只能进行协作式调度，需要协程自己主动把控制权转让出去之后，其他协程才能被执行到 用户自己调度  goroutine  goroutine就是协程，不同的是，Golang在runtime、系统调用等多方面对goroutine调度进行了封装和处理，当遇到长时间执行或者进行系统调用时， 会主动把当前goroutine的CPU (P) 转让出去，让其他goroutine能被调度并执行，也就是Golang从语言层面支持了协程 go语言帮助用户进行调度 不要通过共享内存通信，相反，通过通信共享内存 内存消耗方面
+每个 goroutine (协程) 默认占用内存远比 Java 、C 的线程少。 goroutine: 2KB 线程: 8MB  线程/goroutine 切换(调度)开销方面
+线程/goroutine 切换开销方面，goroutine 远比线程小 线程: 涉及模式切换(从用户态切换到内核态)、16个寄存器、PC、SP…等寄存器的刷新等。 goroutine: 只有三个寄存器的值修改 - PC/SP/DX   goroutine和线程区别 从调度上看，goroutine的调度开销远远小于线程调度开销。
+OS的线程由OS内核调度，每隔几毫秒，一个硬件时钟中断发到CPU，CPU调用一个调度器内核函数。这个函数暂停当前正在运行的线程，把他的寄存器信息保存到内存中，查看线程列表并决定接下来运行哪一个线程，再从内存中恢复线程的注册表信息，最后继续执行选中的线程。这种线程切换需要一个完整的上下文切换：即保存一个线程的状态到内存，再恢复另外一个线程的状态，最后更新调度器的数据结构。某种意义上，这种操作还是很慢的。
+Go运行的时候包涵一个自己的调度器，这个调度器使用一个称为一个M:N调度技术，m个goroutine到n个os线程（可以用GOMAXPROCS来控制n的数量），Go的调度器不是由硬件时钟来定期触发的，而是由特定的go语言结构来触发的，他不需要切换到内核语境，所以调度一个goroutine比调度一个线程的成本低很多。
+从栈空间上，goroutine的栈空间更加动态灵活。
+每个OS的线程都有一个固定大小的栈内存，通常是2MB，栈内存用于保存在其他函数调用期间哪些正在执行或者临时暂停的函数的局部变量。这个固定的栈大小，如果对于goroutine来说，可能是一种巨大的浪费。作为对比goroutine在生命周期开始只有一个很小的栈，典型情况是2KB, 在go程序中，一次创建十万左右的goroutine也不罕见（2KB*100,000=200MB）。而且goroutine的栈不是固定大小，它可以按需增大和缩小，最大限制可以到1GB。
+goroutine没有一个特定的标识。
+在大部分支持多线程的操作系统和编程语言中，线程有一个独特的标识，通常是一个整数或者指针，这个特性可以让我们构建一个线程的局部存储，本质是一个全局的map，以线程的标识作为键，这样每个线程可以独立使用这个map存储和获取值，不受其他线程干扰。
+goroutine中没有可供程序员访问的标识，原因是一种纯函数的理念，不希望滥用线程局部存储导致一个不健康的超距作用，即函数的行为不仅取决于它的参数，还取决于运行它的线程标识。</description>
+    </item>
+    
+    <item>
+      <title>Python中的进程线程协程</title>
+      <link>/blog/2019/05/25/python%E4%B8%AD%E7%9A%84%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E5%8D%8F%E7%A8%8B/</link>
+      <pubDate>Sat, 25 May 2019 23:25:56 +0800</pubDate>
+      
+      <guid>/blog/2019/05/25/python%E4%B8%AD%E7%9A%84%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E5%8D%8F%E7%A8%8B/</guid>
+      <description> 进程  可以充分利用多核，进程间通信会耗费额外的开销，达不到多线程应有的效率  线程  由于GIL的存在，无法利用多核 适合I/O密集型（IO阻塞期间CPU转去执行其他线程） 不适合CPU密集型/计算密集型；对于计算密集型任务，开启多线程几乎没有意义，甚至可能比顺序执行用时更长 （顺序执行时，cpu集中完成这个线程的任务，再转去下一个，没有切换，也就没有切换的消耗；开多线程又不是并发，白白增加了切换消耗） 进程每次释放GIL锁，所属的线程进行锁竞争、切换线程，会消耗资源 线程切换是由操作系统的调度器进行控制的 抢占式调度顺序具有不确定性，需要注意处理数据同步  协程  是一种用户级的轻量级的线程，拥有自己的寄存器上下文和栈。协程调度切换时，将寄存器和栈存放在指定地方，在切换回来的时候，恢复先前的上下文和栈
+  用户需要自己编写调度逻辑，控制任务的切换，那么自然可以控制任务的执行顺序 实现：yield(原生)/gevent/greenlet 比线程消耗更少的资源 对cpu来说，协程就是单线程，cpu不用考虑上下文调度和切换的问题，省去了cpu调度的开销，所有协程在一定程度上要优于线程 协程相当于在单个进程里启动里一个单线程，同时又可以实现多线程的效果 协程本质上是一个线程里面的细分，操作系统层面根本不知道这种区分，只当其是一个线程，程序员自己在应用层面通过yield进行协成间的切换
+  GIL GIL，即Global Interpreter Lock全局解释器锁，保证任何时刻仅有一个线程在执行。常见例子有CPython（JPython不使用GIL）与Ruby MRI。 不是所有的Python解释器都有GIL。
+为什么要有GIL这个东西，不能去掉呢？这是为了实现GC，避免Java里Full GC(stop the world)引入的。更多内容参考 python 线程，GIL 和 ctypes
+每个进程一把锁🔒，进程里的线程，只能有一个线程可以获得这把锁，进行工作，其他线程必须等待
+在Python语言的主流实现CPython中，GIL 是一个货真价实的全局线程锁，在解释器解释执行任何Python代码时，都需要先获得这把锁才行， 在遇到I/O操作时会释放这把锁。如果是纯计算的程序，没有I/O操作，解释器会每隔100次操作就释放这把锁，让别的线程有机会执行（这个次数可以通过 sys.setcheckinterval 来调整）
+同一进程下的多线程共享数据，共享意味着竞争，竞争带来无序，为了数据安全所以需要加锁进行数据保护，GIL本质是一把互斥锁，使并发变为串行， 保证同一时间只有一条线程访问解释器级别的数据，这样就保证了解释器级别的数据安全，同时也带来了一些问题，同一进程只有一条线程执行任务， 无法利用多核优势，解决方案可以根据任务的类型来处理，如果是I/O密集型，则需要开多线程提高效率，如果是计算密集型则需要多进程。
+遇到阻塞，普通单线程的做法是就地等待，多线程的做法是转去执行其他线程&amp;ndash;这就是开多线程效率提高的原因。 但如果这种阻塞和放开是我们人为可以预料到的，那么我们可以在阻塞的地方yield返回到另一个可以执行的点，这样也实现了CPU的不浪费，同时还少了线程的切换，效率更高
+python锁  python线程
+  同步锁（互斥锁）-解决数据安全问题-threading.Lock 递归锁-解决线程死锁-threading.R_Lock Semaphore信号量-threading.Semaphere Event同步事件对象-threading.Event-让两个线程保持同步而不是独立的运行：你给我发个信号，我接到了做一个操作，再给你发一个信号，你接到了一个操作，发下一个信号…… Python中的多线程通信-queue线程队列  </description>
+    </item>
     
     <item>
       <title>破解Navicat Premium</title>
@@ -19,7 +92,7 @@
       <guid>/blog/2019/05/22/%E7%A0%B4%E8%A7%A3navicat-premium/</guid>
       <description> 方法来自Navicat Keygen,已经fork
  Navicat Premium For Mac 12.1.21 简体中文版 已通过测试
- 仅对 Navicat Premium 版本 &amp;lt; 12.0.24 的说明：
+ &amp;#10003; navicat121_premium_cs.dmg &amp;#10008; navicat121_premium_en.dmg  仅对 Navicat Premium 版本 &amp;lt; 12.0.24 的说明：
 如果你的Navicat版本小于12.0.24，那么navicat-patcher将会终止并且不会修改目标文件。
 你必须使用openssl生成RegPrivateKey.pem和rpk文件：
 $ openssl genrsa -out RegPrivateKey.pem 2048 $ openssl rsa -in RegPrivateKey.pem -pubout -out rpk  接着用刚生成的rpk文件替换
@@ -36,7 +109,7 @@ $ openssl genrsa -out RegPrivateKey.pem 2048 $ openssl rsa -in RegPrivateKey.pem
       <pubDate>Sat, 18 May 2019 23:16:13 +0800</pubDate>
       
       <guid>/blog/2019/05/18/%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E9%94%81%E7%9A%84%E6%A6%82%E5%BF%B5/</guid>
-      <description>原子锁 原子锁是指原子操作，原子操作是不会被中断的，常用的原子操作：
+      <description>并发vs并行  并行是指两个或者多个事件在同一时刻发生 并发是指两个或多事件在同一时间段内发生  原子锁 原子锁是指原子操作，原子操作是不会被中断的，常用的原子操作：
 InterLockedAdd InterLockedExchange InterLockedCompareExchange InterLockedIncrement InterLockedDecrement InterLockedAnd InterLockedOr  自旋锁：spinlock 非阻塞锁，也就是说，如果某线程需要获取自旋锁，但该锁已经被其他线程占用时，该线程不会被挂起，而是在不断的消耗CPU的时间，不停的试图获取自旋锁； 自选锁是一种互斥锁的实现方式而已，相比一般的互斥锁会在等待期间放弃cpu，自旋锁（spinlock）则是不断循环并测试锁的状态，这样就一直占着cpu; 用在以下情况：锁持有的时间短，而且线程并不希望在重新调度上花太多的成本。
 互斥量/互斥锁：mutex 是阻塞锁，当某线程无法获取互斥量时，该线程会被直接挂起，该线程不再消耗CPU时间，当其他线程释放互斥量后，操作系统会激活那个被挂起的线程，让其投入运行。 互斥量的加锁和解锁必须在同一线程内完成，避免死锁。只有一个线程可以使用共享资源。mutex可以说是semaphore在仅取值0/1时的特例
 信号量：semaphore 信号允许多个线程同时使用共享资源，但是需要限制在同一时刻访问此资源的最大线程数目；信号量包含互斥量
@@ -52,8 +125,10 @@ InterLockedAdd InterLockedExchange InterLockedCompareExchange InterLockedIncreme
       <pubDate>Sat, 18 May 2019 22:54:58 +0800</pubDate>
       
       <guid>/blog/2019/05/18/golang%E6%96%87%E4%BB%B6%E9%94%81/</guid>
-      <description> 多个goroutine同时操作一同一个文件时，很容易出现数据混乱，因此有必要对文件进行加锁
- </description>
+      <description>多个goroutine同时操作一同一个文件时，很容易出现数据混乱，因此有必要对文件进行加锁 多进程写
+协程：用户控制切换 goroutine：用户控制切换-&amp;gt;语言控制 进程/线程：内核OS控制切换 flock是操作系统级别的锁 使用fopen以&amp;rdquo;a&amp;rdquo;追加模式打开时，多个进程写同一log文件不会发送覆盖写的问题，每次都保证在文件末尾写。但是不保证写入的顺序
+ 并发与多核利用并不是相同的概念，高并发不一定利用了多核，
+python协程就是一个典型，协程使用一种轻线程机制，避开了传统多线程的切换开销，实现惊人的并发管理。 但协程本身是运行在单线程里的，协程并不能直接利用多核，仍然受GIL影响。 因为python GIL的存在，python多线程是无法利用多核的。 多进程模式，python提供了multiprocessing模块， 可以用共享内存模式，这个模块为利用多核的应用提供了便利。</description>
     </item>
     
     <item>
@@ -91,7 +166,8 @@ defaults write com.apple.Finder AppleShowAllFiles YES/NO
 killall Finder
  打开多个实例
 open -n /Applications/xxx.app
-  3.
+ 路由查看
+netstat -r
    </description>
     </item>
     

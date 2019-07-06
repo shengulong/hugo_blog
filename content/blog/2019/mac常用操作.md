@@ -15,6 +15,7 @@ author: sgl
     
     open -n /Applications/xxx.app    
     
-3.
-
+3. 路由查看
+    
+    netstat -r
 4.    

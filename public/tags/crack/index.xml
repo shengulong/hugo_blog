@@ -19,7 +19,7 @@
       <guid>/blog/2019/05/22/%E7%A0%B4%E8%A7%A3navicat-premium/</guid>
       <description> 方法来自Navicat Keygen,已经fork
  Navicat Premium For Mac 12.1.21 简体中文版 已通过测试
- 仅对 Navicat Premium 版本 &amp;lt; 12.0.24 的说明：
+ &amp;#10003; navicat121_premium_cs.dmg &amp;#10008; navicat121_premium_en.dmg  仅对 Navicat Premium 版本 &amp;lt; 12.0.24 的说明：
 如果你的Navicat版本小于12.0.24，那么navicat-patcher将会终止并且不会修改目标文件。
 你必须使用openssl生成RegPrivateKey.pem和rpk文件：
 $ openssl genrsa -out RegPrivateKey.pem 2048 $ openssl rsa -in RegPrivateKey.pem -pubout -out rpk  接着用刚生成的rpk文件替换

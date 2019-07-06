@@ -6,10 +6,64 @@
     <description>Recent content in Tags on 持之以恒</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 22 May 2019 21:22:49 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 06 Jul 2019 07:49:23 +0800</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>maven</title>
+      <link>/tags/maven/</link>
+      <pubDate>Sat, 06 Jul 2019 07:49:23 +0800</pubDate>
+      
+      <guid>/tags/maven/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jenkins</title>
+      <link>/tags/jenkins/</link>
+      <pubDate>Sat, 06 Jul 2019 07:43:00 +0800</pubDate>
+      
+      <guid>/tags/jenkins/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gerrit</title>
+      <link>/tags/gerrit/</link>
+      <pubDate>Sat, 06 Jul 2019 07:39:37 +0800</pubDate>
+      
+      <guid>/tags/gerrit/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>golang</title>
+      <link>/tags/golang/</link>
+      <pubDate>Sun, 26 May 2019 00:57:43 +0800</pubDate>
+      
+      <guid>/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>/tags/python/</link>
+      <pubDate>Sat, 25 May 2019 23:25:56 +0800</pubDate>
+      
+      <guid>/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>并发</title>
+      <link>/tags/%E5%B9%B6%E5%8F%91/</link>
+      <pubDate>Sat, 25 May 2019 23:25:56 +0800</pubDate>
+      
+      <guid>/tags/%E5%B9%B6%E5%8F%91/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>crack</title>
@@ -98,15 +152,6 @@
       <pubDate>Tue, 12 Mar 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/dailylife/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>golang</title>
-      <link>/tags/golang/</link>
-      <pubDate>Sat, 29 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/golang/</guid>
       <description></description>
     </item>
     

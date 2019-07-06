@@ -9,6 +9,8 @@ author: sgl
 + 方法来自[Navicat Keygen](https://github.com/DoubleLabyrinth/navicat-keygen/blob/mac/README.zh-CN.md),已经`fork`
 
 + Navicat Premium For Mac 12.1.21 ***简体中文版*** 已通过测试
+    - &#10003; navicat121_premium_cs.dmg
+    - &#10008; ~~navicat121_premium_en.dmg~~
 
 + 仅对 Navicat Premium 版本 < 12.0.24 的说明：
 

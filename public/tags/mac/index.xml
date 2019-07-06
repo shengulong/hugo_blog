@@ -22,7 +22,8 @@ defaults write com.apple.Finder AppleShowAllFiles YES/NO
 killall Finder
  打开多个实例
 open -n /Applications/xxx.app
-  3.
+ 路由查看
+netstat -r
    </description>
     </item>
     

@@ -17,6 +17,8 @@ title: "About"
 1. 主题hugo-ivy借鉴[ivy](https://github.com/dmulholl/ivy)：`Ivy is a static website generator built in Python. It's small, elegant, and easy to use.`
 1. hugo 编译
 2. hugo server 本地启动服务
+1. hugo new blog/2019/xxx.md 创建一篇新博客，目录位于content/blog/2019
+1. sh simple-deploy.sh 发布博客到xxx.github.io
 
 评论系统
 ----
