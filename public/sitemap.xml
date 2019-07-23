@@ -4,24 +4,41 @@
   
   <url>
     <loc>/categories/2019-07/</loc>
-    <lastmod>2019-07-06T15:06:23+08:00</lastmod>
+    <lastmod>2019-07-23T22:49:58+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/</loc>
-    <lastmod>2019-07-06T15:06:23+08:00</lastmod>
+    <lastmod>2019-07-23T22:49:58+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>/blog/2019/07/23/maven%E6%8F%92%E4%BB%B6%E8%B0%83%E8%AF%95%E6%96%B9%E6%B3%95/</loc>
+    <lastmod>2019-07-23T22:49:58+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/blog/</loc>
-    <lastmod>2019-07-06T15:06:23+08:00</lastmod>
+    <lastmod>2019-07-23T22:49:58+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2019-07-23T22:49:58+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/maven/</loc>
+    <lastmod>2019-07-23T22:49:58+08:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>/</loc>
-    <lastmod>2019-07-06T15:06:23+08:00</lastmod>
+    <lastmod>2019-07-23T22:49:58+08:00</lastmod>
   </url>
   
   <url>
@@ -32,18 +49,6 @@
   <url>
     <loc>/blog/2019/07/06/maven%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8F%92%E4%BB%B6%E5%AE%9E%E7%8E%B0/</loc>
     <lastmod>2019-07-06T07:49:23+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
-    <lastmod>2019-07-06T07:49:23+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/maven/</loc>
-    <lastmod>2019-07-06T07:49:23+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>

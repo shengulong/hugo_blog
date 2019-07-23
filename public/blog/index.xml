@@ -6,10 +6,23 @@
     <description>Recent content in SGL&#39;s Blog on 持之以恒</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 06 Jul 2019 15:06:23 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 23 Jul 2019 22:49:58 +0800</lastBuildDate>
     
 	<atom:link href="/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Maven插件调试方法</title>
+      <link>/blog/2019/07/23/maven%E6%8F%92%E4%BB%B6%E8%B0%83%E8%AF%95%E6%96%B9%E6%B3%95/</link>
+      <pubDate>Tue, 23 Jul 2019 22:49:58 +0800</pubDate>
+      
+      <guid>/blog/2019/07/23/maven%E6%8F%92%E4%BB%B6%E8%B0%83%E8%AF%95%E6%96%B9%E6%B3%95/</guid>
+      <description>方法 一般的项目，使用IntelliJ IDEA进入Debug模式，通过断点即可进行调试。
+但maven编写的插件就不同了，插件需要打包成Jar并被加载到使用它的项目中，执行项目，调用插件，才可以看的插件的运行效果。 如果我们需要在编写插件源码时调试的话，该如何操作？此时便不能直接点击调试按钮进行调试（因为没有Main类）
+下面以idea调试为例说明：
+调试端配置:以示例插件hello-maven-plugin为例 主要代码：需要引入如下所示的三个maven插件，maven引入包然后编写入口类继承AbstractMojo，相当于main函数， 使用注解@Mojo定义生命周期和插件执行名称。我们需要实现execute方法，当用户执行maven运行命令后，这个地方的代码会被自动执行。
+package sample.plugin; import org.apache.maven.plugin.AbstractMojo; import org.apache.maven.plugin.MojoExecutionException; import org.apache.maven.plugins.annotations.Mojo; /** * Says &amp;quot;Hi&amp;quot; to the user. * */ // When processing the source tree to find mojos, [plugin-tools](http://maven.apache.org/plugin-tools/) // looks for classes with either @Mojo Java 5 annotation or &amp;quot;goal&amp;quot; javadoc annotation. // Any class with this annotation are included in the plugin configuration file. @Mojo( name = &amp;quot;sayhi&amp;quot;) public class MyMojo extends AbstractMojo { public void execute() throws MojoExecutionException { // 可以在此处打断点，这样调用这个插件时，就会停在这个断点处 getLog().</description>
+    </item>
     
     <item>
       <title>长连接</title>
@@ -26,7 +39,7 @@
       <pubDate>Sat, 06 Jul 2019 07:49:23 +0800</pubDate>
       
       <guid>/blog/2019/07/06/maven%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8F%92%E4%BB%B6%E5%AE%9E%E7%8E%B0/</guid>
-      <description></description>
+      <description> maven开发 maven开发 maven插件开发  插件和生命周期的某个阶段绑定 自定义插件命名为：-maven-plugin；maven--plugin是官方插件的命名，拥有商标权   </description>
     </item>
     
     <item>
@@ -45,7 +58,16 @@ jenkins开发相关知识Extend Jenkins、开发者文档  jenkins本身开发�
       <pubDate>Sat, 06 Jul 2019 07:39:37 +0800</pubDate>
       
       <guid>/blog/2019/07/06/gerrit%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%9E%E7%8E%B0/</guid>
-      <description>思路 查看gerrit源代码，把gerrit依赖单机的代码内容，修改为依赖分布式机器的内容； 这样做到应用本身无存储状态，容器化后可以做到随便创建和删除。</description>
+      <description> 思路 查看gerrit源代码，把gerrit依赖单机的代码内容，修改为依赖分布式机器的内容； 这样做到应用本身无存储状态，容器化后可以做到随便创建和删除。
+CodeReview相关工具：https://github.com/GerritCodeReview
+gerrit版本变更：https://www.gerritcodereview.com/releases-readme.html
+gerrit源码：
+https://gerrit.googlesource.com/gerrit/
+https://github.com/GerritCodeReview/gerrit
+构建工具：google内部使用的 bazel bazel安装：https://docs.bazel.build/versions/master/install-os-x.html#install-on-mac-os-x-homebrew
+k8s部署方案 google内部源 https://gerrit.googlesource.com/k8s-gerrit/
+对应的github源： https://github.com/GerritCodeReview/k8s-gerrit
+插件  metrics-reporter-elasticsearch metrics-reporter-jmx []()  </description>
     </item>
     
     <item>
