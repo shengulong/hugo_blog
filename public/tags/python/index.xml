@@ -6,10 +6,19 @@
     <description>Recent content in python on 持之以恒</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 25 May 2019 23:25:56 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 24 Jul 2019 10:16:20 +0800</lastBuildDate>
     
 	<atom:link href="/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Python的caller对callee模块内部参数的修改生效情况</title>
+      <link>/blog/2019/07/24/python%E7%9A%84caller%E5%AF%B9callee%E6%A8%A1%E5%9D%97%E5%86%85%E9%83%A8%E5%8F%82%E6%95%B0%E7%9A%84%E4%BF%AE%E6%94%B9%E7%94%9F%E6%95%88%E6%83%85%E5%86%B5/</link>
+      <pubDate>Wed, 24 Jul 2019 10:16:20 +0800</pubDate>
+      
+      <guid>/blog/2019/07/24/python%E7%9A%84caller%E5%AF%B9callee%E6%A8%A1%E5%9D%97%E5%86%85%E9%83%A8%E5%8F%82%E6%95%B0%E7%9A%84%E4%BF%AE%E6%94%B9%E7%94%9F%E6%95%88%E6%83%85%E5%86%B5/</guid>
+      <description>被调用方callee代码 callee.py #!/usr/bin/env python # -*- coding: utf-8 -*- &amp;quot;&amp;quot;&amp;quot; @Author : xxx@xxx.net @Date : 2019-06-28 @Description : @File : callee.py &amp;quot;&amp;quot;&amp;quot; NAME = &#39;我是模块内部的初始值&#39; print(NAME) print(&#39;模块会在被引入时(import callee)执行一遍,引入本模块会显示此信息&#39;) def fun1(): print(&amp;quot;模块会在被引入时执行一遍，但是不会执行这个函数，除非被调用&amp;quot;) class ClassTemplate(object): # 此处的name变量除非被初始化时显示参数传入，否则使用的是模块内部的全局变量值 def __init__(self, name=NAME): # __name 是私有变量，只有类本身可以访问，子类也不可以访问 # _name 是受保护变量，类本身和子类可以访问，from module import *无法导入 # decorator装饰器/迭代器__iter__、__next__/yield生成器/ self.__name = name print(name) # 如果外面模块修改了这个变量，则显示修改后的变量值 print(NAME) def run(self): print(&amp;quot;my name is %s&amp;quot; % self.__name) @classmethod # 此处的变量value除非被初始化时显示参数传入，否则使用的是模块内部的全局变量值 def class_method(cls, value=NAME): print(value) # 如果外面模块修改了这个变量，则显示修改后的变量值 print(NAME) # cls.</description>
+    </item>
     
     <item>
       <title>Python中的进程线程协程</title>

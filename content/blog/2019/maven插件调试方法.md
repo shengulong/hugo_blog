@@ -55,7 +55,9 @@ idea配置：
 ![我是个图片](/img/blog/2019/Maven插件调试方法-0.jpg)
 
 ##### 被调试端配置:以插件```maven-dependency-plugin```为例
-其pom.xml里配置如下，在这个插件根目录下执行mvn validate就会调用插件```hello-maven-plugin```的sayhi
+其pom.xml里配置如下，在这个插件根目录下执行mvn validate就会调用插件```hello-maven-plugin```的sayhi。
+这里一定要在<build>里写上所要使用的插件(特别是调用官方插件的时候),作用是覆盖默认关联的插件(mvn dependency:tree会默认关联
+maven-dependency-plugin的一个版本),避免出现调试使用的插件版本和被调用的插件不是一个版本，从而出现源码不一致的问题
 
     <build>
         <plugins>
@@ -86,7 +88,8 @@ idea配置：
 ![](/img/blog/2019/Maven插件调试方法-2.jpg)
 
 #### 被调试端更简单的方法：
-在项目根目录直接执行```mvnDebug sample.plugin:hello-maven-plugin:1.0.0:sayhi``` 
+在项目根目录直接执行```mvnDebug sample.plugin:hello-maven-plugin:1.0.0:sayhi```，注意：这里一定要正确指定版本，保证调试端caller
+和被调试端callee使用的是同一个版本的插件，这样源码才一致。
 
 查看mvnDebug的内容，可见也是配置的相同或者类似的调试项(不同的JDK，调试配置不同)
 
@@ -100,7 +103,7 @@ idea配置：
     #   MAVEN_OPTS      (Optional) Java runtime options used when Maven is executed.
     #   MAVEN_SKIP_RC   (Optional) Flag to disable loading of mavenrc files.
     # -----------------------------------------------------------------------------
-    
+    # 这个是是比较旧的JDK版本配置
     MAVEN_DEBUG_OPTS="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=8000"
     echo Preparing to execute Maven in debug mode
     env MAVEN_OPTS="$MAVEN_OPTS" MAVEN_DEBUG_OPTS="$MAVEN_DEBUG_OPTS" "`dirname "$0"`/mvn" "$@"

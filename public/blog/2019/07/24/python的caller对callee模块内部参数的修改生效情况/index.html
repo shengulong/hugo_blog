@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>Python的caller对callee模块内部参数的修改生效情况 - 持之以恒</title>
+    <meta property="og:title" content="Python的caller对callee模块内部参数的修改生效情况 - 持之以恒">
+    
+
+    
+      
+    
+
+    
+
+    
+    
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.14.1/styles/googlecode.min.css' rel='stylesheet' type='text/css' />
+
+
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+
+  </head>
+
+  
+  <body class="blog">
+    <header class="masthead">
+      <h1 class="headimg">
+    
+    <a href="/"><img src="/img/headimg.png" alt="Fuhui "></a>
+</h1>
+
+
+
+      <nav class="menu">
+        <input id="menu-check" type="checkbox" />
+        <label id="menu-label" for="menu-check" class="unselectable">
+          <span class="icon close-icon">✕</span>
+          <span class="icon open-icon">☰</span>
+          <span class="text">Menu</span>
+        </label>
+        <ul>
+        
+        
+        <li><a href="/blog/">Blog</a></li>
+        
+        <li><a href="/life/">Life</a></li>
+        
+        <li><a href="/resource/">Resource</a></li>
+        
+        <li><a href="/categories/">Categories</a></li>
+        
+        <li><a href="/tags/">Tags</a></li>
+        
+        <li><a href="/about/">About</a></li>
+        
+        
+
+
+        </ul>
+      </nav>
+    </header>
+
+    <article class="main">
+      <header class="title">
+      <h1>Python的caller对callee模块内部参数的修改生效情况</h1>
+
+
+
+
+    
+    
+    <section class="post-meta">
+        <span class="post-author">sgl
+        
+            
+            
+             /  2019-07-24
+            
+        </span>
+        
+        <a href="/tags/python">python</a>
+        
+    </section>
+    
+
+
+
+<hr>
+      </header>
+
+
+
+
+<h3 id="被调用方callee代码">被调用方callee代码</h3>
+
+<pre><code>callee.py
+
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+&quot;&quot;&quot;
+    @Author      : xxx@xxx.net
+    @Date        : 2019-06-28
+    @Description : 
+    @File        : callee.py
+&quot;&quot;&quot;
+
+NAME = '我是模块内部的初始值'
+print(NAME)
+print('模块会在被引入时(import callee)执行一遍,引入本模块会显示此信息')
+
+
+def fun1():
+    print(&quot;模块会在被引入时执行一遍，但是不会执行这个函数，除非被调用&quot;)
+
+
+class ClassTemplate(object):
+    # 此处的name变量除非被初始化时显示参数传入，否则使用的是模块内部的全局变量值
+    def __init__(self, name=NAME):
+        # __name 是私有变量，只有类本身可以访问，子类也不可以访问
+        # _name 是受保护变量，类本身和子类可以访问，from module import *无法导入
+        # decorator装饰器/迭代器__iter__、__next__/yield生成器/
+        self.__name = name
+        print(name)
+        # 如果外面模块修改了这个变量，则显示修改后的变量值
+        print(NAME)
+
+    def run(self):
+        print(&quot;my name is %s&quot; % self.__name)
+
+    @classmethod
+    # 此处的变量value除非被初始化时显示参数传入，否则使用的是模块内部的全局变量值
+    def class_method(cls, value=NAME):
+        print(value)
+        # 如果外面模块修改了这个变量，则显示修改后的变量值
+        print(NAME)
+        # cls.staticmethod('test')
+
+    @staticmethod
+    def staticmethod(value):
+        print(&quot;my value is {}&quot;.format(value))
+</code></pre>
+
+<h3 id="调用方caller代码">调用方caller代码</h3>
+
+<pre><code>test_shutter.py
+
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+&quot;&quot;&quot;
+    @Author      : xxxx
+    @Date        : 2019-06-10
+    @Description : 
+    @File        : test_shutter.py
+&quot;&quot;&quot;
+
+from django.test import TestCase    
+import callee
+
+
+class TestShutter(TestCase):
+    &quot;&quot;&quot;doc:I'm a class&quot;&quot;&quot;        
+
+    # @unittest.skip('跳过')
+    def test_0(self):
+        &quot;&quot;&quot;doc: I'm a function&quot;&quot;&quot;
+        # 从外部修改被调用模块的变量
+        callee.NAME = &quot;我是外部修改模块全局变量值&quot;
+        a = callee.ClassTemplate(name=&quot;我是传入参数&quot;)
+        print(a)
+        a.class_method()
+
+        print(&quot;##########&quot;)
+        # 当前模块module的文件路径
+        print(__file__)
+        # 类名字
+        print(TestShutter.__name__)
+        # 类信息
+        print(TestShutter.__class__)
+        # 类名字
+        print(TestShutter.__class__.__name__)
+        # 当前模块文件的名字
+        print(__name__)
+        # 当前模块文档
+        print(__doc__)
+        # 当前模块某个类的文档
+        print(TestShutter.__doc__)
+        # 当前模块某个类的方法的文档
+        print(TestShutter.test_0.__doc__)
+        # 当前类
+        print(__class__)
+        # 被引入模块的名字
+        print(callee.__name__)
+
+        print(&quot;##########&quot;)
+
+        self.assertEqual(True, True)
+</code></pre>
+
+<h3 id="django下测试输出">django下测试输出</h3>
+
+<p>执行<code>python manage.py test --patter='test_shutter.py' -v 3</code>,输出内容：</p>
+
+<pre><code>我是模块内部的初始值
+模块会在被引入时(import callee)执行一遍,引入本模块会显示此信息
+
+我是传入参数
+我是外部修改模块全局变量值
+&lt;callee.ClassTemplate object at 0x111971320&gt;
+我是模块内部的初始值
+我是外部修改模块全局变量值
+##########
+/Users/shendepu/gitlab/erebus_app/test_shutter.py
+TestShutter
+&lt;class 'type'&gt;
+type
+test_shutter
+
+    @Author      : xxxx
+    @Date        : 2019-06-10
+    @Description : 
+    @File        : test_shutter.py
+
+doc:I'm a class
+doc: I'm a function
+&lt;class 'test_shutter.TestShutter'&gt;
+callee
+##########
+</code></pre>
+
+<h3 id="结论">结论</h3>
+
+<p>通过上面模块test_shutter.py对模块callee.py的引用，以及测试结果输出，理解模块callee的变量范围</p>
+
+<ul>
+<li>当文件是被调用时，<strong>name</strong>的值为模块名；此时并不需要一个可执行的入口main了</li>
+<li>当一个module作为整体被执行时，<strong>name</strong>的值为 &ldquo;<strong>main</strong>&rdquo;, 类似于C语言中的main()函数的作用，即作为入口</li>
+</ul>
+
+
+  <footer>
+  
+<nav class="post-nav">
+  <span class="nav-prev">&larr; <a href="/blog/2019/07/23/maven%E6%8F%92%E4%BB%B6%E8%B0%83%E8%AF%95%E6%96%B9%E6%B3%95/">Maven插件调试方法</a></span>
+  <span class="nav-next"></span>
+</nav>
+
+
+
+
+
+<script src="//yihui.name/js/math-code.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script async src="//yihui.name/js/center-img.js"></script>
+
+  
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/yaml.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/tex.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/go.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+  
+  <hr>
+  <div class="copyright">&copy; 2019 | <a href="https://github.com/shengulong">Github</a> | <a href="https://www.cnblogs.com/shengulong/">cnblogs</a> | <a href="https://shengulong.github.io/">Github Pages</a></div>
+  
+  </footer>
+  </article>
+  
+  </body>
+  
+  <script src="https://mermaidjs.github.io/scripts/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+
+  </html>
+

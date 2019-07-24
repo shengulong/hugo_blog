@@ -23,6 +23,7 @@ https://github.com/GerritCodeReview/gerrit
 
 构建工具：google内部使用的 bazel
 bazel安装：https://docs.bazel.build/versions/master/install-os-x.html#install-on-mac-os-x-homebrew
+bazel介绍：https://www.cnblogs.com/Leo_wl/p/4458115.html
 
 k8s部署方案
 ----

@@ -23,7 +23,7 @@ gerrit版本变更：https://www.gerritcodereview.com/releases-readme.html
 gerrit源码：
 https://gerrit.googlesource.com/gerrit/
 https://github.com/GerritCodeReview/gerrit
-构建工具：google内部使用的 bazel bazel安装：https://docs.bazel.build/versions/master/install-os-x.html#install-on-mac-os-x-homebrew
+构建工具：google内部使用的 bazel bazel安装：https://docs.bazel.build/versions/master/install-os-x.html#install-on-mac-os-x-homebrew bazel介绍：https://www.cnblogs.com/Leo_wl/p/4458115.html
 k8s部署方案 google内部源 https://gerrit.googlesource.com/k8s-gerrit/
 对应的github源： https://github.com/GerritCodeReview/k8s-gerrit
 插件  metrics-reporter-elasticsearch metrics-reporter-jmx []()  </description>
