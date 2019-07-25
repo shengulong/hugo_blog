@@ -106,6 +106,19 @@
 <li></li>
 </ol>
 
+<h3 id="插件分类">插件分类</h3>
+
+<ul>
+<li>build插件：会在build阶段被执行，应该配置在POM的<build/>元素中</li>
+<li>reporting插件：生成站点的时候会执行，应该配置在POM的<reporting/>元素中。因为reporting插件的结果是生成的站点的一部分，
+所以这种插件应该是国际化和本地化的</li>
+</ul>
+
+<h3 id="插件配置">插件配置</h3>
+
+<p>Maven插件都是通过指定一个<configuration>元素来配置的。而该元素中的子元素，都是Mojo中的property。
+详见<a href="http://maven.apache.org/guides/mini/guide-configuring-plugins.html">Guide to Configuring Plug-ins</a></p>
+
 
   <footer>
   

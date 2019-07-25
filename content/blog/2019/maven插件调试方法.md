@@ -189,6 +189,11 @@ jdwp 是一个 JVM 特定的 JDWP（Java Debug Wire Protocol） 可选实现，�
 2. 仓库里首先得存在这个依赖，不然使用这个依赖的被调试者就会报依赖找不到的错误；然后存在相同的源码，这样就可以调试源码里
 3. 调试a项目的源码时，b项目使用了a项目，并触发了a项目的断点，断点才有效果
 
+附录
+----
+[Debugging Tests](https://maven.apache.org/surefire/maven-surefire-plugin/examples/debugging.html)
+[Debug spring boot App](https://docs.spring.io/spring-boot/docs/current/maven-plugin/examples/run-debug.html)
+
 参考
 ----
 1. https://www.jianshu.com/p/d168ecdce022
