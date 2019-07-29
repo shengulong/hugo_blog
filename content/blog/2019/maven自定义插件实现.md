@@ -23,3 +23,68 @@ author: sgl
 ### 插件配置
 Maven插件都是通过指定一个<configuration>元素来配置的。而该元素中的子元素，都是Mojo中的property。
 详见[Guide to Configuring Plug-ins](http://maven.apache.org/guides/mini/guide-configuring-plugins.html)
+
+* 插件源码
+
+
+    /**
+     * @goal query
+     */
+    public class MyQueryMojo
+        extends AbstractMojo
+    {
+        // property做为系统属性使用 -Dquery.url
+        @Parameter(property = "query.url", required = true)
+        // url为field，对应于pom里的配置url,可以和上面的property不一致
+        private String url;
+     
+        @Parameter(property = "timeout", required = false, defaultValue = "50")
+        private int timeout;
+     
+        @Parameter(property = "options")
+        private String[] options;
+     
+        public void execute()
+            throws MojoExecutionException
+        {
+            ...
+        }
+    }
+    
+* 插件配置
+
+
+    <project>
+      ...
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-myquery-plugin</artifactId>
+            <version>1.0</version>
+            <configuration>
+              <!--对应于源码的里的field： url -->
+              <url>http://www.foobar.com/query</url>
+              <timeout>10</timeout>
+              <options>
+                <option>one</option>
+                <option>two</option>
+                <option>three</option>
+              </options>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+      ...
+    </project>    
+
+* 通过系统属性system properties定义参数
+
+
+    mvn myquery:query -Dquery.url=http://maven.apache.org
+
+### 插件代码规范
+[Maven Code Style And Code Conventions](https://maven.apache.org/developers/conventions/code.html)
+
+Download [maven-idea-codestyle.xml](https://maven.apache.org/developers/maven-idea-codestyle.xml) and 
+copy it to ~/.IntelliJIDEA/config/codestyles then restart IDEA.
+After this, restart IDEA and open the settings to select the new code style.

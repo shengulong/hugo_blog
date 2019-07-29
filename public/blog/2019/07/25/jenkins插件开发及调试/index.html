@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>Jenkins插件开发及调试 - 持之以恒</title>
+    <meta property="og:title" content="Jenkins插件开发及调试 - 持之以恒">
+    
+
+    
+      
+    
+
+    
+
+    
+    
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.14.1/styles/googlecode.min.css' rel='stylesheet' type='text/css' />
+
+
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+
+  </head>
+
+  
+  <body class="blog">
+    <header class="masthead">
+      <h1 class="headimg">
+    
+    <a href="/"><img src="/img/headimg.png" alt="Fuhui "></a>
+</h1>
+
+
+
+      <nav class="menu">
+        <input id="menu-check" type="checkbox" />
+        <label id="menu-label" for="menu-check" class="unselectable">
+          <span class="icon close-icon">✕</span>
+          <span class="icon open-icon">☰</span>
+          <span class="text">Menu</span>
+        </label>
+        <ul>
+        
+        
+        <li><a href="/blog/">Blog</a></li>
+        
+        <li><a href="/life/">Life</a></li>
+        
+        <li><a href="/resource/">Resource</a></li>
+        
+        <li><a href="/categories/">Categories</a></li>
+        
+        <li><a href="/tags/">Tags</a></li>
+        
+        <li><a href="/about/">About</a></li>
+        
+        
+
+
+        </ul>
+      </nav>
+    </header>
+
+    <article class="main">
+      <header class="title">
+      <h1>Jenkins插件开发及调试</h1>
+
+
+
+
+    
+    
+    <section class="post-meta">
+        <span class="post-author">sgl
+        
+            
+            
+             /  2019-07-25
+            
+        </span>
+        
+        <a href="/tags/jenkins">jenkins</a>
+        
+    </section>
+    
+
+
+
+<hr>
+      </header>
+
+
+
+
+<h3 id="jenkins插件说明">Jenkins插件说明</h3>
+
+<p>项目使用mvn hpi:create生成，但是自动生成的示例无法直接使用，对pom.xml文件进行了修改，添加如下内容，指定使用当时最新
+的jenkins版本，进行调试</p>
+
+<pre><code>&lt;properties&gt;
+    &lt;!--    必须指定这个参数，不然使用插件maven-enforcer-plugin的enforceBytecodeVersion检查时会报错--&gt;
+    &lt;java.level&gt;8&lt;/java.level&gt;
+    &lt;!--    使用最新的jenkins版本进行测试--&gt;
+    &lt;jenkins.version&gt;2.176.2&lt;/jenkins.version&gt;
+&lt;/properties&gt;
+</code></pre>
+
+<h3 id="调试方法">调试方法</h3>
+
+<p>执行命令<code>mvn hpi:run</code>会自动在项目的根目录下生成work目录，这个目录里有jenkins软件的信息等内容</p>
+
+<p>如图：<strong><em>在idea上的hpi插件上的run点击debug进入调试模式</em></strong>,然后在源码或者依赖包的源码上打断点。</p>
+
+<p><img src="/img/blog/2019/Jenkins插件开发及调试-0.jpg" alt="" /></p>
+
+<p>执行成功的话，打开网页<a href="http://127.0.0.1:8080/jenkins/就可以看到jenkins的">http://127.0.0.1:8080/jenkins/就可以看到jenkins的</a><code>web</code>界面</p>
+
+<p>在idea里修改java文件、jelly文件、html文件，然后就可以在jenkins的web界面及时看的效果</p>
+
+<h3 id="插件的本土化localization-比如中文化">插件的本土化Localization(比如中文化)</h3>
+
+<p>插件默认语言是英文，如何本土化？可以参考org.jenkins-ci.main:jenkins-core:2.176.2这类插件的实现。
+jenkins本身以及很多插件都是支持多语言的，选择哪种语言，据说jenkins会根据浏览器语言或者计算机系统语言自动选择的。如果选择的语言没有相应的支持，
+则显示英文。
+1. 安装本土化插件，中文为<a href="https://github.com/jenkinsci/localization-zh-cn-plugin">Simplified Chinese Plugin</a>
+2. 安装的插件自身支持本土化
+3. 使用语言切换插件<a href="https://plugins.jenkins.io/locale">local</a>；配置举例，全局配置里填写：&rdquo;Default Language&rdquo;:zh</p>
+
+<p>插件支持本土化方法：[示例]()
+* 帮助文档: help-markupFormatter_zh_TW.html help-markupFormatter_zh.html
+* 配置文档: config_zh_TW.properties config_zh.properties 对应于配置文件config.jelly或者config.groovy</p>
+
+<p>插件本土化实现原理：<a href="https://github.com/jenkinsci/localization-support-plugin">Localization Support</a></p>
+
+<h3 id="jenkins中的三种视图">jenkins中的三种视图</h3>
+
+<ul>
+<li>global.jelly 全局的配置视图</li>
+<li>config.jelly Job的配置视图</li>
+<li>help-属性名.html 帮助视图 html片段</li>
+</ul>
+
+<h3 id="jelly相关知识">jelly相关知识</h3>
+
+<ul>
+<li><a href="https://wiki.jenkins.io/display/JENKINS/Jelly+form+controls">Jelly form controls</a></li>
+<li><a href="https://reports.jenkins.io/core-taglib/jelly-taglib-ref.html">core</a></li>
+<li><a href="https://stapler.kohsuke.org/jelly-taglib-ref.html">jelly:stapler</a></li>
+<li><a href="https://commons.apache.org/proper/commons-jelly/tags.html">jelly:core</a></li>
+<li><a href="https://wiki.jenkins.io/display/JENKINS/Basic+guide+to+Jelly+usage+in+Jenkins">Basic guide to Jelly usage in Jenkins</a></li>
+<li><a href="https://jenkins.io/doc/developer/forms/">Forms</a></li>
+<li><a href="https://wiki.jenkins.io/display/JENKINS/UI+Samples+Plugin">UI Samples Plugin</a></li>
+<li>[]()</li>
+</ul>
+
+<h3 id="jenkins框架-插件">jenkins框架+插件</h3>
+
+<p>jenkins本身不提供很多功能，通过插件来实现各种功能</p>
+
+<h3 id="jenkins-扩展点-https-jenkins-io-doc-developer-extensions">jenkins<a href="https://jenkins.io/doc/developer/extensions/">扩展点</a></h3>
+
+<p>jenkins有很多的扩展点（ExtensitonPoint），它是Jenkins系统的某个方面的接口或抽象类。这些接口定义了需要实现的方法；
+而Jenkins插件需要实现这些方法，也可以叫做在此扩展点之上进行扩展Jenkins</p>
+
+<h3 id="示例">示例</h3>
+
+<p>github</p>
+
+<h3 id="参考">参考</h3>
+
+<ol>
+<li><a href="https://my.oschina.net/lienson/blog/1531341">https://my.oschina.net/lienson/blog/1531341</a></li>
+<li><a href="http://commons.apache.org/proper/commons-jelly/index.html">jelly</a></li>
+
+<li><p><a href="https://wiki.jenkins.io/display/JENKINS/Understanding+Jelly+Tags">Understanding Jelly Tags</a></p>
+
+<p><a href="https://github.com/jenkinsci/jenkins/tree/master/core/src/main/resources/lib">https://github.com/jenkinsci/jenkins/tree/master/core/src/main/resources/lib</a></p></li>
+
+<li></li>
+</ol>
+
+
+  <footer>
+  
+<nav class="post-nav">
+  <span class="nav-prev">&larr; <a href="/blog/2019/07/24/python%E7%9A%84caller%E5%AF%B9callee%E6%A8%A1%E5%9D%97%E5%86%85%E9%83%A8%E5%8F%82%E6%95%B0%E7%9A%84%E4%BF%AE%E6%94%B9%E7%94%9F%E6%95%88%E6%83%85%E5%86%B5/">Python的caller对callee模块内部参数的修改生效情况</a></span>
+  <span class="nav-next"></span>
+</nav>
+
+
+
+
+
+<script src="//yihui.name/js/math-code.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script async src="//yihui.name/js/center-img.js"></script>
+
+  
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/yaml.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/tex.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/go.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+  
+  <hr>
+  <div class="copyright">&copy; 2019 | <a href="https://github.com/shengulong">Github</a> | <a href="https://www.cnblogs.com/shengulong/">cnblogs</a> | <a href="https://shengulong.github.io/">Github Pages</a></div>
+  
+  </footer>
+  </article>
+  
+  </body>
+  
+  <script src="https://mermaidjs.github.io/scripts/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+
+  </html>
+

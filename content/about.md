@@ -19,6 +19,7 @@ title: "About"
 2. hugo server 本地启动服务
 1. hugo new blog/2019/xxx.md 创建一篇新博客，目录位于content/blog/2019
 1. sh simple-deploy.sh 发布博客到xxx.github.io
+2. 博客里的图片放在目录hogo_blog/static/img/下
 
 评论系统
 ----

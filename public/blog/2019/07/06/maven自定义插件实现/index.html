@@ -119,6 +119,74 @@
 <p>Maven插件都是通过指定一个<configuration>元素来配置的。而该元素中的子元素，都是Mojo中的property。
 详见<a href="http://maven.apache.org/guides/mini/guide-configuring-plugins.html">Guide to Configuring Plug-ins</a></p>
 
+<ul>
+<li><p>插件源码</p>
+
+<p>/**</p>
+
+<ul>
+<li><p>@goal query
+*/
+public class MyQueryMojo
+extends AbstractMojo
+{
+// property做为系统属性使用 -Dquery.url
+@Parameter(property = &ldquo;query.url&rdquo;, required = true)
+// url为field，对应于pom里的配置url,可以和上面的property不一致
+private String url;</p>
+
+<p>@Parameter(property = &ldquo;timeout&rdquo;, required = false, defaultValue = &ldquo;50&rdquo;)
+private int timeout;</p>
+
+<p>@Parameter(property = &ldquo;options&rdquo;)
+private String[] options;</p>
+
+<p>public void execute()
+    throws MojoExecutionException
+{
+    &hellip;
+}
+}</p></li>
+</ul></li>
+
+<li><p>插件配置</p>
+
+<p><project>
+  &hellip;
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-myquery-plugin</artifactId>
+        <version>1.0</version>
+        <configuration>
+          <!--对应于源码的里的field： url -->
+          <url><a href="http://www.foobar.com/query">http://www.foobar.com/query</a></url>
+          <timeout>10</timeout>
+          <options>
+            <option>one</option>
+            <option>two</option>
+            <option>three</option>
+          </options>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  &hellip;
+</project></p></li>
+
+<li><p>通过系统属性system properties定义参数</p>
+
+<p>mvn myquery:query -Dquery.url=<a href="http://maven.apache.org">http://maven.apache.org</a></p></li>
+</ul>
+
+<h3 id="插件代码规范">插件代码规范</h3>
+
+<p><a href="https://maven.apache.org/developers/conventions/code.html">Maven Code Style And Code Conventions</a></p>
+
+<p>Download <a href="https://maven.apache.org/developers/maven-idea-codestyle.xml">maven-idea-codestyle.xml</a> and
+copy it to ~/.IntelliJIDEA/config/codestyles then restart IDEA.
+After this, restart IDEA and open the settings to select the new code style.</p>
+
 
   <footer>
   

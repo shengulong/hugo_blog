@@ -6,10 +6,27 @@
     <description>Recent content in 蜗牛保持乐观才会爬的更远 on 持之以恒</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 24 Jul 2019 10:16:20 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 25 Jul 2019 15:53:17 +0800</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Jenkins插件开发及调试</title>
+      <link>/blog/2019/07/25/jenkins%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E5%8F%8A%E8%B0%83%E8%AF%95/</link>
+      <pubDate>Thu, 25 Jul 2019 15:53:17 +0800</pubDate>
+      
+      <guid>/blog/2019/07/25/jenkins%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E5%8F%8A%E8%B0%83%E8%AF%95/</guid>
+      <description>Jenkins插件说明 项目使用mvn hpi:create生成，但是自动生成的示例无法直接使用，对pom.xml文件进行了修改，添加如下内容，指定使用当时最新 的jenkins版本，进行调试
+&amp;lt;properties&amp;gt; &amp;lt;!-- 必须指定这个参数，不然使用插件maven-enforcer-plugin的enforceBytecodeVersion检查时会报错--&amp;gt; &amp;lt;java.level&amp;gt;8&amp;lt;/java.level&amp;gt; &amp;lt;!-- 使用最新的jenkins版本进行测试--&amp;gt; &amp;lt;jenkins.version&amp;gt;2.176.2&amp;lt;/jenkins.version&amp;gt; &amp;lt;/properties&amp;gt;  调试方法 执行命令mvn hpi:run会自动在项目的根目录下生成work目录，这个目录里有jenkins软件的信息等内容
+如图：在idea上的hpi插件上的run点击debug进入调试模式,然后在源码或者依赖包的源码上打断点。
+执行成功的话，打开网页http://127.0.0.1:8080/jenkins/就可以看到jenkins的web界面
+在idea里修改java文件、jelly文件、html文件，然后就可以在jenkins的web界面及时看的效果
+插件的本土化Localization(比如中文化) 插件默认语言是英文，如何本土化？可以参考org.jenkins-ci.main:jenkins-core:2.176.2这类插件的实现。 jenkins本身以及很多插件都是支持多语言的，选择哪种语言，据说jenkins会根据浏览器语言或者计算机系统语言自动选择的。如果选择的语言没有相应的支持， 则显示英文。 1. 安装本土化插件，中文为Simplified Chinese Plugin 2. 安装的插件自身支持本土化 3. 使用语言切换插件local；配置举例，全局配置里填写：&amp;rdquo;Default Language&amp;rdquo;:zh
+插件支持本土化方法：[示例]() * 帮助文档: help-markupFormatter_zh_TW.html help-markupFormatter_zh.html * 配置文档: config_zh_TW.properties config_zh.properties 对应于配置文件config.jelly或者config.groovy
+插件本土化实现原理：Localization Support
+jenkins中的三种视图  global.jelly 全局的配置视图 config.jelly Job的配置视图 help-属性名.html 帮助视图 html片段  jelly相关知识  Jelly form controls core jelly:stapler jelly:core Basic guide to Jelly usage in Jenkins Forms UI Samples Plugin []()  jenkins框架+插件 jenkins本身不提供很多功能，通过插件来实现各种功能</description>
+    </item>
     
     <item>
       <title>Python的caller对callee模块内部参数的修改生效情况</title>
@@ -48,7 +65,13 @@ package sample.plugin; import org.apache.maven.plugin.AbstractMojo; import org.a
       <pubDate>Sat, 06 Jul 2019 07:49:23 +0800</pubDate>
       
       <guid>/blog/2019/07/06/maven%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8F%92%E4%BB%B6%E5%AE%9E%E7%8E%B0/</guid>
-      <description>maven开发 maven开发 maven插件开发  插件和生命周期的某个阶段绑定 自定义插件命名为：-maven-plugin；maven--plugin是官方插件的命名，拥有商标权   插件分类  build插件：会在build阶段被执行，应该配置在POM的元素中 reporting插件：生成站点的时候会执行，应该配置在POM的元素中。因为reporting插件的结果是生成的站点的一部分， 所以这种插件应该是国际化和本地化的  插件配置 Maven插件都是通过指定一个元素来配置的。而该元素中的子元素，都是Mojo中的property。 详见Guide to Configuring Plug-ins</description>
+      <description>maven开发 maven开发 maven插件开发  插件和生命周期的某个阶段绑定 自定义插件命名为：-maven-plugin；maven--plugin是官方插件的命名，拥有商标权   插件分类  build插件：会在build阶段被执行，应该配置在POM的元素中 reporting插件：生成站点的时候会执行，应该配置在POM的元素中。因为reporting插件的结果是生成的站点的一部分， 所以这种插件应该是国际化和本地化的  插件配置 Maven插件都是通过指定一个元素来配置的。而该元素中的子元素，都是Mojo中的property。 详见Guide to Configuring Plug-ins
+ 插件源码
+/**
+ @goal query */ public class MyQueryMojo extends AbstractMojo { // property做为系统属性使用 -Dquery.url @Parameter(property = &amp;ldquo;query.url&amp;rdquo;, required = true) // url为field，对应于pom里的配置url,可以和上面的property不一致 private String url;
+@Parameter(property = &amp;ldquo;timeout&amp;rdquo;, required = false, defaultValue = &amp;ldquo;50&amp;rdquo;) private int timeout;
+@Parameter(property = &amp;ldquo;options&amp;rdquo;) private String[] options;
+public void execute() throws MojoExecutionException { &amp;hellip; } }</description>
     </item>
     
     <item>
@@ -344,7 +367,7 @@ You can implement step definitions for undefined steps with these snippets: func
       <description>网站是使用hugo + GitHub搭建的静态网页。在这之前，一直用的是cnblogs，自从无意间看到了https://neojos.com/about/, 其实来源是blog,参考github,github。 不得不说，自己被博主的优秀以及博客的简单明了折服的一塌糊涂。
 简单了解hugo之后，发现它更简单、更方便，所以将自己的博客也做了迁移。
 直接git clone git@github.com:GitHubSi/blog.git,然后简单修改里面的内容，删除掉作者的博客，添加自己的博客
-使用介绍：  Hugo快速入手 博客模版 theme:hugo-ivy 主题hugo-ivy借鉴ivy：Ivy is a static website generator built in Python. It&#39;s small, elegant, and easy to use. hugo 编译 hugo server 本地启动服务 hugo new blog/2019/xxx.md 创建一篇新博客，目录位于content/blog/2019 sh simple-deploy.sh 发布博客到xxx.github.io  评论系统 如果需要，可以考虑isso，因为涉及交互，就不再是静态网站了，需要存储系统，就需要放存储系统的服务器。暂时不考虑。 评论系统效果参考
+使用介绍：  Hugo快速入手 博客模版 theme:hugo-ivy 主题hugo-ivy借鉴ivy：Ivy is a static website generator built in Python. It&#39;s small, elegant, and easy to use. hugo 编译 hugo server 本地启动服务 hugo new blog/2019/xxx.md 创建一篇新博客，目录位于content/blog/2019 sh simple-deploy.sh 发布博客到xxx.github.io 博客里的图片放在目录hogo_blog/static/img/下  评论系统 如果需要，可以考虑isso，因为涉及交互，就不再是静态网站了，需要存储系统，就需要放存储系统的服务器。暂时不考虑。 评论系统效果参考
 优化方向  里面内嵌了很多js，需要删除无用的，把有用的js链接本地化，减少网络依赖  注意事项：  修改hugo new xx.md的模版
  位于archetypes/default.md,参考.Format
  --- title: &amp;quot;{{ replace .Name &amp;quot;-&amp;quot; &amp;quot; &amp;quot; | title }}&amp;quot; date: {{ .</description>
