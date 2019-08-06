@@ -40,8 +40,8 @@ jenkins本身以及很多插件都是支持多语言的，选择哪种语言，�
 3. 使用语言切换插件[local](https://plugins.jenkins.io/locale)；配置举例，全局配置里填写："Default Language":zh
 
 插件支持本土化方法：[示例]()
-* 帮助文档: help-markupFormatter_zh_TW.html help-markupFormatter_zh.html
-* 配置文档: config_zh_TW.properties config_zh.properties 对应于配置文件config.jelly或者config.groovy
+* 帮助文档(添加后缀_zh表示中文文档): help-markupFormatter_zh_TW.html help-markupFormatter_zh.html
+* 配置文档(添加后缀_zh表示中文文档): config_zh_TW.properties config_zh.properties 对应于配置文件config.jelly或者config.groovy
 
 插件本土化实现原理：[Localization Support](https://github.com/jenkinsci/localization-support-plugin)
 
@@ -64,10 +64,11 @@ jenkins本身以及很多插件都是支持多语言的，选择哪种语言，�
 ### jenkins框架+插件
 jenkins本身不提供很多功能，通过插件来实现各种功能
 
-### jenkins[扩展点](https://jenkins.io/doc/developer/extensions/)
+### jenkins [扩展点](https://jenkins.io/doc/developer/extensions/) [创建一个新的扩展点](https://wiki.jenkins.io/display/JENKINS/Defining+a+new+extension+point)
 
 jenkins有很多的扩展点（ExtensitonPoint），它是Jenkins系统的某个方面的接口或抽象类。这些接口定义了需要实现的方法；
 而Jenkins插件需要实现这些方法，也可以叫做在此扩展点之上进行扩展Jenkins
+
 
 ### 示例
 github

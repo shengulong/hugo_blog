@@ -23,7 +23,7 @@
 执行成功的话，打开网页http://127.0.0.1:8080/jenkins/就可以看到jenkins的web界面
 在idea里修改java文件、jelly文件、html文件，然后就可以在jenkins的web界面及时看的效果
 插件的本土化Localization(比如中文化) 插件默认语言是英文，如何本土化？可以参考org.jenkins-ci.main:jenkins-core:2.176.2这类插件的实现。 jenkins本身以及很多插件都是支持多语言的，选择哪种语言，据说jenkins会根据浏览器语言或者计算机系统语言自动选择的。如果选择的语言没有相应的支持， 则显示英文。 1. 安装本土化插件，中文为Simplified Chinese Plugin 2. 安装的插件自身支持本土化 3. 使用语言切换插件local；配置举例，全局配置里填写：&amp;rdquo;Default Language&amp;rdquo;:zh
-插件支持本土化方法：[示例]() * 帮助文档: help-markupFormatter_zh_TW.html help-markupFormatter_zh.html * 配置文档: config_zh_TW.properties config_zh.properties 对应于配置文件config.jelly或者config.groovy
+插件支持本土化方法：[示例]() * 帮助文档(添加后缀_zh表示中文文档): help-markupFormatter_zh_TW.html help-markupFormatter_zh.html * 配置文档(添加后缀_zh表示中文文档): config_zh_TW.properties config_zh.properties 对应于配置文件config.jelly或者config.groovy
 插件本土化实现原理：Localization Support
 jenkins中的三种视图  global.jelly 全局的配置视图 config.jelly Job的配置视图 help-属性名.html 帮助视图 html片段  jelly相关知识  Jelly form controls core jelly:stapler jelly:core Basic guide to Jelly usage in Jenkins Forms UI Samples Plugin []()  jenkins框架+插件 jenkins本身不提供很多功能，通过插件来实现各种功能</description>
     </item>
