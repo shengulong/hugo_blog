@@ -155,7 +155,17 @@
 或者<a href="http://127.0.0.1:8080/api/xml?depth=1可以获取一些较少的关键信息,通过http://127.0.0.1:8080/api/json?tree=jobs[name]{0,12">http://127.0.0.1:8080/api/xml?depth=1可以获取一些较少的关键信息,通过http://127.0.0.1:8080/api/json?tree=jobs[name]{0,12</a>}
 或者<a href="http://127.0.0.1:8080/api/xml?tree=jobs[name]{0,12}可以获取前12个job的信息(这里tree=jobs[name]使用了xpath过滤)；每项任务的操作，在web界面上可以">http://127.0.0.1:8080/api/xml?tree=jobs[name]{0,12}可以获取前12个job的信息(这里tree=jobs[name]使用了xpath过滤)；每项任务的操作，在web界面上可以</a>
 看到链接；授权采用的是基本授权(Basic Auth)</li>
-<li>sd</li>
+<li><a href="https://jenkins-zh.cn">Jenkins中文社区</a><br /></li>
+</ol>
+
+<h2 id="分布式部署实现">分布式部署实现</h2>
+
+<ol>
+<li><a href="https://jenkins-zh.cn/wechat/articles/2019/04/2019-04-23-jenkins-master-shared-home/">关于Jenkins master共享JENKINS_HOME目录的实验</a>验证了当前的jenkins在
+分布式部署时的问题:通过共享强依赖的单机目录(k8s上实现多个容器挂载相同的目录,可以借助ceph分布式存储)，无法实现</li>
+<li>针对上面实验出现的问题，阅读jenkins<a href="https://github.com/jenkinsci/jenkins">源代码</a>，看是否可以通过修改Jenkins应用的源代码解决</li>
+<li>首先解决job相关的分布式实现，其次解决插件相关的分布式实现，还有Jenkins配置相关的分布式，或许通过配置本地化存储修改为远端数据库存储解决分布式问题</li>
+<li></li>
 </ol>
 
 
