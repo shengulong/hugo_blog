@@ -79,4 +79,4 @@ github
 3. [Understanding Jelly Tags](https://wiki.jenkins.io/display/JENKINS/Understanding+Jelly+Tags)
 
     https://github.com/jenkinsci/jenkins/tree/master/core/src/main/resources/lib
-4.    
+4. [Jenkins Developer Guide](https://rtyler.github.io/jenkins.io/doc/developer/)
