@@ -63,3 +63,9 @@ jenkins相关知识点
 2. 针对上面实验出现的问题，阅读jenkins[源代码](https://github.com/jenkinsci/jenkins)，看是否可以通过修改Jenkins应用的源代码解决
 3. 首先解决job相关的分布式实现，其次解决插件相关的分布式实现，还有Jenkins配置相关的分布式，或许通过配置本地化存储修改为远端数据库存储解决分布式问题
 4. 
+
+参与jenkins建设
+-----
+注册jenkins的wiki和jira账号，为同一个账号
+https://wiki.jenkins.io/#all-updates
+https://issues.jenkins-ci.org/browse/JENKINS-58948?filter=-4
