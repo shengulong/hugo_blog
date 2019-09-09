@@ -12,7 +12,8 @@ requests长连接
 ### 遗留问题
 
 
- - [ ] 为什么requests短连接时，虽然http头中携带了`Connection: keep-alive`头，服务端却回复`Connection: close`头？
+ - [ ] 为什么requests短连接时，虽然http头中携带了`Connection: keep-alive`头，服务端却回复`Connection: close`头？client和server
+ 是如何得知此次连接是短连接的？
 
 
 > `requests`使用`Session()`即长连接时，请求头会携带字段`Connection: keep-alive`,服务端回复相同的http头
