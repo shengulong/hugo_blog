@@ -64,6 +64,42 @@ jenkins相关知识点
 3. 首先解决job相关的分布式实现，其次解决插件相关的分布式实现，还有Jenkins配置相关的分布式，或许通过配置本地化存储修改为远端数据库存储解决分布式问题
 4. 
 
+
+疑问
+===
+- [ ] jenkins是不是把job等信息全部存入***内存***？因为jenkins不使用数据库，内容全部落磁盘，把磁盘的部分或者全部信息落入内存，无疑可以加快速度
+
+调试jenkins源代码
+====
+1. 根据源代码生成jenkins.war包
+2. debug模式启动jenkins
+
+        java -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=8000 -jar war/target/jenkins.war --httpPort=8081
+
+3. 使用idea开启远程调试
+        
+        1. 第一句日志目前不知道从哪儿打印的？
+        Listening for transport dt_socket at address: 8000
+        2. 接下来的日志是 [org.jenkins-ci:executable-war:1.45](https://github.com/jenkinsci/extras-executable-war) 的 `Main.java` 的 `main` 函数输出的，既可以认为这是程序的入口
+        3. 接着会调用org.jenkins-ci:winstone:5.3到Launcher.java启动jetty服务
+        4. 接着调用jenkins/core/src/main/java/hudson/WebAppMain.java，主要是Creates the sole instance of {@link jenkins.model.Jenkins} and register it to the {@link ServletContext}.
+        5. 
+
+删除job的步骤
+====
+1. 先删除job下的config.xml文件
+2. 在递归删除其他文件和目录        
+
+实验结果
+===
+- [x] job的日志是每次从磁盘加载的，不存内存,根据project名字，去磁盘里检索
+    
+        检索路径格式：项目名字/builds/构建号/log
+        举例：demo/builds/1/log
+    
+- [x] job的日志是每次从磁盘加载的，不存内存
+
+
 参与jenkins建设
 -----
 注册jenkins的wiki和jira账号，为同一个账号

@@ -6,10 +6,38 @@
     <description>Recent content in python on 持之以恒</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 24 Jul 2019 10:16:20 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 12 Sep 2019 10:55:44 +0800</lastBuildDate>
     
 	<atom:link href="/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Python的上下文用法</title>
+      <link>/blog/2019/09/12/python%E7%9A%84%E4%B8%8A%E4%B8%8B%E6%96%87%E7%94%A8%E6%B3%95/</link>
+      <pubDate>Thu, 12 Sep 2019 10:55:44 +0800</pubDate>
+      
+      <guid>/blog/2019/09/12/python%E7%9A%84%E4%B8%8A%E4%B8%8B%E6%96%87%E7%94%A8%E6%B3%95/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python的装饰器用法</title>
+      <link>/blog/2019/09/12/python%E7%9A%84%E8%A3%85%E9%A5%B0%E5%99%A8%E7%94%A8%E6%B3%95/</link>
+      <pubDate>Thu, 12 Sep 2019 10:47:03 +0800</pubDate>
+      
+      <guid>/blog/2019/09/12/python%E7%9A%84%E8%A3%85%E9%A5%B0%E5%99%A8%E7%94%A8%E6%B3%95/</guid>
+      <description> 场景 日志 鉴权 </description>
+    </item>
+    
+    <item>
+      <title>Python的协程用法</title>
+      <link>/blog/2019/09/12/python%E7%9A%84%E5%8D%8F%E7%A8%8B%E7%94%A8%E6%B3%95/</link>
+      <pubDate>Thu, 12 Sep 2019 10:39:35 +0800</pubDate>
+      
+      <guid>/blog/2019/09/12/python%E7%9A%84%E5%8D%8F%E7%A8%8B%E7%94%A8%E6%B3%95/</guid>
+      <description> 开个题
+ </description>
+    </item>
     
     <item>
       <title>Python的caller对callee模块内部参数的修改生效情况</title>

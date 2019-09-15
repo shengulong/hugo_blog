@@ -6,10 +6,37 @@
     <description>Recent content in Tags on 持之以恒</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 25 Jul 2019 15:53:17 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 16 Sep 2019 07:54:08 +0800</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>私立学校</title>
+      <link>/tags/%E7%A7%81%E7%AB%8B%E5%AD%A6%E6%A0%A1/</link>
+      <pubDate>Mon, 16 Sep 2019 07:54:08 +0800</pubDate>
+      
+      <guid>/tags/%E7%A7%81%E7%AB%8B%E5%AD%A6%E6%A0%A1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>/tags/python/</link>
+      <pubDate>Thu, 12 Sep 2019 10:55:44 +0800</pubDate>
+      
+      <guid>/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>高级用法</title>
+      <link>/tags/%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95/</link>
+      <pubDate>Thu, 12 Sep 2019 10:55:44 +0800</pubDate>
+      
+      <guid>/tags/%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>jenkins</title>
@@ -17,15 +44,6 @@
       <pubDate>Thu, 25 Jul 2019 15:53:17 +0800</pubDate>
       
       <guid>/tags/jenkins/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>python</title>
-      <link>/tags/python/</link>
-      <pubDate>Wed, 24 Jul 2019 10:16:20 +0800</pubDate>
-      
-      <guid>/tags/python/</guid>
       <description></description>
     </item>
     
