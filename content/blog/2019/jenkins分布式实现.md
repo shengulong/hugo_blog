@@ -88,7 +88,7 @@ jenkins相关知识点
 删除job的步骤
 ====
 1. 先删除job下的config.xml文件
-2. 在递归删除其他文件和目录        
+2. 再递归删除其他文件和目录        
 
 实验结果
 ===
@@ -99,6 +99,20 @@ jenkins相关知识点
     
 - [x] job的日志是每次从磁盘加载的，不存内存
 
+
+jenkins源码主要依赖包说明
+===
+1. `org.jenkins-ci:executable-war:1.45` 执行main依赖
+2. `org.jenkins-ci:winstone:5.3` [源码](https://github.com/jenkinsci/winstone)只包含winstone部分，打包的时候，把`org.eclipse.jetty`和`javax.servlet`也打包进去
+
+        Winstone is a command line interface around Jetty 9.4, which implements servlet 3.1, WebSocket/JSR-356, and HTTP/2 support. 
+        It is used as the default embedded servlet container in Jenkins (via executable-war module) and can be used by any other web applications that wants to be self-contained
+3. `org.jenkins-ci:task-reactor:1.5` 主要是执行各种任务：加载jobs/加载plugins/准备jenkins全局环境等
+4. `org.jenkins-ci.main:remoting:3.33` 主要是和远程slave通信，执行远程操作
+5. `org.jenkins-ci:commons-jelly:` 主要是jenkins前端展示相关
+6. `org.jvnet.hudson:xstream:` 主要是读写jenkins的job的config.xml配置相关
+7. `org.kohsuke.stapler:stapler:` 主要是处理jenkins的请求和响应相关
+8. `org.kohsuke.stapler:stapler-jelly:` 主要是jenkins前端展示相关的补充
 
 参与jenkins建设
 -----
