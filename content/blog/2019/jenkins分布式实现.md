@@ -102,7 +102,7 @@ jenkins相关知识点
 
 jenkins源码主要依赖包说明
 ===
-1. `org.jenkins-ci:executable-war:1.45` 执行main依赖
+1. `org.jenkins-ci:executable-war:1.45`[源码](https://github.com/jenkinsci/extras-executable-war) 执行main依赖
 2. `org.jenkins-ci:winstone:5.3` [源码](https://github.com/jenkinsci/winstone)只包含winstone部分，打包的时候，把`org.eclipse.jetty`和`javax.servlet`也打包进去
 
         Winstone is a command line interface around Jetty 9.4, which implements servlet 3.1, WebSocket/JSR-356, and HTTP/2 support. 

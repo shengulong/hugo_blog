@@ -153,9 +153,9 @@ requests长连接
         """
         return wait_for_socket(sock, read=True, timeout=timeout)
                    
-我们再看下处于CLOSE_WAIT状态的tcp连接，查看Recv-Q(数据已经在本地接收缓冲区,但是还没有recv())的值不为零，是不是刚好呼应了上面的wait_for_read
+我们再看下(netstat anp/netstat -ant/netstat -ant 1)处于CLOSE_WAIT状态的tcp连接，查看Recv-Q(数据已经在本地接收缓冲区,但是还没有recv())的值不为零，是不是刚好呼应了上面的wait_for_read
 
-    Proto Recv-Q Send-Q Local Address         Foreign Address         State           PID/Program name
+    Proto     Recv-Q   Send-Q      Local Address         Foreign Address         State           PID/Program name
     tcp        1          0       127.0.0.1:8071          127.0.0.1:46423        CLOSE_WAIT      5782/java
     tcp        1          0       127.0.0.1:8071          127.0.0.1:41958         CLOSE_WAIT      5782/java
     tcp        1          0       127.0.0.1:8071          127.0.0.1:42004        CLOSE_WAIT      5782/java

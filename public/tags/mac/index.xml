@@ -22,9 +22,13 @@ defaults write com.apple.Finder AppleShowAllFiles YES/NO
 killall Finder
  打开多个实例
 open -n /Applications/xxx.app
- 路由查看
-netstat -r
-   </description>
+ tcp路由查看
+netstat -r netstat -ant 1
+ 查看端口/进程
+lsof -i:port lsof -p pid
+ 数学公式软件
+latex
+  </description>
     </item>
     
   </channel>

@@ -15,7 +15,16 @@ author: sgl
     
     open -n /Applications/xxx.app    
     
-3. 路由查看
+3. tcp路由查看
     
     netstat -r
-4.    
+    netstat -ant 1
+    
+4. 查看端口/进程
+
+    lsof -i:port
+    lsof -p pid   
+    
+5. 数学公式软件
+
+    latex    
