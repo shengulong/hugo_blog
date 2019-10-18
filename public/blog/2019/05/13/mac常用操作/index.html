@@ -17,6 +17,11 @@
     
     
 
+
+<link href='//cdn.bootcss.com/highlight.js/9.14.1/styles/googlecode.min.css' rel='stylesheet' type='text/css' />
+
+
+
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/fonts.css" />
     <link rel="stylesheet" href="/css/custom.css" />
@@ -95,26 +100,62 @@
 <ol>
 <li><p>在Finder中显示/隐藏隐藏文件</p>
 
-<p>defaults write com.apple.Finder AppleShowAllFiles YES/NO<br />
-killall Finder</p></li>
+<pre><code>defaults write com.apple.Finder AppleShowAllFiles YES/NO  
+killall Finder
+</code></pre></li>
 
 <li><p>打开多个实例</p>
 
-<p>open -n /Applications/xxx.app</p></li>
+<pre><code>open -n /Applications/xxx.app    
+</code></pre></li>
 
 <li><p>tcp路由查看</p>
 
-<p>netstat -r
-netstat -ant 1</p></li>
+<pre><code>netstat -r
+netstat -ant 1
+</code></pre></li>
 
 <li><p>查看端口/进程</p>
 
-<p>lsof -i:port
-lsof -p pid</p></li>
+<pre><code>lsof -i:port        
+lsof -p pid   
+</code></pre></li>
 
 <li><p>数学公式软件</p>
 
-<p>latex</p></li>
+<pre><code>latex   
+</code></pre></li>
+
+<li><p>接力(handoff)</p>
+
+<blockquote>
+<p>在一个设备上复制的内容，可以在另一个设备上粘贴；
+在一个设备上浏览的内容，可以在另一个设备上接着浏览</p>
+</blockquote>
+
+<pre><code>两个设备属于同一个AppleID/开启蓝牙和接力功能/处于同一个网络
+</code></pre></li>
+
+<li><p>截屏</p>
+
+<pre><code>cmd+shift+3：对整个屏幕进行截图
+cmd+shift+4：对自行选择的区域进行截图
+cmd+shift+4+space（空格键）对选定的某个应用程序界面窗口进行截图
+Xnip/Snip滚动截图，实现对一个网页的长截图
+</code></pre></li>
+
+<li><p>分屏功能</p>
+
+<pre><code>按住任一打开的窗口左上角的绿色的全屏按钮
+</code></pre></li>
+
+<li><p>批量更改文件名称</p></li>
+
+<li><p>屏幕共享 Screen Sharing</p></li>
+
+<li><p>录屏 QuickTime Player</p></li>
+
+<li><p>gif录制 giphy capture</p></li>
 </ol>
 
 
@@ -135,6 +176,20 @@ lsof -p pid</p></li>
 <script async src="//yihui.name/js/center-img.js"></script>
 
   
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/yaml.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/tex.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/go.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
 
   
   <hr>

@@ -6,10 +6,66 @@
     <description>Recent content in 2019-10 on 持之以恒</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 01 Oct 2019 17:49:40 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 03 Oct 2019 09:13:15 +0800</lastBuildDate>
     
 	<atom:link href="/categories/2019-10/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>系统调用</title>
+      <link>/blog/2019/10/03/%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8/</link>
+      <pubDate>Thu, 03 Oct 2019 09:13:15 +0800</pubDate>
+      
+      <guid>/blog/2019/10/03/%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>算法</title>
+      <link>/blog/2019/10/03/%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Thu, 03 Oct 2019 07:59:15 +0800</pubDate>
+      
+      <guid>/blog/2019/10/03/%E7%AE%97%E6%B3%95/</guid>
+      <description> idea如何实现各种括号语法检查 idea各类插件的工作原理 p3c的扫描原理 pmd规则自定义 findbugs插件规则原理 </description>
+    </item>
+    
+    <item>
+      <title>进程间通信</title>
+      <link>/blog/2019/10/03/%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1/</link>
+      <pubDate>Thu, 03 Oct 2019 07:56:26 +0800</pubDate>
+      
+      <guid>/blog/2019/10/03/%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1/</guid>
+      <description>https://www.zhihu.com/search?type=content&amp;amp;q=进程间通信%20python
+进程间通信的各种方式效率对比</description>
+    </item>
+    
+    <item>
+      <title>数据结构</title>
+      <link>/blog/2019/10/03/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
+      <pubDate>Thu, 03 Oct 2019 07:56:15 +0800</pubDate>
+      
+      <guid>/blog/2019/10/03/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</guid>
+      <description> 使用场景 优点 缺点 限制 举例  红黑树 二叉树 链表 队列   </description>
+    </item>
+    
+    <item>
+      <title>IO Model</title>
+      <link>/blog/2019/10/02/io-model/</link>
+      <pubDate>Wed, 02 Oct 2019 09:02:42 +0800</pubDate>
+      
+      <guid>/blog/2019/10/02/io-model/</guid>
+      <description>这里使用udp举例，因为udp状态简单：要么收到数据，要么没有收到；tcp协议相对比较复杂
+ 五种I/O模型  阻塞I/O Blocking I/O
+ 非阻塞I/O Non blocking I/O
+ 多路复用 I/O multiplexing (select and poll)
+ 信号驱动 Signal driving I/O(SIGIO)
+ 异步I/O Asynchronous I/O
+  两个阶段  第一阶段：wait for data 等待网络里的数据到达，到达后，数据被暂存在内核空间的内核缓冲区 第二阶段：copy data from kernel to user 把数据从内核空间的内核缓冲区拷贝到用户空间的应用进程缓冲区  两个缓冲区  内核缓冲区
+ 进程缓冲区
+  同步与异步  描述的是用户线程与内核的交互方式
+  同步指用户线程发起I/O请求后需要等待或者轮询内核I/O操作完成后才能继续执行 异步是指用户线程发起I/O请求后仍然继续执行，当内核I/O操作完成后会通知用户线程，或者调用用户线程注册的回调函数  阻塞与非阻塞  描述是用户线程调用内核I/O操作的方式，
+  阻塞是指I/O操作需要彻底完成后才返回到用户空间 非阻塞是指I/O操作被调用后立即返回给用户一个状态值，无需等到I/O操作彻底完成  系统调用  指运行在用户空间的程序向操作系统内核请求需要更高权限运行的服务。当你的代码需要做I/O操作(open、read、write)、或者是进行内存操作、甚至是说要获取一个系统时间，就需要通过系统调用来和内核进行交互 系统调用（system call），指运行在用户空间的程序向操作系统内核请求需要更高权限运行的服务。系统调用提供用户程序与操作系统之间的接口。大多数系统交互式操作需求在内核态运行。如设备IO操作或者进程间通信</description>
+    </item>
     
     <item>
       <title>IT行业的各个定律</title>

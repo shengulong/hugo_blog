@@ -101,7 +101,7 @@
 
 <h2 id="13">缩进</h2>
 
-<ol class="task-list">
+<ol>
 <li><p>标题（Headers）</p>
 
 <blockquote>
@@ -407,8 +407,35 @@ This is [an example](http://example.com/ &quot;Title&quot;) inline link.
 <p>这是图片：<img src="http://mouapp.com/Mou_128.png" alt="" /></p>
 
 <pre><code>添加图片的使用方法基本上和链接类似，只是在中括号前加叹号!，即![Image Title](URL &quot;Image Title&quot;)。
-</code></pre></li>
+</code></pre>
 
+<blockquote>
+<p>图片格式控制</p>
+</blockquote>
+
+<pre><code>居中及大小控制
+方法一：效果不是太好
+![](/img/blog/2019/IO Model-figure_6.1.png#pic_center=100x100)
+&lt;p align=&quot;center&quot;&gt;图1&lt;/p&gt;
+方法二：效果可以
+&lt;div align=&quot;center&quot;&gt;
+    &lt;img src=&quot;/img/blog/2019/IO Model-figure_6.1.png&quot; height=&quot;100&quot; width=&quot;100&quot; &gt;
+    &lt;p align=&quot;center&quot;&gt;图1&lt;/p&gt;
+&lt;/div&gt;
+</code></pre></li>
+</ol>
+
+<p><img src="/img/blog/2019/IO Model-figure_6.1.png#pic_center=100x100" alt="" /></p>
+
+<p align="center">图1</p>
+
+<div align="center">
+    <img src="/img/blog/2019/IO Model-figure_6.1.png" height="100" width="100" >
+    <p align="center">图1</p>
+</div>        
+        
+
+<ol class="task-list">
 <li><p>代码块引用（Fenced Code Blocks）</p>
 
 <blockquote>

@@ -254,6 +254,29 @@ author: sgl
 [Mou icon]: http://mouapp.com/Mou_128.png         
     
         添加图片的使用方法基本上和链接类似，只是在中括号前加叹号!，即![Image Title](URL "Image Title")。
+        
+
+    > 图片格式控制
+    
+        居中及大小控制
+        方法一：效果不是太好
+        ![](/img/blog/2019/IO Model-figure_6.1.png#pic_center=100x100)
+        <p align="center">图1</p>
+        方法二：效果可以
+        <div align="center">
+            <img src="/img/blog/2019/IO Model-figure_6.1.png" height="100" width="100" >
+            <p align="center">图1</p>
+        </div>
+
+![](/img/blog/2019/IO Model-figure_6.1.png#pic_center=100x100)
+
+<p align="center">图1</p>
+
+<div align="center">
+    <img src="/img/blog/2019/IO Model-figure_6.1.png" height="100" width="100" >
+    <p align="center">图1</p>
+</div>        
+        
     
 6. 代码块引用（Fenced Code Blocks）
 
