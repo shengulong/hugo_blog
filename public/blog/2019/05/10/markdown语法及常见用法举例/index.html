@@ -725,7 +725,29 @@ _____
 sequenceDiagram
     Alice->>John: Hello John, how are you?
     John-->>Alice: Great!
-</div>    </li>
+</div>    
+
+<pre><code>&lt;div class=&quot;mermaid&quot;&gt;
+    sequenceDiagram
+        小程序 -&gt;&gt; 小程序 : wx.login()获取code
+        小程序 -&gt;&gt; + 服务器 : wx.request()发送code
+        服务器 -&gt;&gt; + 微信服务器 : code+appid+secret
+        微信服务器 --&gt;&gt; - 服务器 : openid
+        服务器 -&gt;&gt; 服务器 : 根据openid确定用户并生成token
+        服务器 --&gt;&gt; - 小程序 : token                     
+&lt;/div&gt;
+</code></pre>
+
+<div class="mermaid">
+            sequenceDiagram
+                小程序 ->> 小程序 : wx.login()获取code
+                小程序 ->> + 服务器 : wx.request()发送code
+                服务器 ->> + 微信服务器 : code+appid+secret
+                微信服务器 -->> - 服务器 : openid
+                服务器 ->> 服务器 : 根据openid确定用户并生成token
+                服务器 -->> - 小程序 : token                     
+</div>
+    </li>
 
 <li><p>插入公式<strong><em>Latex</em></strong></p>
 
@@ -773,10 +795,13 @@ sequenceDiagram
 
 <pre><code>vi ./themes/hugo-ivy/layouts/partials/footer.html 
 添加下面代码
-&lt;!-- mermaid JS --&gt;
-&lt;script src=&quot;https://mermaidjs.github.io/scripts/mermaid.min.js&quot;&gt;&lt;/script&gt;
+&lt;!-- mermaid JS --&gt;      
+&lt;script src=&quot;https://cdn.bootcss.com/mermaid/8.3.1/mermaid.min.js&quot;&gt;&lt;/script&gt;
+js也可以直接放在hugo目录static/js下
 &lt;script&gt;
     mermaid.initialize({ startOnLoad: true });
+    or
+    mermaid.initialize({startOnLoad: true, theme: 'forest'});
 &lt;/script&gt;
 
 源码
@@ -795,7 +820,7 @@ graph LR
     A --- B
     B-->C[fa:fa-ban forbidden]
     B-->D(fa:fa-spinner);
-</div>     </li>
+</div></li>
 
 <li><p>插入emoji</p></li>
 
@@ -855,10 +880,18 @@ graph LR
   
   </body>
   
-  <script src="https://mermaidjs.github.io/scripts/mermaid.min.js"></script>
+
+
+
+
+  <script src="/js/mermaid.min.js"></script>
   <script>
-    mermaid.initialize({ startOnLoad: true });
+    
+    mermaid.initialize({startOnLoad: true, theme: 'forest'});
   </script>
+
+
+
 
   </html>
 

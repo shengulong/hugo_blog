@@ -520,7 +520,7 @@ author: sgl
                 Alice->>John: Hello John, how are you?
                 John-->>Alice: Great!
         </div>
-    
+               
     
     <div class="mermaid">
     sequenceDiagram
@@ -528,6 +528,28 @@ author: sgl
         John-->>Alice: Great!
     </div>    
 
+        
+        <div class="mermaid">
+            sequenceDiagram
+                小程序 ->> 小程序 : wx.login()获取code
+                小程序 ->> + 服务器 : wx.request()发送code
+                服务器 ->> + 微信服务器 : code+appid+secret
+                微信服务器 -->> - 服务器 : openid
+                服务器 ->> 服务器 : 根据openid确定用户并生成token
+                服务器 -->> - 小程序 : token                     
+        </div>
+    
+    
+    <div class="mermaid">
+                sequenceDiagram
+                    小程序 ->> 小程序 : wx.login()获取code
+                    小程序 ->> + 服务器 : wx.request()发送code
+                    服务器 ->> + 微信服务器 : code+appid+secret
+                    微信服务器 -->> - 服务器 : openid
+                    服务器 ->> 服务器 : 根据openid确定用户并生成token
+                    服务器 -->> - 小程序 : token                     
+    </div>
+    
 17. 插入公式***Latex***
 
     参考这几篇文章，后续用的时候再添加
@@ -568,10 +590,13 @@ author: sgl
     
         vi ./themes/hugo-ivy/layouts/partials/footer.html 
         添加下面代码
-        <!-- mermaid JS -->
-        <script src="https://mermaidjs.github.io/scripts/mermaid.min.js"></script>
+        <!-- mermaid JS -->      
+        <script src="https://cdn.bootcss.com/mermaid/8.3.1/mermaid.min.js"></script>
+        js也可以直接放在hugo目录static/js下
         <script>
             mermaid.initialize({ startOnLoad: true });
+            or
+            mermaid.initialize({startOnLoad: true, theme: 'forest'});
         </script>
         
         源码
@@ -589,7 +614,7 @@ author: sgl
         A --- B
         B-->C[fa:fa-ban forbidden]
         B-->D(fa:fa-spinner);
-    </div>     
+    </div>
 
 20. 插入emoji
 
