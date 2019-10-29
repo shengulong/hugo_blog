@@ -6,10 +6,23 @@
     <description>Recent content in 2019-10 on 持之以恒</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 03 Oct 2019 09:13:15 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 29 Oct 2019 22:54:58 +0800</lastBuildDate>
     
 	<atom:link href="/categories/2019-10/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>虚拟机栈</title>
+      <link>/blog/2019/10/29/%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A0%88/</link>
+      <pubDate>Tue, 29 Oct 2019 22:54:58 +0800</pubDate>
+      
+      <guid>/blog/2019/10/29/%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A0%88/</guid>
+      <description>虚拟机栈(java stack)  百度图片搜索里的动图搜索功能不错，可以搜索一些动图，展示操作数栈的操作过程，比较形象。这点google差点意思
+  虚拟机栈(jvm stacks)是线程独占的
+ 里面是多个栈帧(frame)或叫方法帧(class里的每个方法独占一个栈帧，所以也可以称之为方法帧)
+ 每个栈帧里包含：局部变量区/操作数栈/动态链接/方法的返回地址
+  示例  文件SimpleExample.java  1 class SimpleExample { 2 public static void main(String[] args) { 3 int result = add(2,3); 4 System.out.println(result); 5 } 6 public static int add(int a, int b) { 7 return a+b; 8 } 9 }   编译源代码生产字节码文件SimpleExample.class  -g Generates all debugging information, including local variables. By default, only line number and source file information is generated.</description>
+    </item>
     
     <item>
       <title>系统调用</title>
