@@ -6,10 +6,46 @@
     <description>Recent content in Tags on 持之以恒</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 29 Oct 2019 22:54:58 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 29 Oct 2019 23:14:44 +0800</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>java</title>
+      <link>/tags/java/</link>
+      <pubDate>Tue, 29 Oct 2019 23:14:44 +0800</pubDate>
+      
+      <guid>/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>p3c</title>
+      <link>/tags/p3c/</link>
+      <pubDate>Tue, 29 Oct 2019 23:14:44 +0800</pubDate>
+      
+      <guid>/tags/p3c/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>idea</title>
+      <link>/tags/idea/</link>
+      <pubDate>Tue, 29 Oct 2019 23:13:58 +0800</pubDate>
+      
+      <guid>/tags/idea/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>plugins</title>
+      <link>/tags/plugins/</link>
+      <pubDate>Tue, 29 Oct 2019 23:13:58 +0800</pubDate>
+      
+      <guid>/tags/plugins/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>jvm</title>
