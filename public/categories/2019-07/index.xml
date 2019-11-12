@@ -95,16 +95,17 @@ jenkins开发相关知识Extend Jenkins、开发者文档  jenkins本身开发�
       <pubDate>Sat, 06 Jul 2019 07:39:37 +0800</pubDate>
       
       <guid>/blog/2019/07/06/gerrit%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%9E%E7%8E%B0/</guid>
-      <description> 思路 查看gerrit源代码，把gerrit依赖单机的代码内容，修改为依赖分布式机器的内容； 这样做到应用本身无存储状态，容器化后可以做到随便创建和删除。
+      <description>gerrit不支持jre1.8以上版本
+ 思路 查看gerrit源代码，把gerrit依赖单机的代码内容，修改为依赖分布式机器的内容； 这样做到应用本身无存储状态，容器化后可以做到随便创建和删除。
 CodeReview相关工具：https://github.com/GerritCodeReview
 gerrit版本变更：https://www.gerritcodereview.com/releases-readme.html
 gerrit源码：
 https://gerrit.googlesource.com/gerrit/
 https://github.com/GerritCodeReview/gerrit
 构建工具：google内部使用的 bazel bazel安装：https://docs.bazel.build/versions/master/install-os-x.html#install-on-mac-os-x-homebrew bazel介绍：https://www.cnblogs.com/Leo_wl/p/4458115.html
-k8s部署方案 google内部源 https://gerrit.googlesource.com/k8s-gerrit/
-对应的github源： https://github.com/GerritCodeReview/k8s-gerrit
-插件  metrics-reporter-elasticsearch metrics-reporter-jmx []()  </description>
+官网 内容： + 插件链接 + 下载地址 + 在线ppt，解释gerrit的理念 + 线文档
+build gerrit source code Gerrit Code Review - Building with Bazel Gerrit Code Review - IntelliJ IDEA Setup
+git clone --recursive https://gerrit.googlesource.com/gerrit cd gerrit &amp;amp;&amp;amp; bazel build release 上面执行成功的话，会在gerrit目录生成如下war包 bazel-bin/release.war cd gerrit &amp;amp;&amp;amp; bazel build gerrit 上面执行成功的话，会在gerrit目录生成如下war包 bazel-bin/gerrit.war [切换分支](http://127.0.0.1:8080/Documentation/dev-readme.html#_switching_between_branches)要把子模块一起切换 git checkout --recurse-submodules  本地启动一个gerrit server</description>
     </item>
     
     <item>

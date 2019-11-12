@@ -53,3 +53,6 @@ author: sgl
 10. 屏幕共享 Screen Sharing
 11. 录屏 QuickTime Player  
 12. gif录制 giphy capture
+13. 清理dns缓存
+    
+    sudo dscacheutil -flushcache

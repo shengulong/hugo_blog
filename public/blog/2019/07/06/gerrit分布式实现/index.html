@@ -17,6 +17,11 @@
     
     
 
+
+<link href='//cdn.bootcss.com/highlight.js/9.14.1/styles/googlecode.min.css' rel='stylesheet' type='text/css' />
+
+
+
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/fonts.css" />
     <link rel="stylesheet" href="/css/custom.css" />
@@ -94,6 +99,10 @@
 
 
 
+<blockquote>
+<p>gerrit不支持jre1.8以上版本</p>
+</blockquote>
+
 <h1 id="思路">思路</h1>
 
 <p>查看gerrit源代码，把gerrit依赖单机的代码内容，修改为依赖分布式机器的内容；
@@ -113,6 +122,52 @@
 bazel安装：<a href="https://docs.bazel.build/versions/master/install-os-x.html#install-on-mac-os-x-homebrew">https://docs.bazel.build/versions/master/install-os-x.html#install-on-mac-os-x-homebrew</a>
 bazel介绍：<a href="https://www.cnblogs.com/Leo_wl/p/4458115.html">https://www.cnblogs.com/Leo_wl/p/4458115.html</a></p>
 
+<h3 id="官网-https-www-gerritcodereview-com"><a href="https://www.gerritcodereview.com/">官网</a></h3>
+
+<p>内容：
++ 插件链接
++ 下载地址
++ 在线ppt，解释gerrit的理念
++ <a href="https://gerrit-review.googlesource.com/Documentation/index.html">线文档</a></p>
+
+<h3 id="build-gerrit-source-code">build gerrit source code</h3>
+
+<p><a href="http://127.0.0.1:8080/Documentation/dev-bazel.html#installation">Gerrit Code Review - Building with Bazel</a>
+<a href="http://127.0.0.1:8080/Documentation/dev-intellij.html">Gerrit Code Review - IntelliJ IDEA Setup</a></p>
+
+<pre><code>git clone --recursive https://gerrit.googlesource.com/gerrit
+cd gerrit &amp;&amp; bazel build release
+上面执行成功的话，会在gerrit目录生成如下war包
+bazel-bin/release.war
+
+cd gerrit &amp;&amp; bazel build gerrit
+上面执行成功的话，会在gerrit目录生成如下war包
+bazel-bin/gerrit.war
+
+[切换分支](http://127.0.0.1:8080/Documentation/dev-readme.html#_switching_between_branches)要把子模块一起切换
+git checkout --recurse-submodules
+</code></pre>
+
+<p><a href="http://127.0.0.1:8080/Documentation/dev-readme.html#_local_server">本地启动一个gerrit server</a></p>
+
+<h3 id="debug-the-gerrit-server-http-127-0-0-1-8080-documentation-dev-readme-html-run-daemon"><a href="http://127.0.0.1:8080/Documentation/dev-readme.html#run_daemon">debug the Gerrit server</a></h3>
+
+<pre><code>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005
+</code></pre>
+
+<h3 id="gerrit初始化配置">gerrit初始化配置</h3>
+
+<p><a href="http://127.0.0.1:8080/Documentation/config-gerrit.html#_file_etcgerrit_config">http://127.0.0.1:8080/Documentation/config-gerrit.html#_file_etcgerrit_config</a></p>
+
+<h3 id="安装">安装</h3>
+
+<p>On CentOS/RedHat run:</p>
+
+<pre><code>yum clean all &amp;&amp; yum install gerrit-&lt;version&gt;[-&lt;release&gt;]
+</code></pre>
+
+<h3 id="gerrit前端开发-blog-2019-11-10-gerrit前端开发"><a href="/blog/2019/11/10/gerrit前端开发/">gerrit前端开发</a></h3>
+
 <h2 id="k8s部署方案">k8s部署方案</h2>
 
 <p>google内部源
@@ -121,7 +176,34 @@ bazel介绍：<a href="https://www.cnblogs.com/Leo_wl/p/4458115.html">https://ww
 <p>对应的github源：
 <a href="https://github.com/GerritCodeReview/k8s-gerrit">https://github.com/GerritCodeReview/k8s-gerrit</a></p>
 
+<h2 id="gerrit的docker镜像">gerrit的docker镜像</h2>
+
+<p><a href="https://hub.docker.com/r/gerritforge/gerrit-centos7/tags">https://hub.docker.com/r/gerritforge/gerrit-centos7/tags</a></p>
+
+<p>To run a CentOS 7 based Gerrit image:</p>
+
+<pre><code>docker run -p 8080:8080 gerritforge/gerrit-centos7[:version]
+</code></pre>
+
+<p><a href="https://gerrit.googlesource.com/gerrit">来自</a></p>
+
+<h3 id="使用idea-bazel开发">使用idea+bazel开发</h3>
+
+<p>在idea里安装bazel插件，<a href="https://ij.bazel.build/">github</a>，<a href="https://ij.bazel.build/">插件文档</a></p>
+
+<p>bazel插件也是bazel构建的，详见<a href="https://ij.bazel.build/">github</a></p>
+
+<h3 id="在线试用">在线试用</h3>
+
+<p><a href="https://gerrit-review.googlesource.com/dashboard/self">https://gerrit-review.googlesource.com/dashboard/self</a></p>
+
 <h2 id="插件">插件</h2>
+
+<blockquote>
+<p><a href="https://gerrit-documentation.storage.googleapis.com/Documentation/3.0.3/config-plugins.html">插件文档</a>
+<a href="https://gerrit.googlesource.com/plugins/">各类插件</a>
+<a href="https://gerrit-ci.gerritforge.com/">gerrit &amp;&amp; plugins ci</a></p>
+</blockquote>
 
 <ol>
 <li><a href="https://gerrit.googlesource.com/plugins%2Fmetrics-reporter-elasticsearch">metrics-reporter-elasticsearch</a></li>
@@ -147,6 +229,20 @@ bazel介绍：<a href="https://www.cnblogs.com/Leo_wl/p/4458115.html">https://ww
 <script async src="//yihui.name/js/center-img.js"></script>
 
   
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/yaml.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/tex.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/go.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
 
   
   <hr>

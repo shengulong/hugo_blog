@@ -30,6 +30,8 @@ cmd+shift+3：对整个屏幕进行截图 cmd+shift+4：对自行选择的区域
  屏幕共享 Screen Sharing
  录屏 QuickTime Player
  gif录制 giphy capture
+ 清理dns缓存
+sudo dscacheutil -flushcache
   </description>
     </item>
     
