@@ -102,6 +102,35 @@ https://gerrit-review.googlesource.com/dashboard/self
 
 插件
 ----
+### [打包方法](https://gerrit-review.googlesource.com/Documentation/dev-build-plugins.html)
+> ***注意***:
+> 1. 一定要开代理
+> 2. 保持插件和gerrit的版本一致性，避免版本不兼容
+
+    The fact that plugin contains BUILD file doesn’t mean that building this plugin from the plugin directory works.
+    
+    Bazel in tree driven means it can only be built from within Gerrit tree. Clone or link the plugin into gerrit/plugins directory:
+    
+    cd gerrit
+    bazel build plugins/<plugin-name>:<plugin-name>
+    The output can be normally found in the following directory:
+    
+    bazel-bin/plugins/<plugin-name>/<plugin-name>.jar
+    Some plugins describe their build process in src/main/resources/Documentation/build.md file. It may worth checking.
+    
+    
+    首先配置
+    Open YOUR_GERRIT_DIR/etc/gerrit.config file and add the following entry:
+        
+        [plugins]
+            allowRemoteAdmin = true
+    然后远程安装插件
+    ssh -p 29418 admin@172.19.16.64 gerrit plugin install -n replication.jar - <~/temp/replication.jar
+    远程重载/删除/使能插件
+    ssh -p 29418 admin@172.19.16.64 gerrit plugin reload/rm/enable replication
+
+
+
 > [插件文档](https://gerrit-documentation.storage.googleapis.com/Documentation/3.0.3/config-plugins.html)
 > [各类插件](https://gerrit.googlesource.com/plugins/)
 > [gerrit && plugins ci](https://gerrit-ci.gerritforge.com/)

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>模拟各种硬件资源耗尽的测试脚本 - 持之以恒</title>
+    <meta property="og:title" content="模拟各种硬件资源耗尽的测试脚本 - 持之以恒">
+    
+
+    
+      
+    
+
+    
+
+    
+    
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.14.1/styles/googlecode.min.css' rel='stylesheet' type='text/css' />
+
+
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+
+  </head>
+
+  
+  <body class="blog">
+    <header class="masthead">
+      <h1 class="headimg">
+    
+    <a href="/"><img src="/img/headimg.png" alt="Fuhui "></a>
+</h1>
+
+
+
+      <nav class="menu">
+        <input id="menu-check" type="checkbox" />
+        <label id="menu-label" for="menu-check" class="unselectable">
+          <span class="icon close-icon">✕</span>
+          <span class="icon open-icon">☰</span>
+          <span class="text">Menu</span>
+        </label>
+        <ul>
+        
+        
+        <li><a href="/blog/">Blog</a></li>
+        
+        <li><a href="/life/">Life</a></li>
+        
+        <li><a href="/resource/">Resource</a></li>
+        
+        <li><a href="/categories/">Categories</a></li>
+        
+        <li><a href="/tags/">Tags</a></li>
+        
+        <li><a href="/about/">About</a></li>
+        
+        
+
+
+        </ul>
+      </nav>
+    </header>
+
+    <article class="main">
+      <header class="title">
+      <h1>模拟各种硬件资源耗尽的测试脚本</h1>
+
+
+
+
+    
+    
+    <section class="post-meta">
+        <span class="post-author">sgl
+        
+            
+            
+             /  2019-11-28
+            
+        </span>
+        
+        <a href="/tags/%E6%B5%8B%E8%AF%95">测试</a>
+        
+    </section>
+    
+
+
+
+<hr>
+      </header>
+
+
+
+
+<h1 id="模拟cpu消耗">模拟cpu消耗</h1>
+
+<h3 id="用法">用法</h3>
+
+<ol>
+<li>./cpu_exhaust.sh 4 (4为内核数量，这样会把4个cpu使用率都达到100%)</li>
+<li>查看cpu内核数量:lscpu</li>
+
+<li><p>执行后会出现一堆kill命令，方便kill掉进程</p>
+
+<pre><code>脚本 cpu_exhaust.sh
+#!/bin/bash
+endless_loop()
+{
+    echo -ne &quot;i=0
+    while true
+    do
+    i=i+100
+    i=100
+    done&quot; | /bin/bash &amp;
+}
+if [ $# != 1 ]; then
+    echo &quot;USAGE: $0 &lt;cpus&gt;&quot;
+    exit 1;
+fi
+for i in `seq $1`
+    do
+    endless_loop
+    pid_array[$i]=$!;
+done
+for i in &quot;${pid_array[@]}&quot;; do
+    echo 'kill' $i ';';
+done
+</code></pre></li>
+</ol>
+
+<h1 id="模拟硬盘消耗">模拟硬盘消耗</h1>
+
+<h3 id="用法-1">用法</h3>
+
+<p>使用linux命令：dd</p>
+
+<pre><code>生成1M(bs*count)大小的文件test，里面填充二机制0
+dd if=/dev/zero of=/home/user/test/test bs=1024 count=1024   
+</code></pre>
+
+<h1 id="模拟内存消耗">模拟内存消耗</h1>
+
+<h3 id="方法">方法</h3>
+
+<p>利用文件系统tmpfs的特性：tmpfs是内存型文件系统，存储空间来源于实际内存和交换区(swap来自硬盘)。因此里面的文件内存断电后消失。
+tmpfs是Linux/Unix系统上的一种基于内存的文件系统。tmpfs可以使用您的内存或swap分区来存储文件。
+在tmpfs中申请的内存，会在free -h/m命令中的”共享“字段统计到，而这部分的“共享”会被“缓冲/缓存”字段统计到。
+tmpfs的另一个特点，申请的内存只有在真正使用的时候才占用，不使用的时候，其他程序是可以公用的。所以显示在命令free -h/m的shared列和buff/cache列下面</p>
+
+<p>执行: sudo sh memory_exhaust.sh</p>
+
+<pre><code>脚本 memory_exhaust.sh
+#!/bin/bash
+mkdir /tmp/memory
+# 挂载的文件类型为tmpfs,-o, --options opts表示后面跟挂载选项，挂载的文件系统大小(size)为8024M；tmpfs-test为命令df -h第一列显示的名字，可以理解为挂载点的label，便于理解挂载点的文件系统类型；/tmp/memory为挂载点，用户可以直接操作这个目录。
+mount -t tmpfs -o size=8024M tmpfs-test /tmp/memory
+# 持续往挂载点/tmp/memory/目录下的block文件写入二机制0，直到写满8024M
+dd if=/dev/zero of=/tmp/memory/block
+sleep 30
+# 删除文件
+rm /tmp/memory/block
+# 卸载
+umount /tmp/memory
+rmdir /tmp/memory
+
+使用man mount查看更多帮助信息：
+Mount options for tmpfs
+    size=nbytes
+                  Override default maximum size of the filesystem.  The size is given in bytes, and rounded up to entire pages.  The default is half of the memory. The size parameter also accepts a suffix %
+                  to limit this tmpfs instance to that percentage of your physical RAM: the default, when neither size nor nr_blocks is specified, is size=50%
+
+    The tmpfs mount options for sizing ( size, nr_blocks, and nr_inodes) accept a suffix k, m or g for Ki, Mi, Gi (binary kilo, mega and giga) and can be changed on remount.              
+
+
+重新调整挂载点文件系统的大小；但是这种修改是临时修改，重启后会恢复正常，恢复为内存一半大小。永久修改可以修改/etc/fstab
+mount -o remount,size=777M tmpfs-test /tmp/memory
+</code></pre>
+
+
+  <footer>
+  
+<nav class="post-nav">
+  <span class="nav-prev">&larr; <a href="/blog/2019/11/25/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90%E6%B1%87%E6%80%BB/">学习资源汇总</a></span>
+  <span class="nav-next"><a href="/blog/2019/11/29/jni/">Jni</a> &rarr;</span>
+</nav>
+
+
+
+
+
+<script src="//yihui.name/js/math-code.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script async src="//yihui.name/js/center-img.js"></script>
+
+  
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/yaml.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/tex.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/go.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+  
+  <hr>
+  <div class="copyright">&copy; 2019 | <a href="https://github.com/shengulong">Github</a> | <a href="https://www.cnblogs.com/shengulong/">cnblogs</a> | <a href="https://shengulong.github.io/">Github Pages</a></div>
+  
+  </footer>
+  </article>
+  
+  </body>
+  
+
+
+
+
+  <script src="/js/mermaid.min.js"></script>
+  <script>
+    
+    mermaid.initialize({startOnLoad: true, theme: 'forest'});
+  </script>
+
+
+
+
+  </html>
+

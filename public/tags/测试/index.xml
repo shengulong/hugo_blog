@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>测试 on 持之以恒</title>
+    <link>/tags/%E6%B5%8B%E8%AF%95/</link>
+    <description>Recent content in 测试 on 持之以恒</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 28 Nov 2019 11:41:43 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/%E6%B5%8B%E8%AF%95/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>模拟各种硬件资源耗尽的测试脚本</title>
+      <link>/blog/2019/11/28/%E6%A8%A1%E6%8B%9F%E5%90%84%E7%A7%8D%E7%A1%AC%E4%BB%B6%E8%B5%84%E6%BA%90%E8%80%97%E5%B0%BD%E7%9A%84%E6%B5%8B%E8%AF%95%E8%84%9A%E6%9C%AC/</link>
+      <pubDate>Thu, 28 Nov 2019 11:41:43 +0800</pubDate>
+      
+      <guid>/blog/2019/11/28/%E6%A8%A1%E6%8B%9F%E5%90%84%E7%A7%8D%E7%A1%AC%E4%BB%B6%E8%B5%84%E6%BA%90%E8%80%97%E5%B0%BD%E7%9A%84%E6%B5%8B%E8%AF%95%E8%84%9A%E6%9C%AC/</guid>
+      <description>模拟cpu消耗 用法  ./cpu_exhaust.sh 4 (4为内核数量，这样会把4个cpu使用率都达到100%) 查看cpu内核数量:lscpu 执行后会出现一堆kill命令，方便kill掉进程
+脚本 cpu_exhaust.sh #!/bin/bash endless_loop() { echo -ne &amp;quot;i=0 while true do i=i+100 i=100 done&amp;quot; | /bin/bash &amp;amp; } if [ $# != 1 ]; then echo &amp;quot;USAGE: $0 &amp;lt;cpus&amp;gt;&amp;quot; exit 1; fi for i in `seq $1` do endless_loop pid_array[$i]=$!; done for i in &amp;quot;${pid_array[@]}&amp;quot;; do echo &#39;kill&#39; $i &#39;;&#39;; done   模拟硬盘消耗 用法 使用linux命令：dd
+生成1M(bs*count)大小的文件test，里面填充二机制0 dd if=/dev/zero of=/home/user/test/test bs=1024 count=1024  模拟内存消耗 方法 利用文件系统tmpfs的特性：tmpfs是内存型文件系统，存储空间来源于实际内存和交换区(swap来自硬盘)。因此里面的文件内存断电后消失。 tmpfs是Linux/Unix系统上的一种基于内存的文件系统。tmpfs可以使用您的内存或swap分区来存储文件。 在tmpfs中申请的内存，会在free -h/m命令中的”共享“字段统计到，而这部分的“共享”会被“缓冲/缓存”字段统计到。 tmpfs的另一个特点，申请的内存只有在真正使用的时候才占用，不使用的时候，其他程序是可以公用的。所以显示在命令free -h/m的shared列和buff/cache列下面</description>
+    </item>
+    
+  </channel>
+</rss>

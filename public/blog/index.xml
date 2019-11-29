@@ -6,10 +6,48 @@
     <description>Recent content in SGL&#39;s Blog on 持之以恒</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 10 Nov 2019 08:58:25 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 29 Nov 2019 19:26:17 +0800</lastBuildDate>
     
 	<atom:link href="/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Jni</title>
+      <link>/blog/2019/11/29/jni/</link>
+      <pubDate>Fri, 29 Nov 2019 19:26:17 +0800</pubDate>
+      
+      <guid>/blog/2019/11/29/jni/</guid>
+      <description>JNI Java平台有个用户和本地C代码进行互操作的API，称为Java Native Interface (Java本地接口)
+Native 使用native关键字说明这个方法是原生函数，也就是这个方法是用C/C++语言实现的，并且被编译成了DLL，由java去调用。这些函数的实现体在DLL中，JDK的源代码中并不包含，你当然看不到。对于不同的平台它们也是不同的。这也是java的底层机制，实际上java就是在不同的平台上调用不同的native方法实现对操作系统的访问的。
+Mac下写一个jni的demo  文件都在目录：/Users/xxxx/myJavaDir下
+ HelloNative.java文件：
+public class HelloNative { static { System.loadLibrary(&amp;quot;HelloNative&amp;quot;); } public static native void sayHello(); @SuppressWarnings(&amp;quot;static-access&amp;quot;) public static void main(String[] args) { new HelloNative().sayHello(); } }  javac HelloNative编译生成HelloNative.class
+ javah HelloNative生成文件HelloNative.h
+ HelloNative.c文件内容：
+#include &amp;quot;jni.h&amp;quot; #include &amp;quot;HelloNative.h&amp;quot; #include &amp;lt;stdio.h&amp;gt; JNIEXPORT void JNICALL Java_HelloNative_sayHello(JNIEnv *env,jobject obj) { printf(&amp;quot;Hello，JNI&amp;quot;); }  生成dll动态链接库
+gcc -dynamiclib -I&amp;quot;/Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home/include&amp;quot; -I&amp;quot;/Users/xxxx/myJavaDir&amp;quot; -I&amp;quot;/Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home/include/darwin/&amp;quot; -o libHelloNative.jnilib HelloNative.c  执行java HelloNative输出Hello，JNI%</description>
+    </item>
+    
+    <item>
+      <title>模拟各种硬件资源耗尽的测试脚本</title>
+      <link>/blog/2019/11/28/%E6%A8%A1%E6%8B%9F%E5%90%84%E7%A7%8D%E7%A1%AC%E4%BB%B6%E8%B5%84%E6%BA%90%E8%80%97%E5%B0%BD%E7%9A%84%E6%B5%8B%E8%AF%95%E8%84%9A%E6%9C%AC/</link>
+      <pubDate>Thu, 28 Nov 2019 11:41:43 +0800</pubDate>
+      
+      <guid>/blog/2019/11/28/%E6%A8%A1%E6%8B%9F%E5%90%84%E7%A7%8D%E7%A1%AC%E4%BB%B6%E8%B5%84%E6%BA%90%E8%80%97%E5%B0%BD%E7%9A%84%E6%B5%8B%E8%AF%95%E8%84%9A%E6%9C%AC/</guid>
+      <description>模拟cpu消耗 用法  ./cpu_exhaust.sh 4 (4为内核数量，这样会把4个cpu使用率都达到100%) 查看cpu内核数量:lscpu 执行后会出现一堆kill命令，方便kill掉进程
+脚本 cpu_exhaust.sh #!/bin/bash endless_loop() { echo -ne &amp;quot;i=0 while true do i=i+100 i=100 done&amp;quot; | /bin/bash &amp;amp; } if [ $# != 1 ]; then echo &amp;quot;USAGE: $0 &amp;lt;cpus&amp;gt;&amp;quot; exit 1; fi for i in `seq $1` do endless_loop pid_array[$i]=$!; done for i in &amp;quot;${pid_array[@]}&amp;quot;; do echo &#39;kill&#39; $i &#39;;&#39;; done   模拟硬盘消耗 用法 使用linux命令：dd
+生成1M(bs*count)大小的文件test，里面填充二机制0 dd if=/dev/zero of=/home/user/test/test bs=1024 count=1024  模拟内存消耗 方法 利用文件系统tmpfs的特性：tmpfs是内存型文件系统，存储空间来源于实际内存和交换区(swap来自硬盘)。因此里面的文件内存断电后消失。 tmpfs是Linux/Unix系统上的一种基于内存的文件系统。tmpfs可以使用您的内存或swap分区来存储文件。 在tmpfs中申请的内存，会在free -h/m命令中的”共享“字段统计到，而这部分的“共享”会被“缓冲/缓存”字段统计到。 tmpfs的另一个特点，申请的内存只有在真正使用的时候才占用，不使用的时候，其他程序是可以公用的。所以显示在命令free -h/m的shared列和buff/cache列下面</description>
+    </item>
+    
+    <item>
+      <title>学习资源汇总</title>
+      <link>/blog/2019/11/25/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90%E6%B1%87%E6%80%BB/</link>
+      <pubDate>Mon, 25 Nov 2019 10:13:59 +0800</pubDate>
+      
+      <guid>/blog/2019/11/25/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90%E6%B1%87%E6%80%BB/</guid>
+      <description> Go  []()  Python Java Javascript  mobx []()  操作系统  快乐的 Linux 命令行 Mac 开发配置手册 Docker — 从入门到实践 []()  钉钉开发  钉钉开发平台  设计模式  图说设计模式 设计模式Java版 史上最全设计模式导学目录  云原生 https://jimmysong.io/kubernetes-handbook/
+综合类网站  runoob 极客学院  参考：  https://www.zhihu.com/question/38836382  </description>
+    </item>
     
     <item>
       <title>Gerrit前端开发</title>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>Jni - 持之以恒</title>
+    <meta property="og:title" content="Jni - 持之以恒">
+    
+
+    
+      
+    
+
+    
+
+    
+    
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.14.1/styles/googlecode.min.css' rel='stylesheet' type='text/css' />
+
+
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+
+  </head>
+
+  
+  <body class="blog">
+    <header class="masthead">
+      <h1 class="headimg">
+    
+    <a href="/"><img src="/img/headimg.png" alt="Fuhui "></a>
+</h1>
+
+
+
+      <nav class="menu">
+        <input id="menu-check" type="checkbox" />
+        <label id="menu-label" for="menu-check" class="unselectable">
+          <span class="icon close-icon">✕</span>
+          <span class="icon open-icon">☰</span>
+          <span class="text">Menu</span>
+        </label>
+        <ul>
+        
+        
+        <li><a href="/blog/">Blog</a></li>
+        
+        <li><a href="/life/">Life</a></li>
+        
+        <li><a href="/resource/">Resource</a></li>
+        
+        <li><a href="/categories/">Categories</a></li>
+        
+        <li><a href="/tags/">Tags</a></li>
+        
+        <li><a href="/about/">About</a></li>
+        
+        
+
+
+        </ul>
+      </nav>
+    </header>
+
+    <article class="main">
+      <header class="title">
+      <h1>Jni</h1>
+
+
+
+
+    
+    
+    <section class="post-meta">
+        <span class="post-author">sgl
+        
+            
+            
+             /  2019-11-29
+            
+        </span>
+        
+        <a href="/tags/java">java</a>
+        
+    </section>
+    
+
+
+
+<hr>
+      </header>
+
+
+
+
+<h4 id="jni">JNI</h4>
+
+<p>Java平台有个用户和本地C代码进行互操作的API，称为Java Native Interface (Java本地接口)</p>
+
+<h4 id="native">Native</h4>
+
+<p>使用native关键字说明这个方法是原生函数，也就是这个方法是用C/C++语言实现的，并且被编译成了DLL，由java去调用。这些函数的实现体在DLL中，JDK的源代码中并不包含，你当然看不到。对于不同的平台它们也是不同的。这也是java的底层机制，实际上java就是在不同的平台上调用不同的native方法实现对操作系统的访问的。</p>
+
+<h4 id="mac下写一个jni的demo">Mac下写一个jni的demo</h4>
+
+<ol>
+<li><p>文件都在目录：/Users/xxxx/myJavaDir下</p></li>
+
+<li><p>HelloNative.java文件：</p>
+
+<pre><code class="language-java">public class HelloNative
+{
+    static
+    {
+        System.loadLibrary(&quot;HelloNative&quot;);
+    }
+    
+    public static native void sayHello();
+    
+    @SuppressWarnings(&quot;static-access&quot;)
+    public static void main(String[] args)
+    {
+        new HelloNative().sayHello();
+    }
+}
+</code></pre></li>
+
+<li><p>javac HelloNative编译生成HelloNative.class</p></li>
+
+<li><p>javah HelloNative生成文件HelloNative.h</p></li>
+
+<li><p>HelloNative.c文件内容：</p>
+
+<pre><code class="language-c">#include &quot;jni.h&quot;
+#include &quot;HelloNative.h&quot;
+#include &lt;stdio.h&gt;
+    
+JNIEXPORT void JNICALL Java_HelloNative_sayHello(JNIEnv *env,jobject obj)
+{
+    printf(&quot;Hello，JNI&quot;);
+}
+</code></pre></li>
+
+<li><p>生成dll动态链接库</p>
+
+<pre><code>gcc -dynamiclib -I&quot;/Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home/include&quot; -I&quot;/Users/xxxx/myJavaDir&quot; -I&quot;/Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home/include/darwin/&quot;  -o libHelloNative.jnilib HelloNative.c
+</code></pre></li>
+
+<li><p>执行java HelloNative输出Hello，JNI%</p></li>
+</ol>
+
+<h4 id="参考">参考：</h4>
+
+<ol>
+<li><a href="https://www.cnblogs.com/Qian123/p/5702574.html#_labelTop">https://www.cnblogs.com/Qian123/p/5702574.html#_labelTop</a></li>
+<li><a href="https://www.cnblogs.com/chenmo-xpw/p/7501325.html">https://www.cnblogs.com/chenmo-xpw/p/7501325.html</a></li>
+<li><a href="https://www.jianshu.com/p/429dc9aa2ce4">https://www.jianshu.com/p/429dc9aa2ce4</a></li>
+<li><a href="https://www.jianshu.com/p/1eb6d859175d">https://www.jianshu.com/p/1eb6d859175d</a></li>
+</ol>
+
+
+  <footer>
+  
+<nav class="post-nav">
+  <span class="nav-prev">&larr; <a href="/blog/2019/11/28/%E6%A8%A1%E6%8B%9F%E5%90%84%E7%A7%8D%E7%A1%AC%E4%BB%B6%E8%B5%84%E6%BA%90%E8%80%97%E5%B0%BD%E7%9A%84%E6%B5%8B%E8%AF%95%E8%84%9A%E6%9C%AC/">模拟各种硬件资源耗尽的测试脚本</a></span>
+  <span class="nav-next"></span>
+</nav>
+
+
+
+
+
+<script src="//yihui.name/js/math-code.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script async src="//yihui.name/js/center-img.js"></script>
+
+  
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/yaml.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/tex.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.14.1/languages/go.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+  
+  <hr>
+  <div class="copyright">&copy; 2019 | <a href="https://github.com/shengulong">Github</a> | <a href="https://www.cnblogs.com/shengulong/">cnblogs</a> | <a href="https://shengulong.github.io/">Github Pages</a></div>
+  
+  </footer>
+  </article>
+  
+  </body>
+  
+
+
+
+
+  <script src="/js/mermaid.min.js"></script>
+  <script>
+    
+    mermaid.initialize({startOnLoad: true, theme: 'forest'});
+  </script>
+
+
+
+
+  </html>
+
