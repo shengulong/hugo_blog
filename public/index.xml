@@ -6,10 +6,47 @@
     <description>Recent content in 蜗牛保持乐观才会爬的更远 on 持之以恒</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 29 Nov 2019 19:26:17 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 30 Nov 2019 22:54:48 +0800</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>App开发</title>
+      <link>/life/2019/11/30/app%E5%BC%80%E5%8F%91/</link>
+      <pubDate>Sat, 30 Nov 2019 22:54:48 +0800</pubDate>
+      
+      <guid>/life/2019/11/30/app%E5%BC%80%E5%8F%91/</guid>
+      <description>  起源：人存在的意义，生活的意义，快乐的意义，如何获得快乐，如何获得存在感。在帮助人的时候，在自己做出有益于社会的时候，能获得心灵的安抚。 做这个产品，至少可以帮助我引导我怎样更好的生活。当然借此契机正式进入手机app开发行业。
+ 家庭类 价值和意义  极简生活，时间应该花费在更有价值的地方 避免浪费，实现物品价值的最大化 一切皆需维护，才能更长久   功能  维修类
+爱情需要保养；家具需要保养；下水道需要保养 多久没有拥抱了？多久没有kiss了？多久没有通下水道了 给出爱情保鲜的方法，给出一些下水道疏通的方法和教程
+ 管理类
+药物管理：已经有哪些药，避免重复购买；哪些药过期了，需要及时扔掉；减负
+家庭里不应该存放一些垃圾：比如过时的药物，无用的工具
+家里有哪些工具
+东西存放在哪里？
+引导用户正确摆放家里物品，过极简生活
+哪些衣服多久没有穿了？哪些东西多久没有用了？及时清理掉
+如何断舍离？如何把时间用在更有价值的事物上面？
+ 亲情维系类
+多久没有和亲人朋友打电话了 生日提醒/结婚纪念日提醒等
+ 年终总结
+每年或者每季给出类似于腾讯阿里云音乐的年终报告
+ 定时提醒功能
+提醒药物过期，提醒家庭日常相关的，提醒亲戚朋友关系维护，提醒吃药，提醒给爸妈打电话
+试图引导用户建立正确的亲戚朋友关系维系方法
+ 医疗档案
+家庭各个成员的身体健康档案 不宜食用事物 常吃事物有哪些？根据常吃事物给出健康饮食建议
+ 生活归档类
+哪些医院哪些科室比较好？哪些医生擅长哪些事情？
+ 社交类
+根据小区或者公司匹配附近的人
+每个用户可以标注自己家里多余的东西及其价值，系统进行相应匹配，用户完成线下(同一个小区或者附近小区/同一个公司或者附近公司)物物交换。 交换对象及范围，用户可以选择。同一个小区或者同一个公司属于熟人交换，便于提高整个交换的双方满意度。
+初衷：此目的在于更好的促进邻里亲戚朋友关系，不要为了一次使用而家里保有某个物品，利用率太低：可以出借的物品？如何保障大家更愿意的出借？ 更愿意的很好的归还？及时的归还？相应的惩罚措施。设置物品出借时对哪些人可见(黑名单白名单)，比如借给某个人后，不想再借给他了，就可以对其 不可见，不再借给他，并可以对其评分，分值太低将无法使用此类功能。有偿使用等
+  至于盈利模式或者生存下去的方法，暂不考虑。
+寻求快乐类  愿景：试图帮更多的人寻找生命的意义，快乐生活
+  记录成长过程中时间的去向，人生的每个阶段和每个时期，时间都去哪里了？每天时间都花费在哪里了？怎样才可以过好这一生？ 帮助用户避免沉溺手机的时间，形成自律的习惯   </description>
+    </item>
     
     <item>
       <title>Jni</title>
@@ -45,7 +82,7 @@ gcc -dynamiclib -I&amp;quot;/Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/C
       <pubDate>Mon, 25 Nov 2019 10:13:59 +0800</pubDate>
       
       <guid>/blog/2019/11/25/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90%E6%B1%87%E6%80%BB/</guid>
-      <description> Go  []()  Python Java Javascript  mobx []()  操作系统  快乐的 Linux 命令行 Mac 开发配置手册 Docker — 从入门到实践 []()  钉钉开发  钉钉开发平台  设计模式  图说设计模式 设计模式Java版 史上最全设计模式导学目录  云原生 https://jimmysong.io/kubernetes-handbook/
+      <description> Go  []()  Python Java Javascript  mobx []()  Typescript  深入理解 TypeScript Typescript Deep Dive Typescript中文手册  操作系统  快乐的 Linux 命令行 Mac 开发配置手册 Docker — 从入门到实践 []()  钉钉开发  钉钉开发平台  设计模式  图说设计模式 设计模式Java版 史上最全设计模式导学目录  云原生 https://jimmysong.io/kubernetes-handbook/
 综合类网站  runoob 极客学院  参考：  https://www.zhihu.com/question/38836382  </description>
     </item>
     
