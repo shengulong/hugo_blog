@@ -106,6 +106,7 @@ https://gerrit-review.googlesource.com/dashboard/self
 > ***注意***:
 > 1. 一定要开代理
 > 2. 保持插件和gerrit的版本一致性，避免版本不兼容
+> 3. 插件无法单独打包，必须把插件的代码放到gerrit/plugins/目录下，按照如下方式进行打包
 
     The fact that plugin contains BUILD file doesn’t mean that building this plugin from the plugin directory works.
     
@@ -124,7 +125,7 @@ https://gerrit-review.googlesource.com/dashboard/self
         
         [plugins]
             allowRemoteAdmin = true
-    然后远程安装插件
+    然后远程安装插件，注意符号: < 
     ssh -p 29418 admin@172.19.16.64 gerrit plugin install -n replication.jar - <~/temp/replication.jar
     远程重载/删除/使能插件
     ssh -p 29418 admin@172.19.16.64 gerrit plugin reload/rm/enable replication
