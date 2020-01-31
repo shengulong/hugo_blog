@@ -92,40 +92,30 @@
       </header>
 
 
-
-
-<h2 id="maven开发-http-maven-apache-org"><a href="http://maven.apache.org/">maven开发</a></h2>
-
-<h3 id="maven开发-http-maven-apache-org-developers-index-html"><a href="http://maven.apache.org/developers/index.html">maven开发</a></h3>
-
-<h3 id="maven插件开发-http-maven-apache-org-plugin-developers-index-html"><a href="http://maven.apache.org/plugin-developers/index.html">maven插件开发</a></h3>
-
+<h2 id="mavenhttpmavenapacheorg"><a href="http://maven.apache.org/">maven开发</a></h2>
+<h3 id="mavenhttpmavenapacheorgdevelopersindexhtml"><a href="http://maven.apache.org/developers/index.html">maven开发</a></h3>
+<h3 id="mavenhttpmavenapacheorgplugin-developersindexhtml"><a href="http://maven.apache.org/plugin-developers/index.html">maven插件开发</a></h3>
 <ol>
 <li>插件和生命周期的某个阶段绑定</li>
-<li>自定义插件命名为：<yourplugin>-maven-plugin；maven-<yourplugin>-plugin是官方插件的命名，拥有商标权</li>
+<li>自定义插件命名为：<!-- raw HTML omitted -->-maven-plugin；maven-<!-- raw HTML omitted -->-plugin是官方插件的命名，拥有商标权</li>
 <li></li>
 </ol>
-
-<h3 id="插件分类">插件分类</h3>
-
+<h3 id="heading">插件分类</h3>
 <ul>
-<li>build插件：会在build阶段被执行，应该配置在POM的<build/>元素中</li>
-<li>reporting插件：生成站点的时候会执行，应该配置在POM的<reporting/>元素中。因为reporting插件的结果是生成的站点的一部分，
+<li>build插件：会在build阶段被执行，应该配置在POM的<!-- raw HTML omitted -->元素中</li>
+<li>reporting插件：生成站点的时候会执行，应该配置在POM的<!-- raw HTML omitted -->元素中。因为reporting插件的结果是生成的站点的一部分，
 所以这种插件应该是国际化和本地化的</li>
 </ul>
-
-<h3 id="插件配置">插件配置</h3>
-
-<p>Maven插件都是通过指定一个<configuration>元素来配置的。而该元素中的子元素，都是Mojo中的property。
+<h3 id="heading-1">插件配置</h3>
+<p>Maven插件都是通过指定一个<!-- raw HTML omitted -->元素来配置的。而该元素中的子元素，都是Mojo中的property。
 详见<a href="http://maven.apache.org/guides/mini/guide-configuring-plugins.html">Guide to Configuring Plug-ins</a></p>
-
 <ul>
-<li><p>插件源码</p>
-
+<li>
+<p>插件源码</p>
 <p>/**</p>
-
 <ul>
-<li><p>@goal query
+<li>
+<p>@goal query
 */
 public class MyQueryMojo
 extends AbstractMojo
@@ -134,55 +124,30 @@ extends AbstractMojo
 @Parameter(property = &ldquo;query.url&rdquo;, required = true)
 // url为field，对应于pom里的配置url,可以和上面的property不一致
 private String url;</p>
-
 <p>@Parameter(property = &ldquo;timeout&rdquo;, required = false, defaultValue = &ldquo;50&rdquo;)
 private int timeout;</p>
-
 <p>@Parameter(property = &ldquo;options&rdquo;)
 private String[] options;</p>
-
 <p>public void execute()
-    throws MojoExecutionException
+throws MojoExecutionException
 {
-    &hellip;
+&hellip;
 }
-}</p></li>
-</ul></li>
-
-<li><p>插件配置</p>
-
-<p><project>
-  &hellip;
-  <build>
-    <plugins>
-      <plugin>
-        <artifactId>maven-myquery-plugin</artifactId>
-        <version>1.0</version>
-        <configuration>
-          <!--对应于源码的里的field： url -->
-          <url><a href="http://www.foobar.com/query">http://www.foobar.com/query</a></url>
-          <timeout>10</timeout>
-          <options>
-            <option>one</option>
-            <option>two</option>
-            <option>three</option>
-          </options>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
-  &hellip;
-</project></p></li>
-
-<li><p>通过系统属性system properties定义参数</p>
-
-<p>mvn myquery:query -Dquery.url=<a href="http://maven.apache.org">http://maven.apache.org</a></p></li>
+}</p>
+</li>
 </ul>
-
-<h3 id="插件代码规范">插件代码规范</h3>
-
+</li>
+<li>
+<p>插件配置</p>
+<!-- raw HTML omitted -->
+</li>
+<li>
+<p>通过系统属性system properties定义参数</p>
+<p>mvn myquery:query -Dquery.url=http://maven.apache.org</p>
+</li>
+</ul>
+<h3 id="heading-2">插件代码规范</h3>
 <p><a href="https://maven.apache.org/developers/conventions/code.html">Maven Code Style And Code Conventions</a></p>
-
 <p>Download <a href="https://maven.apache.org/developers/maven-idea-codestyle.xml">maven-idea-codestyle.xml</a> and
 copy it to ~/.IntelliJIDEA/config/codestyles then restart IDEA.
 After this, restart IDEA and open the settings to select the new code style.</p>
@@ -208,7 +173,7 @@ After this, restart IDEA and open the settings to select the new code style.</p>
 
   
   <hr>
-  <div class="copyright">&copy; 2019 | <a href="https://github.com/shengulong">Github</a> | <a href="https://www.cnblogs.com/shengulong/">cnblogs</a> | <a href="https://shengulong.github.io/">Github Pages</a></div>
+  <div class="copyright">© 2019 | <a href="https://github.com/shengulong">Github</a> | <a href="https://www.cnblogs.com/shengulong/">cnblogs</a> | <a href="https://shengulong.github.io/">Github Pages</a></div>
   
   </footer>
   </article>

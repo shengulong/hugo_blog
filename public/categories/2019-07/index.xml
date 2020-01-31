@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>2019-07 on 持之以恒</title>
@@ -22,9 +22,9 @@
 如图：在idea上的hpi插件上的run点击debug进入调试模式,然后在源码或者依赖包的源码上打断点。
 执行成功的话，打开网页http://127.0.0.1:8080/jenkins/就可以看到jenkins的web界面
 在idea里修改java文件、jelly文件、html文件，然后就可以在jenkins的web界面及时看的效果
-插件的本土化Localization(比如中文化) 插件默认语言是英文，如何本土化？可以参考org.jenkins-ci.main:jenkins-core:2.176.2这类插件的实现。 jenkins本身以及很多插件都是支持多语言的，选择哪种语言，据说jenkins会根据浏览器语言或者计算机系统语言自动选择的。如果选择的语言没有相应的支持， 则显示英文。 1. 安装本土化插件，中文为Simplified Chinese Plugin 2. 安装的插件自身支持本土化 3. 使用语言切换插件local；配置举例，全局配置里填写：&amp;rdquo;Default Language&amp;rdquo;:zh
-插件支持本土化方法：[示例]() * 帮助文档(添加后缀_zh表示中文文档): help-markupFormatter_zh_TW.html help-markupFormatter_zh.html * 配置文档(添加后缀_zh表示中文文档): config_zh_TW.properties config_zh.properties 对应于配置文件config.jelly或者config.groovy
-插件本土化实现原理：Localization Support
+插件的本土化Localization(比如中文化) 插件默认语言是英文，如何本土化？可以参考org.jenkins-ci.main:jenkins-core:2.176.2这类插件的实现。 jenkins本身以及很多插件都是支持多语言的，选择哪种语言，据说jenkins会根据浏览器语言或者计算机系统语言自动选择的。如果选择的语言没有相应的支持， 则显示英文。
+ 安装本土化插件，中文为Simplified Chinese Plugin 安装的插件自身支持本土化 使用语言切换插件local；配置举例，全局配置里填写：&amp;ldquo;Default Language&amp;rdquo;:zh  插件支持本土化方法：示例
+ 帮助文档(添加后缀_zh表示中文文档): help-markupFormatter_zh_TW.html help-markupFormatter_zh.html 配置文档(添加后缀_zh表示中文文档): config_zh_TW.properties config_zh.properties 对应于配置文件config.jelly或者config.groovy  插件本土化实现原理：Localization Support
 jenkins中的三种视图  global.jelly 全局的配置视图 config.jelly Job的配置视图 help-属性名.html 帮助视图 html片段  jelly相关知识  Jelly form controls core jelly:stapler jelly:core Basic guide to Jelly usage in Jenkins Forms UI Samples Plugin []()  jenkins框架+插件 jenkins本身不提供很多功能，通过插件来实现各种功能</description>
     </item>
     
@@ -56,12 +56,13 @@ package sample.plugin; import org.apache.maven.plugin.AbstractMojo; import org.a
       <pubDate>Sat, 06 Jul 2019 15:06:23 +0800</pubDate>
       
       <guid>/blog/2019/07/06/%E9%95%BF%E8%BF%9E%E6%8E%A5/</guid>
-      <description>遗留问题 服务器断开后，客户端是如何保持长连接的？  tcp中的keep-alive 作用：保活、心跳、链路有效检测机制、定时清理失效的连接；当一个TCP连接两端长时间没有数据传输时(通常默认配置是2小时)，发送keepalive探针，探测链接是否存活
+      <description>遗留问题  服务器断开后，客户端是如何保持长连接的？  tcp中的keep-alive 作用：保活、心跳、链路有效检测机制、定时清理失效的连接；当一个TCP连接两端长时间没有数据传输时(通常默认配置是2小时)，发送keepalive探针，探测链接是否存活
 原理：tcp的keep-alive机制发送的探测报文是将之前TCP报文的序列号减1，并设置1个字节，内容为“00”的应用层数据，这样对端能识别这个报文是tcp keep-alive探测报文并进行ack。 建立TCP连接时，就有定时器与之绑定，其中的一些定时器就用于处理keepalive过程。当keepalive定时器到0的时候，便会给对端发送一个不包含数据部分的keepalive探测包（probe packet）
 一方发起的keepalive探针，另一方必须响应。响应可能是以下三种形式之一：
 1. 对方回应了ACK。说明连接正常，重置计时器重新记时。如果接下来2小时还没有数据传输，那么还会继续发送keepalive探针，以确保连接存活。 2. 对方回复RST(意思是要求对端关闭异常连接且对端不需要回复 ACK)。表示这个连接已经不存在，那就关闭该连接。例如一方服务宕机后重启/程序崩溃 3. 没有回复。那就会触发超时重传，直到达到重传的次数，如果对端依然没有回复，那么就关闭该连接，说明socket已经被关闭了  相关配置： $ ls /proc/sys/net/ipv4 | grep tcp_keepalive tcp_keepalive_intvl keepalive探测包的发送间隔，默认为75秒 tcp_keepalive_probes 如果对方不予应答，探测包的最大发送次数，默认为9次。即连续9次发送，都没有应答的话，则关闭连接。 tcp_keepalive_time 连接的最大空闲(idle)时间，默认为7200秒，即2个小时。需要注意的是，这2个小时，指的是只有keepalive探测包，如果期间存在其他数据传输，则重新计时。  可以通过sysctl命令来查看和修改:
-查看 sysctl -n net.ipv4.tcp_keepalive_time 修改 sysctl net.ipv4.tcp_keepalive_time=3600 添加上面的配置后输入 sysctl -p 使其生效，你可以使用 sysctl -a | grep keepalive 命令来查看当前的默认配置  常见的几种使用场景：  检测挂掉的连接（导致连接挂掉的原因很多，如服务停止、网络波动、宕机、应用重启等） 防止因为网络不活动而断连（使用NAT代理或者防火墙的时候，经常会出现这种问题） TCP层面的心跳检测
-  KeepAlive心跳和业务层面的心跳报文相比：  TCP自带的KeepAlive使用简单，发送的数据包相比应用层心跳检测包更小，仅提供检测连接功能 应用层心跳包不依赖于传输层协议，无论传输层协议是TCP还是UDP都可以用 应用层心跳包可以定制，可以应对更复杂的情况或传输一些额外信息 KeepAlive仅代表连接保持着，而心跳包往往还代表客户端可正常工作   http的keep-alive 作用：长连接，复用tcp连接，提高socket效率，减少tcp连接数，也就相应减少了主动关闭方的time_wait状态连接数，提高性能和提高httpd服务器的吞吐率 (更少的tcp连接意味着更少的系统内核调用,socket的accept()和close()调用)</description>
+查看 sysctl -n net.ipv4.tcp_keepalive_time 修改 sysctl net.ipv4.tcp_keepalive_time=3600 添加上面的配置后输入 sysctl -p 使其生效，你可以使用 sysctl -a | grep keepalive 命令来查看当前的默认配置  常见的几种使用场景：  检测挂掉的连接（导致连接挂掉的原因很多，如服务停止、网络波动、宕机、应用重启等） 防止因为网络不活动而断连（使用NAT代理或者防火墙的时候，经常会出现这种问题） TCP层面的心跳检测  KeepAlive心跳和业务层面的心跳报文相比：  TCP自带的KeepAlive使用简单，发送的数据包相比应用层心跳检测包更小，仅提供检测连接功能 应用层心跳包不依赖于传输层协议，无论传输层协议是TCP还是UDP都可以用 应用层心跳包可以定制，可以应对更复杂的情况或传输一些额外信息 KeepAlive仅代表连接保持着，而心跳包往往还代表客户端可正常工作  http的keep-alive 作用：长连接，复用tcp连接，提高socket效率，减少tcp连接数，也就相应减少了主动关闭方的time_wait状态连接数，提高性能和提高httpd服务器的吞吐率 (更少的tcp连接意味着更少的系统内核调用,socket的accept()和close()调用)
+缺点：长时间的tcp连接容易导致系统资源无效占用,处于长时间闲置状态，即在处理暂停期间，本来可以释放的资源仍旧被占用
+限制：HTTP1.1的Keep-Alive机制仅对同域下的网络请求有效；而对于非同域下的请求，则需要重新建立一次TCP连接。 事实上，即使客户端和服务端都开启了Keep-Alive，服务端一般会主动关闭非活动的连接，否则会造成资源浪费</description>
     </item>
     
     <item>
@@ -71,9 +72,9 @@ package sample.plugin; import org.apache.maven.plugin.AbstractMojo; import org.a
       
       <guid>/blog/2019/07/06/maven%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8F%92%E4%BB%B6%E5%AE%9E%E7%8E%B0/</guid>
       <description>maven开发 maven开发 maven插件开发  插件和生命周期的某个阶段绑定 自定义插件命名为：-maven-plugin；maven--plugin是官方插件的命名，拥有商标权   插件分类  build插件：会在build阶段被执行，应该配置在POM的元素中 reporting插件：生成站点的时候会执行，应该配置在POM的元素中。因为reporting插件的结果是生成的站点的一部分， 所以这种插件应该是国际化和本地化的  插件配置 Maven插件都是通过指定一个元素来配置的。而该元素中的子元素，都是Mojo中的property。 详见Guide to Configuring Plug-ins
- 插件源码
+  插件源码
 /**
- @goal query */ public class MyQueryMojo extends AbstractMojo { // property做为系统属性使用 -Dquery.url @Parameter(property = &amp;ldquo;query.url&amp;rdquo;, required = true) // url为field，对应于pom里的配置url,可以和上面的property不一致 private String url;
+  @goal query */ public class MyQueryMojo extends AbstractMojo { // property做为系统属性使用 -Dquery.url @Parameter(property = &amp;ldquo;query.url&amp;rdquo;, required = true) // url为field，对应于pom里的配置url,可以和上面的property不一致 private String url;
 @Parameter(property = &amp;ldquo;timeout&amp;rdquo;, required = false, defaultValue = &amp;ldquo;50&amp;rdquo;) private int timeout;
 @Parameter(property = &amp;ldquo;options&amp;rdquo;) private String[] options;
 public void execute() throws MojoExecutionException { &amp;hellip; } }</description>
@@ -85,8 +86,10 @@ public void execute() throws MojoExecutionException { &amp;hellip; } }</descript
       <pubDate>Sat, 06 Jul 2019 07:43:00 +0800</pubDate>
       
       <guid>/blog/2019/07/06/jenkins%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%9E%E7%8E%B0/</guid>
-      <description>思路 查看jenkins源代码，把jenkins依赖单机的代码内容，修改为依赖分布式机器的内容； 这样做到应用本身无存储状态，容器化后可以做到随便创建和删除。参阅jenkins&amp;rsquo;s blog
-jenkins开发相关知识Extend Jenkins、开发者文档  jenkins本身开发指导说明  java8 mavne&amp;gt;=3.5.3 OpenJDK  jenkins插件开发指导说明  step 1: Preparing for Plugin Development step 2: Create a Plugin step 3: Build and Run the Plugin step 4: Extend the Plugin Plugin tutorial Plugin Cookbook Create a new Plugin with a custom build Step Plugin Structure Making your plugin behave in distributed Jenkins IntelliJ IDEA plugin for Stapler方便在idea里开发jenkins的插件 Exposing data to the remote API Manage global settings and tools installations Debugging native Maven jobs Remote debugging a Java application  快速打包jenkins.</description>
+      <description>思路 查看jenkins源代码，把jenkins依赖单机的代码内容，修改为依赖分布式机器的内容； 这样做到应用本身无存储状态，容器化后可以做到随便创建和删除。参阅jenkins&#39;s blog
+jenkins开发相关知识Extend Jenkins、开发者文档   jenkins本身开发指导说明
+ java8 mavne&amp;gt;=3.5.3 OpenJDK    jenkins插件开发指导说明
+ step 1: Preparing for Plugin Development step 2: Create a Plugin step 3: Build and Run the Plugin step 4: Extend the Plugin Plugin tutorial Plugin Cookbook Create a new Plugin with a custom build Step Plugin Structure Making your plugin behave in distributed Jenkins IntelliJ IDEA plugin for Stapler方便在idea里开发jenkins的插件 Exposing data to the remote API Manage global settings and tools installations Debugging native Maven jobs Remote debugging a Java application    快速打包jenkins.</description>
     </item>
     
     <item>
@@ -103,9 +106,10 @@ gerrit源码：
 https://gerrit.googlesource.com/gerrit/
 https://github.com/GerritCodeReview/gerrit
 构建工具：google内部使用的 bazel bazel安装：https://docs.bazel.build/versions/master/install-os-x.html#install-on-mac-os-x-homebrew bazel介绍：https://www.cnblogs.com/Leo_wl/p/4458115.html
-官网 内容： + 插件链接 + 下载地址 + 在线ppt，解释gerrit的理念 + 线文档
-build gerrit source code Gerrit Code Review - Building with Bazel Gerrit Code Review - IntelliJ IDEA Setup
-git clone --recursive https://gerrit.googlesource.com/gerrit cd gerrit &amp;amp;&amp;amp; bazel build release 上面执行成功的话，会在gerrit目录生成如下war包 bazel-bin/release.war cd gerrit &amp;amp;&amp;amp; bazel build gerrit 上面执行成功的话，会在gerrit目录生成如下war包 bazel-bin/gerrit.war [切换分支](http://127.0.0.1:8080/Documentation/dev-readme.html#_switching_between_branches)要把子模块一起切换 git checkout --recurse-submodules  本地启动一个gerrit server</description>
+官网 内容：
+ 插件链接 下载地址 在线ppt，解释gerrit的理念 线文档  build gerrit source code Gerrit Code Review - Building with Bazel Gerrit Code Review - IntelliJ IDEA Setup
+git clone --recursive https://gerrit.googlesource.com/gerrit cd gerrit &amp;amp;&amp;amp; bazel build release 上面执行成功的话，会在gerrit目录生成如下war包 bazel-bin/release.war cd gerrit &amp;amp;&amp;amp; bazel build gerrit 上面执行成功的话，会在gerrit目录生成如下war包 bazel-bin/gerrit.war [切换分支](http://127.0.0.1:8080/Documentation/dev-readme.html#_switching_between_branches)要把子模块一起切换 git checkout --recurse-submodules  本地启动一个gerrit server
+debug the Gerrit server -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005  gerrit初始化配置 http://127.</description>
     </item>
     
     <item>
@@ -114,8 +118,8 @@ git clone --recursive https://gerrit.googlesource.com/gerrit cd gerrit &amp;amp;
       <pubDate>Sat, 06 Jul 2019 07:39:09 +0800</pubDate>
       
       <guid>/blog/2019/07/06/requests%E8%BF%9E%E6%8E%A5%E6%B1%A0%E5%8D%B3%E9%95%BF%E8%BF%9E%E6%8E%A5%E5%88%86%E6%9E%90/</guid>
-      <description>requests长连接 遗留问题 为什么requests短连接时，虽然http头中携带了Connection: keep-alive头，服务端却回复Connection: close头？client和server 是如何得知此次连接是短连接的？   requests使用Session()即长连接时，请求头会携带字段Connection: keep-alive,服务端回复相同的http头
-如下5个http连接公用一个tcp连接
+      <description>requests长连接 遗留问题  为什么requests短连接时，虽然http头中携带了Connection: keep-alive头，服务端却回复Connection: close头？client和server 是如何得知此次连接是短连接的？   requests使用Session()即长连接时，请求头会携带字段Connection: keep-alive,服务端回复相同的http头
+  如下5个http连接公用一个tcp连接
  with requests.Session() as s: s.get(&amp;quot;http://www.baidu.com&amp;quot;) s.get(&amp;quot;http://www.baidu.com&amp;quot;) s.get(&amp;quot;http://www.baidu.com&amp;quot;) s.get(&amp;quot;http://www.baidu.com&amp;quot;) s.get(&amp;quot;http://www.baidu.com&amp;quot;)  而下面的请求各自使用一个tcp连接，用完即销毁，请求头里面也有Connection: keep-alive头，但是服务端回复Connection: close
 requests.get(&amp;ldquo;http://www.baidu.com&amp;quot;)
 requests.get(&amp;ldquo;http://www.baidu.com&amp;quot;)
@@ -124,7 +128,7 @@ requests.get(&amp;ldquo;http://www.baidu.com&amp;quot;)
  使用 基本使用方法：申请一个tcp连接，进行多个http请求后，关闭连接
 Basic Usage:: import requests s = requests.Session() 进行多个连接 s.get(&#39;https://httpbin.org/get&#39;) s.get(&#39;https://httpbin.org/get&#39;) 关闭连接 s.close() Or as a context manager:: with requests.Session() as s: 进行多个连接 s.get(&#39;https://httpbin.org/get&#39;) s.get(&#39;https://httpbin.org/get&#39;) &amp;quot;&amp;quot;&amp;quot;  原理  撸下代码
  调用顺序：
-requests.Session().get() --&amp;gt; requests.Session().request() --&amp;gt; requests.Session().send()  查看requests包的Session()类send()方法的第645行和646行代码，表示调用使用某个适配器的send()</description>
+requests.Session().get() --&amp;gt; requests.Session().request() --&amp;gt; requests.</description>
     </item>
     
   </channel>

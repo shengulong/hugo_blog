@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>mac on 持之以恒</title>
@@ -17,22 +17,16 @@
       <pubDate>Mon, 13 May 2019 10:43:39 +0800</pubDate>
       
       <guid>/blog/2019/05/13/mac%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</guid>
-      <description> 在Finder中显示/隐藏隐藏文件
-defaults write com.apple.Finder AppleShowAllFiles YES/NO killall Finder  打开多个实例
-open -n /Applications/xxx.app  tcp路由查看
-netstat -r netstat -ant 1  查看端口/进程
-lsof -i:port lsof -p pid  数学公式软件
-latex  接力(handoff)
+      <description>在Finder中显示/隐藏隐藏文件
+ defaults write com.apple.Finder AppleShowAllFiles YES/NO killall Finder    打开多个实例
+ open -n /Applications/xxx.app    tcp路由查看
+ netstat -r netstat -ant 1    查看端口/进程
+ lsof -i:port lsof -p pid    数学公式软件
+ latex    接力(handoff)
  在一个设备上复制的内容，可以在另一个设备上粘贴； 在一个设备上浏览的内容，可以在另一个设备上接着浏览
- 两个设备属于同一个AppleID/开启蓝牙和接力功能/处于同一个网络  截屏
-cmd+shift+3：对整个屏幕进行截图 cmd+shift+4：对自行选择的区域进行截图 cmd+shift+4+space（空格键）对选定的某个应用程序界面窗口进行截图 Xnip/Snip滚动截图，实现对一个网页的长截图  分屏功能
-按住任一打开的窗口左上角的绿色的全屏按钮  批量更改文件名称
- 屏幕共享 Screen Sharing
- 录屏 QuickTime Player
- gif录制 giphy capture
- 清理dns缓存
-sudo dscacheutil -flushcache
-  </description>
+  两个设备属于同一个AppleID/开启蓝牙和接力功能/处于同一个网络    截屏
+ cmd+shift+3：对整个屏幕进行截图 cmd+shift+4：对自行选择的区域进行截图 cmd+shift+4+space（空格键）对选定的某个应用程序界面窗口进行截图 Xnip/Snip滚动截图，实现对一个网页的长截图    分屏功能
+ 按住任一打开的窗口左上角的绿色的全屏按钮    批量更改文件名称</description>
     </item>
     
   </channel>

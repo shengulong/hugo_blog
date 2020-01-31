@@ -97,415 +97,332 @@
       </header>
 
 
-
-
 <h2 id="13">缩进</h2>
-
 <ol>
-<li><p>标题（Headers）</p>
-
+<li>
+<p>标题（Headers）</p>
 <blockquote>
 <p>Markdown 标题支持两种形式：</p>
 </blockquote>
-
 <p>1.1 用1~6个#标记</p>
+<pre><code>&gt; 在标题开头加上1~6个#，依次代表一级标题、二级标题....六级标题
 
-<blockquote>
-<p>在标题开头加上1~6个#，依次代表一级标题、二级标题&hellip;.六级标题</p>
-</blockquote>
-
-<pre><code># 一级标题
-## 二级标题
-### 三级标题
-##### 四级标题
-###### 五级标题
-###### 六级标题
+ # 一级标题
+ ## 二级标题
+ ### 三级标题
+ ##### 四级标题
+ ###### 五级标题
+ ###### 六级标题
 </code></pre>
-
-<h1 id="一级标题">一级标题</h1>
-
-<h2 id="二级标题">二级标题</h2>
-
-<h3 id="三级标题">三级标题</h3>
-
-<h5 id="四级标题">四级标题</h5>
-
-<h6 id="五级标题">五级标题</h6>
-
-<h6 id="六级标题">六级标题</h6>
-
+<h1 id="heading">一级标题</h1>
+<h2 id="heading-1">二级标题</h2>
+<h3 id="heading-2">三级标题</h3>
+<h5 id="heading-3">四级标题</h5>
+<h6 id="heading-4">五级标题</h6>
+<h6 id="heading-5">六级标题</h6>
 <p>1.2 用=和-标记</p>
-
 <blockquote>
 <p>在标题底下 加上任意个=代表一级标题，-代表二级标题</p>
 </blockquote>
-
-<pre><code>一级标题
-======
-
-二级标题
-----------
+<pre><code> 一级标题
+ ======
+    
+ 二级标题
+ ----------
 </code></pre>
-
-<h1 id="一级标题-1">一级标题</h1>
-
-<h2 id="二级标题-1">二级标题</h2></li>
-
-<li><p>列表（Lists）</p>
-
+<h1 id="heading-6">一级标题</h1>
+<p>二级标题</p>
+</li>
+</ol>
+<hr>
+<ol start="2">
+<li>
+<p>列表（Lists）</p>
 <blockquote>
 <p>Markdown 支持有序列表和无序列表。列表不光可以单独使用，也可以使用其他的 Markdown 语法，包括标题、引用、代码区块等</p>
 </blockquote>
-
 <p>2.1 无序列表（Unordered Lists）</p>
-
 <blockquote>
 <p>无序列表使用-、+和*作为列表标记</p>
 </blockquote>
-
-<pre><code>-  Red
-- Green
-- Blue
-
-* Red
-* Green
-*  Blue
-
-+  Red
-+ Green
-+ Blue
+<pre><code> -  Red
+ - Green
+ - Blue
+    
+ * Red
+ * Green
+ *  Blue
+    
+ +  Red
+ + Green
+ + Blue
 </code></pre>
-
 <ul>
 <li>Red</li>
 <li>Green</li>
-
-<li><p>Blue</p></li>
-
-<li><p>Red</p></li>
-
-<li><p>Green</p></li>
-
-<li><p>Blue</p></li>
-
-<li><p>Red</p></li>
-
-<li><p>Green</p></li>
-
-<li><p>Blue</p></li>
+<li>Blue</li>
 </ul>
-
+<ul>
+<li>Red</li>
+<li>Green</li>
+<li>Blue</li>
+</ul>
+<ul>
+<li>Red</li>
+<li>Green</li>
+<li>Blue</li>
+</ul>
 <p>2.2 有序列表（Ordered Lists）</p>
-
 <blockquote>
 <p>有序列表则使用数字加英文句点.来表示,注意点之后有个空格：</p>
 </blockquote>
-
-<pre><code>1. Red
-2. Green
-3. Blue
+<pre><code> 1. Red
+ 2. Green
+ 3. Blue
 </code></pre>
-
 <ol>
 <li>Red</li>
 <li>Green</li>
-<li>Blue<br />
-<br /></li>
+<li>Blue</li>
 </ol>
-
 <p>2.3 列表里的代码块</p>
-
 <ul>
-<li><p>示例：</p>
-
-<pre><code class="language-java">protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_main);
-} 
-</code></pre></li>
-</ul></li>
-
-<li><p>引用（Reference）</p>
-
+<li>
+<p>示例：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onCreate</span><span style="color:#f92672">(</span>Bundle savedInstanceState<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">super</span><span style="color:#f92672">.</span><span style="color:#a6e22e">onCreate</span><span style="color:#f92672">(</span>savedInstanceState<span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+            setContentView<span style="color:#f92672">(</span>R<span style="color:#f92672">.</span><span style="color:#a6e22e">layout</span><span style="color:#f92672">.</span><span style="color:#a6e22e">activity_main</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span> 
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>引用（Reference）</p>
 <blockquote>
 <p>引用以&gt;来表示，引用中支持多级引用、标题、列表、代码块、分割线等常规语法。</p>
 </blockquote>
-
 <p>3.1 常见的引用写法：</p>
-
-<pre><code>&gt; 这是一段引用    //在`&gt;`后面有 1 个空格
-&gt; 
-&gt;     这是引用的代码块形式    //在`&gt;`后面有 5 个空格
+<pre><code> &gt; 这是一段引用    //在`&gt;`后面有 1 个空格
+ &gt; 
+ &gt;     这是引用的代码块形式    //在`&gt;`后面有 5 个空格
 </code></pre>
-
 <blockquote>
 <p>这是一段引用    //在<code>&gt;</code>后面有 1 个空格</p>
-
 <pre><code>这是引用的代码块形式    //在`&gt;`后面有 5 个空格
 </code></pre>
 </blockquote>
-
-<pre><code>&gt; 代码例子：
-&gt;   
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-    }
+<pre><code> &gt; 代码例子：
+ &gt;   
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_main);
+     }
 </code></pre>
-
 <blockquote>
 <p>代码例子：</p>
-
-<pre><code>protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
-}            
-</code></pre>
 </blockquote>
-
-<p>3.2分级引用</p>
-
-<pre><code>&gt; 一级引用
-&gt; &gt; 二级引用
-&gt; &gt; &gt; 三级引用
-
-&gt; #### 这是一个四级标题
-&gt; 
-&gt; 1. 这是第一行列表项
-&gt; 2. 这是第二行列表项
+<pre><code> protected void onCreate(Bundle savedInstanceState) {
+     super.onCreate(savedInstanceState);
+     setContentView(R.layout.activity_main);
+ }            
 </code></pre>
+<p>3.2分级引用</p>
+<pre><code> &gt; 一级引用
+ &gt; &gt; 二级引用
+ &gt; &gt; &gt; 三级引用
 
+ &gt; #### 这是一个四级标题
+ &gt; 
+ &gt; 1. 这是第一行列表项
+ &gt; 2. 这是第二行列表项
+</code></pre>
 <blockquote>
 <p>一级引用</p>
-
+</blockquote>
+<blockquote>
 <blockquote>
 <p>二级引用</p>
-
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
 <blockquote>
 <p>三级引用</p>
 </blockquote>
 </blockquote>
-
-<h4 id="这是一个四级标题">这是一个四级标题</h4>
-
+</blockquote>
+<blockquote>
+<h4 id="heading-7">这是一个四级标题</h4>
 <ol>
 <li>这是第一行列表项</li>
-<li>这是第二行列表项
-<br /></li>
+<li>这是第二行列表项</li>
 </ol>
-
-<p>建立多级列表时，每个子级别都要比上个级别前面多打2个以上空格。
- 在 「 * 」 前加两个空格键或者一个 tab 键就可以产生一个子列表。
- 有序列表： 在文本前加 「字母.」 或 「数字.」 即可生成一个有序列表。
- 注意，当你第一个序号使用什么作为标记的，那么同级别的列表就会自动使用其作为标记。</p>
-</blockquote></li>
-
-<li><p>文字样式（Text Styling）</p>
-
-<p>4.1. 基本语法</p>
-
-<blockquote>
-<p>三个*或-代表斜粗，两个*或-代表加粗，一个*或-代表斜体，~~代表删除。</p>
 </blockquote>
-
-<pre><code>**加粗文本** 或者 __加粗文本__
-
-*斜体文本*  或者　_斜体文本_
-
-***斜粗体*** 或者 ___斜粗文本___
-
-~~删除文本~~                
-
-`底纹`
+<blockquote>
+<p>建立多级列表时，每个子级别都要比上个级别前面多打2个以上空格。
+在 「 * 」 前加两个空格键或者一个 tab 键就可以产生一个子列表。
+有序列表： 在文本前加 「字母.」 或 「数字.」 即可生成一个有序列表。
+注意，当你第一个序号使用什么作为标记的，那么同级别的列表就会自动使用其作为标记。</p>
+</blockquote>
+</li>
+<li>
+<p>文字样式（Text Styling）</p>
+<p>4.1. 基本语法</p>
+<blockquote>
+<p>三个<em>或-代表斜粗，两个</em>或-代表加粗，一个*或-代表斜体，~~代表删除。</p>
+</blockquote>
+<pre><code> **加粗文本** 或者 __加粗文本__
+    
+ *斜体文本*  或者　_斜体文本_
+    
+ ***斜粗体*** 或者 ___斜粗文本___
+    
+ ~~删除文本~~                
+     
+ `底纹`
 </code></pre>
-
 <p><strong>加粗文本</strong> 或者 <strong>加粗文本</strong></p>
-
 <p><em>斜体文本</em>  或者　<em>斜体文本</em></p>
-
-<p><strong><em>斜粗体</em></strong> 或者 <strong><em>斜粗文本</em></strong></p>
-
+<p><em><strong>斜粗体</strong></em> 或者 <em><strong>斜粗文本</strong></em></p>
 <p><del>删除文本</del></p>
-
 <p><code>底纹</code></p>
-
 <p>4.2 非基本语法</p>
-
 <p>字体上标（superscript）和下标（subscript ）</p>
-
 <p>4.2.1 简书中，字体上、下标的语法为：</p>
-
-<pre><code>这是&lt;sup&gt;上标文字&lt;/sup&gt;
-这是&lt;sub&gt;下标文字&lt;/sub&gt;
+<pre><code> 这是&lt;sup&gt;上标文字&lt;/sup&gt;
+ 这是&lt;sub&gt;下标文字&lt;/sub&gt;
 </code></pre>
-
-<p>这是<sup>上标文字</sup></p>
-
-<p>这是<sub>下标文字</sub></p>
-
+<p>这是<!-- raw HTML omitted -->上标文字<!-- raw HTML omitted --></p>
+<p>这是<!-- raw HTML omitted -->下标文字<!-- raw HTML omitted --></p>
 <p>4.2.2 Typora 中，字体上、下标的语法为：</p>
-
-<pre><code>这是^上标文字^
-这是~下标文字~
+<pre><code> 这是^上标文字^
+ 这是~下标文字~
 </code></pre>
-
 <p>这是^上标文字^
-这是~下标文字~</p></li>
-
-<li><p>图片与链接（Images &amp; Links）</p>
-
+这是~下标文字~</p>
+</li>
+<li>
+<p>图片与链接（Images &amp; Links）</p>
 <blockquote>
 <p>图片与链接的语法很像，区别在一个 ! 号。
- 注：Markdown 不能设置图片大小，如果必须设置则应使用HTML标记 <img></p>
+注：Markdown 不能设置图片大小，如果必须设置则应使用HTML标记 <!-- raw HTML omitted --></p>
 </blockquote>
-
-<pre><code>图片：![]() ![图片描述(可忽略)](链接的地址)
-
-链接：[]() [链接描述](链接的地址)
-
-This is [an example](http://example.com/ &quot;Title&quot;) inline link.
-[This link](http://example.net/) has no title attribute.
+<pre><code> 图片：![]() ![图片描述(可忽略)](链接的地址)
+    
+ 链接：[]() [链接描述](链接的地址)
+    
+ This is [an example](http://example.com/ &quot;Title&quot;) inline link.
+ [This link](http://example.net/) has no title attribute.
 </code></pre>
-
-<p>图片：![]() <img src="http://mouapp.com/Mou_128.png" alt="图片描述(可忽略)" /></p>
-
-<p>链接：[]() <a href="链接的地址">链接描述</a></p>
-
+<p>图片：<img src="" alt=""> <img src="http://mouapp.com/Mou_128.png" alt="图片描述(可忽略)"></p>
+<p>链接：[]() <a href="%E9%93%BE%E6%8E%A5%E7%9A%84%E5%9C%B0%E5%9D%80">链接描述</a></p>
 <p>This is <a href="http://example.com/" title="Title">an example</a> inline link.
 <a href="http://example.net/">This link</a> has no title attribute.</p>
-
 <blockquote>
-<p>链接又分为行内式、参考式和 自动链接：
-&gt;内联（Inline）：以中括号[]标记显示的链接文本，后面紧跟用小括号()包围的链接。 如果链接 Title 属性，则在链接中使用空格加&rdquo;Title 属性&rdquo;，即Title。</p>
+<p>链接又分为行内式、参考式和 自动链接：</p>
+<blockquote>
+<p>内联（Inline）：以中括号[]标记显示的链接文本，后面紧跟用小括号()包围的链接。 如果链接 Title 属性，则在链接中使用空格加&quot;Title 属性&rdquo;，即Title。</p>
 </blockquote>
-
-<pre><code>这是行内式链接：[Mou](http://25.io/mou/)。
-
-这是参考式链接：[Mou][url]，其中url为链接标记，可置于文中任意位置。
-
-[url]: 25.io/mou/
+</blockquote>
+<pre><code> 这是行内式链接：[Mou](http://25.io/mou/)。
+    
+ 这是参考式链接：[Mou][url]，其中url为链接标记，可置于文中任意位置。
+    
+ [url]: 25.io/mou/
 </code></pre>
-
 <p>这是行内式链接：<a href="http://25.io/mou/">Mou</a>。</p>
-
 <p>这是参考式链接：<a href="https://shengulong.github.io/blog/">Mou</a>，其中url为链接标记，可置于文中任意位置。</p>
-
-<blockquote>
-<p>链接标记格式为：[链接标记文本]: 链接地址 链接title(可忽略)</p>
-</blockquote>
-
-<pre><code>这是自动链接：直接使用`&lt;&gt;`括起来&lt;http://25.io/mou/&gt;
-</code></pre>
-
-<p>这是自动链接：直接使用<code>&lt;&gt;</code>括起来<a href="http://25.io/mou/">http://25.io/mou/</a></p>
-
-<pre><code>这是图片：![][Mou icon]
-
-[Mou icon]: http://mouapp.com/Mou_128.png
-</code></pre>
-
-<p>这是图片：<img src="http://mouapp.com/Mou_128.png" alt="" /></p>
-
-<pre><code>添加图片的使用方法基本上和链接类似，只是在中括号前加叹号!，即![Image Title](URL &quot;Image Title&quot;)。
-</code></pre>
-
-<blockquote>
-<p>图片格式控制</p>
-</blockquote>
-
-<pre><code>居中及大小控制
-方法一：效果不是太好
-![](/img/blog/2019/IO Model-figure_6.1.png#pic_center=100x100)
-&lt;p align=&quot;center&quot;&gt;图1&lt;/p&gt;
-方法二：效果可以
-&lt;div align=&quot;center&quot;&gt;
-    &lt;img src=&quot;/img/blog/2019/IO Model-figure_6.1.png&quot; height=&quot;100&quot; width=&quot;100&quot; &gt;
-    &lt;p align=&quot;center&quot;&gt;图1&lt;/p&gt;
-&lt;/div&gt;
-</code></pre></li>
+</li>
 </ol>
+<pre><code>&gt;链接标记格式为：[链接标记文本]: 链接地址 链接title(可忽略)
 
-<p><img src="/img/blog/2019/IO Model-figure_6.1.png#pic_center=100x100" alt="" /></p>
+    这是自动链接：直接使用`&lt;&gt;`括起来&lt;http://25.io/mou/&gt;
 
-<p align="center">图1</p>
+这是自动链接：直接使用`&lt;&gt;`括起来&lt;http://25.io/mou/&gt;
 
-<div align="center">
-    <img src="/img/blog/2019/IO Model-figure_6.1.png" height="100" width="100" >
-    <p align="center">图1</p>
-</div>        
-        
+    这是图片：![][Mou icon]
+    
+    [Mou icon]: http://mouapp.com/Mou_128.png
+    
+这是图片：![][Mou icon]
+</code></pre>
+<pre><code>    添加图片的使用方法基本上和链接类似，只是在中括号前加叹号!，即![Image Title](URL &quot;Image Title&quot;)。
+    
 
-<ol class="task-list">
-<li><p>代码块引用（Fenced Code Blocks）</p>
+&gt; 图片格式控制
 
+    居中及大小控制
+    方法一：效果不是太好
+    ![](/img/blog/2019/IO Model-figure_6.1.png#pic_center=100x100)
+    &lt;p align=&quot;center&quot;&gt;图1&lt;/p&gt;
+    方法二：效果可以
+    &lt;div align=&quot;center&quot;&gt;
+        &lt;img src=&quot;/img/blog/2019/IO Model-figure_6.1.png&quot; height=&quot;100&quot; width=&quot;100&quot; &gt;
+        &lt;p align=&quot;center&quot;&gt;图1&lt;/p&gt;
+    &lt;/div&gt;
+</code></pre>
+<p>![](/img/blog/2019/IO Model-figure_6.1.png#pic_center=100x100)</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<ol start="6">
+<li>
+<p>代码块引用（Fenced Code Blocks）</p>
 <blockquote>
 <p>代码分为行内代码和代码块。</p>
 </blockquote>
-
 <p>6.1 行内代码</p>
-
 <blockquote>
 <p>行内代码使用 代码 标识，可嵌入文字中
- 需要引用代码时，如果引用的语句只有一段，不分行，可以用 ` 将语句包起来。</p>
+需要引用代码时，如果引用的语句只有一段，不分行，可以用 ` 将语句包起来。</p>
 </blockquote>
-
-<pre><code>`Hello world`
+<pre><code> `Hello world`
 </code></pre>
-
 <p><code>Hello world</code></p>
-
 <p>6.2 代码框，缩进 4 个空格或是 1 个制表符</p>
-
 <blockquote>
 <p>两对「 」包裹,如果引用的语句为多行，可以将 置于这段代码的首行和末行。代码前加四个空格键或代码前加一个 tab 键</p>
 </blockquote>
-
-<pre><code>```
-Code Line 1
-Code Line 2
-Code Line 3
-​```
+<pre><code> ```
+ Code Line 1
+ Code Line 2
+ Code Line 3
+ ​```
 </code></pre>
-
 <pre><code>Code Line 1
 Code Line 2
 Code Line 3
+</code></pre><p>代码语法高亮在后面加上空格和语言名称即可</p>
+<pre><code> ```语言      
+ 这里是代码
+ ​```
 </code></pre>
-
-<p>代码语法高亮在后面加上空格和语言名称即可</p>
-
-<pre><code>```语言      
-这里是代码
-​```
-</code></pre>
-
-<pre><code class="language-java">protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
-}
-</code></pre>
-
-<p>6.3 代码块里面包含html代码在代码区块里面， &amp; 、 &lt; 和 &gt; 会自动转成 HTML 实体，这样的方式让你非常容易使用 Markdown 插入范例用的 HTML 原始码，只需要复制贴上，剩下的 Markdown 都会帮你处理。</p></li>
-
-<li><p>表格（Tables）</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onCreate</span><span style="color:#f92672">(</span>Bundle savedInstanceState<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">super</span><span style="color:#f92672">.</span><span style="color:#a6e22e">onCreate</span><span style="color:#f92672">(</span>savedInstanceState<span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+    setContentView<span style="color:#f92672">(</span>R<span style="color:#f92672">.</span><span style="color:#a6e22e">layout</span><span style="color:#f92672">.</span><span style="color:#a6e22e">activity_main</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>6.3 代码块里面包含html代码在代码区块里面， &amp; 、 &lt; 和 &gt; 会自动转成 HTML 实体，这样的方式让你非常容易使用 Markdown 插入范例用的 HTML 原始码，只需要复制贴上，剩下的 Markdown 都会帮你处理。</p>
+</li>
+<li>
+<p>表格（Tables）</p>
 <blockquote>
 <p>表格对齐格式</p>
-
+</blockquote>
+<blockquote>
 <p>居左：:&mdash;-</p>
-
+</blockquote>
+<blockquote>
 <p>居中：:&mdash;-:或&mdash;&ndash;</p>
-
+</blockquote>
+<blockquote>
 <p>居右：&mdash;-:</p>
-
+</blockquote>
+<blockquote>
 <p>例子：</p>
 </blockquote>
-
-<pre><code>|标题|标题|标题|
-|:---|:---:|---:|
-|居左文本|居中文本|居右文本|
+<pre><code> |标题|标题|标题|
+ |:---|:---:|---:|
+ |居左文本|居中文本|居右文本|
 </code></pre>
-
 <table>
 <thead>
 <tr>
@@ -514,7 +431,6 @@ Code Line 3
 <th align="right">标题</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td align="left">居左文本</td>
@@ -522,150 +438,117 @@ Code Line 3
 <td align="right">居右文本</td>
 </tr>
 </tbody>
-</table></li>
-
-<li><p>分隔线</p>
-
+</table>
+</li>
+<li>
+<p>分隔线</p>
 <p>在一行中用三个以上的、-、_来建立一个分隔线，行内不能有其他东西。也可以在符号间插入空格。
 在一行中使用三个或三个以上的、-或_可以添加分隔线，中间插入空格，但是不能有其他字符。</p>
-
-<pre><code>***
----
-_____
-
-* * *
+<pre><code> ***
+ ---
+ _____
+    
+ * * *
 </code></pre>
-
-<hr />
-
-<hr />
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
+<hr>
+<hr>
 <blockquote>
 <p>效果均为一条分割线</p>
-</blockquote></li>
-
-<li><p>脚注|注解（Footnotes）</p>
-
+</blockquote>
+</li>
+<li>
+<p>脚注|注解（Footnotes）</p>
 <p>9.1 使用[^]来定义脚注：</p>
-
-<pre><code>这是一个脚注的例子[^1]
-[^1]: 这里是脚注  ---这行代码必必须顶格对齐
+<pre><code> 这是一个脚注的例子[^1]
+ [^1]: 这里是脚注  ---这行代码必必须顶格对齐
 </code></pre>
-
-<p>这是一个脚注的例子<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup></p>
-
+<p>这是一个脚注的例子<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
 <p>9.2 注释</p>
-
-<pre><code>注释是给自己看的，预览时也不会出现，当然发布出去别人也不会看见。
-
-    &lt;!--注释--&gt;
-</code></pre></li>
-
-<li><p>常用弥补Markdown的Html标签</p>
-
+<pre><code> 注释是给自己看的，预览时也不会出现，当然发布出去别人也不会看见。
+    
+     &lt;!--注释--&gt;
+</code></pre>
+</li>
+</ol>
+<ol start="10">
+<li>
+<p>常用弥补Markdown的Html标签</p>
 <p>10.1 字体</p>
-
 <blockquote>
 <p>字体颜色参考<a href="http://www.w3school.com.cn/tags/html_ref_colornames.asp">http://www.w3school.com.cn/tags/html_ref_colornames.asp</a>，还可以查看某个颜色背景下其他颜色的表现</p>
 </blockquote>
-
 <pre><code>&lt;font face=&quot;微软雅黑&quot; color=&quot;red&quot; size=&quot;6&quot;&gt;字体及字体颜色和大小&lt;/font&gt;
-
+    
 &lt;font color=&quot;#0000ff&quot;&gt;字体颜色&lt;/font&gt;
 </code></pre>
-
-<p><font face="微软雅黑" color="red" size="6">字体及字体颜色和大小</font></p>
-
-<p><font color="#0000ff">字体颜色</font></p>
-
+<p><!-- raw HTML omitted -->字体及字体颜色和大小<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->字体颜色<!-- raw HTML omitted --></p>
 <p>10.2 换行</p>
-
 <pre><code>使用html标签`&lt;br/&gt;`&lt;br/&gt;换行
 </code></pre>
-
-<p>使用html标签<code>&lt;br/&gt;</code><br/>换行</p>
-
+<p>使用html标签<code>&lt;br/&gt;</code><!-- raw HTML omitted -->换行</p>
 <p>10.3 文本对齐方式</p>
-
 <pre><code>&lt;p align=&quot;left&quot;&gt;居左文本&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;居中文本&lt;/p&gt;
 &lt;p align=&quot;right&quot;&gt;居右文本&lt;/p&gt;
 </code></pre>
-
-<p align="left">居左文本</p>
-<p align="center">居中文本</p>
-<p align="right">居右文本</p>
-
+<!-- raw HTML omitted -->
 <p>10.4 下划线</p>
-
 <pre><code>&lt;u&gt;下划线文本&lt;/u&gt;
 </code></pre>
-
-<p><u>下划线文本</u></p></li>
-
-<li><p>任务列表</p>
-
+<p><!-- raw HTML omitted -->下划线文本<!-- raw HTML omitted --></p>
+</li>
+<li>
+<p>任务列表</p>
 <pre><code>- [ ] [links](), **formatting**, and ~~tags~~ supported
 - [x] list syntax required (any unordered or ordered list supported)
 - [ ] this is a complete item
 - [x] this is an incomplete item
 </code></pre>
-
-<ul class="task-list">
-<li><label><input type="checkbox" disabled class="task-list-item"> [links](), <strong>formatting</strong>, and <del>tags</del> supported</label></li>
-<li><label><input type="checkbox" checked disabled class="task-list-item"> list syntax required (any unordered or ordered list supported)</label></li>
-<li><label><input type="checkbox" disabled class="task-list-item"> this is a complete item</label></li>
-<li><label><input type="checkbox" checked disabled class="task-list-item"> this is an incomplete item</label></li>
-</ul></li>
-
-<li><p>转义字符（Backslash Escapes）</p>
-
+<ul>
+<li><input disabled="" type="checkbox"><a href="">links</a>, <strong>formatting</strong>, and <del>tags</del> supported</li>
+<li><input checked="" disabled="" type="checkbox">list syntax required (any unordered or ordered list supported)</li>
+<li><input disabled="" type="checkbox">this is a complete item</li>
+<li><input checked="" disabled="" type="checkbox">this is an incomplete item</li>
+</ul>
+</li>
+<li>
+<p>转义字符（Backslash Escapes）</p>
 <blockquote>
 <p>Markdown 可以利用反斜杠\来插入一些在语法中有其它意义的符号，例如：如果想要用星号加在文字旁边的方式来做出强调效果，可以在星号的前面加上反斜杠：</p>
 </blockquote>
-
 <pre><code>\*literal asterisks\*
 </code></pre>
-
-<p>*literal asterisks*</p></li>
-
-<li><p>缩进</p>
-
+<p>*literal asterisks*</p>
+</li>
+<li>
+<p>缩进</p>
 <pre><code>    信仰          正常没有缩进的
-
+        
     &amp;nbsp;信仰    缩进1/4中文
-
+        
     &amp;#160;信仰    缩进1/4中文
-
+        
     &amp;ensp;信仰   缩进半个中文，1个字符
-
+        
     &amp;#8194;信仰  缩进半个中文，1个字符
-
+        
     &amp;emsp;信仰   缩进1中文，2个字符
-
+        
     &amp;#8195;信仰  缩进1中文，2个字符
 </code></pre>
-
 <p>信仰</p>
-
-<p>&nbsp;信仰</p>
-
-<p>&#160;信仰</p>
-
-<p>&ensp;信仰</p>
-
-<p>&#8194;信仰</p>
-
-<p>&emsp;信仰</p>
-
-<p>&#8195;信仰</p></li>
-
-<li><p><a href="https://unicode-table.com/cn/#geometric-shapes">特殊字符表</a>,举例：</p>
-
+<p> 信仰</p>
+<p> 信仰</p>
+<p> 信仰</p>
+<p> 信仰</p>
+<p> 信仰</p>
+<p> 信仰</p>
+</li>
+<li>
+<p><a href="https://unicode-table.com/cn/#geometric-shapes">特殊字符表</a>,举例：</p>
 <pre><code>    &amp;#10084; 
     &amp;#10003;
     &amp;#9728;
@@ -678,55 +561,35 @@ _____
     &amp;#10052;
     &amp;#9835;
 </code></pre>
-
-<p>&#10084;</p>
-
-<p>&#10003;</p>
-
-<p>&#9728;</p>
-
-<p>&#9733;</p>
-
-<p>&#9730;</p>
-
-<p>&#9775;</p>
-
-<p>&#9762;</p>
-
-<p>&#9742;</p>
-
-<p>&#9734;</p>
-
-<p>&#10052;</p>
-
-<p>&#9835;</p></li>
-
-<li><p>锚点</p>
-
+<p>❤</p>
+<p>✓</p>
+<p>☀</p>
+<p>★</p>
+<p>☂</p>
+<p>☯</p>
+<p>☢</p>
+<p>☎</p>
+<p>☆</p>
+<p>❄</p>
+<p>♫</p>
+</li>
+<li>
+<p>锚点</p>
 <pre><code>## 缩进{#13} 
 跳转到[缩进](#13)
 </code></pre>
-
 <p>跳转到<a href="#13">缩进</a></p>
-
-<table><tr><td bgcolor=orange>背景色是：orange</td></tr></table>
-    </li>
-
-<li><p>时序图Sequence diagrams</p>
-
+<!-- raw HTML omitted -->
+</li>
+<li>
+<p>时序图Sequence diagrams</p>
 <pre><code>&lt;div class=&quot;mermaid&quot;&gt;
     sequenceDiagram
         Alice-&gt;&gt;John: Hello John, how are you?
         John--&gt;&gt;Alice: Great!
 &lt;/div&gt;
 </code></pre>
-
-<div class="mermaid">
-sequenceDiagram
-    Alice->>John: Hello John, how are you?
-    John-->>Alice: Great!
-</div>    
-
+<!-- raw HTML omitted -->
 <pre><code>&lt;div class=&quot;mermaid&quot;&gt;
     sequenceDiagram
         小程序 -&gt;&gt; 小程序 : wx.login()获取code
@@ -737,31 +600,18 @@ sequenceDiagram
         服务器 --&gt;&gt; - 小程序 : token                     
 &lt;/div&gt;
 </code></pre>
-
-<div class="mermaid">
-            sequenceDiagram
-                小程序 ->> 小程序 : wx.login()获取code
-                小程序 ->> + 服务器 : wx.request()发送code
-                服务器 ->> + 微信服务器 : code+appid+secret
-                微信服务器 -->> - 服务器 : openid
-                服务器 ->> 服务器 : 根据openid确定用户并生成token
-                服务器 -->> - 小程序 : token                     
-</div>
-    </li>
-
-<li><p>插入公式<strong><em>Latex</em></strong></p>
-
+<!-- raw HTML omitted -->
+</li>
+<li>
+<p>插入公式<em><strong>Latex</strong></em></p>
 <p>参考这几篇文章，后续用的时候再添加</p>
-
 <ol>
 <li><a href="https://lowentropy.me/flight-rules/20181130-%E4%BD%BF%E7%94%A8pandoc%E5%92%8Ckatex%E4%B8%BAhugo%E6%B7%BB%E5%8A%A0latex%E6%94%AF%E6%8C%81/">使用Pandoc和KaTeX为HUGO添加LaTeX支持</a></li>
-<li><a href="https://gohugo.io/content-management/formats/">MathJax with Hugo</a>
-<br />
-<br /></li>
-</ol></li>
-
-<li><p>插入甘特图Gant diagrams</p>
-
+<li><a href="https://gohugo.io/content-management/formats/">MathJax with Hugo</a></li>
+</ol>
+</li>
+<li>
+<p>插入甘特图Gant diagrams</p>
 <pre><code>&lt;div class=&quot;mermaid&quot;&gt;
         gantt
             title A Gantt Diagram
@@ -774,25 +624,13 @@ sequenceDiagram
             another task      : 24d
 &lt;/div&gt;
 </code></pre>
-
-<div class="mermaid">
-    gantt
-        title A Gantt Diagram
-        dateFormat  YYYY-MM-DD
-        section Section
-        A task           :a1, 2014-01-01, 30d
-        Another task     :after a1  , 20d
-        section Another
-        Task in sec      :2014-01-12  , 12d
-        another task      : 24d
-</div></li>
-
-<li><p>插入流程图Flowcharts</p>
-
+<!-- raw HTML omitted -->
+</li>
+<li>
+<p>插入流程图Flowcharts</p>
 <blockquote>
 <p>hugo加入<a href="https://mermaidjs.github.io/">mermaid</a>作图,<a href="https://github.com/knsv/mermaid">github</a></p>
 </blockquote>
-
 <pre><code>vi ./themes/hugo-ivy/layouts/partials/footer.html 
 添加下面代码
 &lt;!-- mermaid JS --&gt;      
@@ -803,7 +641,7 @@ js也可以直接放在hugo目录static/js下
     or
     mermaid.initialize({startOnLoad: true, theme: 'forest'});
 &lt;/script&gt;
-
+    
 源码
 &lt;div class=&quot;mermaid&quot;&gt;
 graph LR
@@ -812,31 +650,25 @@ graph LR
     B--&gt;D(fa:fa-spinner);
 &lt;/div&gt;
 </code></pre>
-
 <p>效果</p>
-
-<div class="mermaid">
-graph LR
-    A --- B
-    B-->C[fa:fa-ban forbidden]
-    B-->D(fa:fa-spinner);
-</div></li>
-
-<li><p>插入emoji</p></li>
-
-<li><p>思维导图</p>
-
-<p><a href="https://wocai.de/post/dev/make-hugo-blog-add-mindmap/">Hugo 中使用思维导图</a></p></li>
+<!-- raw HTML omitted -->
+</li>
+<li>
+<p>插入emoji</p>
+</li>
+<li>
+<p>思维导图</p>
+<p><a href="https://wocai.de/post/dev/make-hugo-blog-add-mindmap/">Hugo 中使用思维导图</a></p>
+</li>
 </ol>
-<div class="footnotes">
-
-<hr />
-
+<section class="footnotes" role="doc-endnotes">
+<hr>
 <ol>
-<li id="fn:1">这里是脚注
- <a class="footnote-return" href="#fnref:1">↩</a></li>
+<li id="fn:1" role="doc-endnote">
+<p>这里是脚注 <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
-</div>
+</section>
 
 
   <footer>
@@ -873,7 +705,7 @@ graph LR
 
   
   <hr>
-  <div class="copyright">&copy; 2019 | <a href="https://github.com/shengulong">Github</a> | <a href="https://www.cnblogs.com/shengulong/">cnblogs</a> | <a href="https://shengulong.github.io/">Github Pages</a></div>
+  <div class="copyright">© 2019 | <a href="https://github.com/shengulong">Github</a> | <a href="https://www.cnblogs.com/shengulong/">cnblogs</a> | <a href="https://shengulong.github.io/">Github Pages</a></div>
   
   </footer>
   </article>

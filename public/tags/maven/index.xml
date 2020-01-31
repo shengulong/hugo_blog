@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>maven on 持之以恒</title>
@@ -31,9 +31,9 @@ package sample.plugin; import org.apache.maven.plugin.AbstractMojo; import org.a
       
       <guid>/blog/2019/07/06/maven%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8F%92%E4%BB%B6%E5%AE%9E%E7%8E%B0/</guid>
       <description>maven开发 maven开发 maven插件开发  插件和生命周期的某个阶段绑定 自定义插件命名为：-maven-plugin；maven--plugin是官方插件的命名，拥有商标权   插件分类  build插件：会在build阶段被执行，应该配置在POM的元素中 reporting插件：生成站点的时候会执行，应该配置在POM的元素中。因为reporting插件的结果是生成的站点的一部分， 所以这种插件应该是国际化和本地化的  插件配置 Maven插件都是通过指定一个元素来配置的。而该元素中的子元素，都是Mojo中的property。 详见Guide to Configuring Plug-ins
- 插件源码
+  插件源码
 /**
- @goal query */ public class MyQueryMojo extends AbstractMojo { // property做为系统属性使用 -Dquery.url @Parameter(property = &amp;ldquo;query.url&amp;rdquo;, required = true) // url为field，对应于pom里的配置url,可以和上面的property不一致 private String url;
+  @goal query */ public class MyQueryMojo extends AbstractMojo { // property做为系统属性使用 -Dquery.url @Parameter(property = &amp;ldquo;query.url&amp;rdquo;, required = true) // url为field，对应于pom里的配置url,可以和上面的property不一致 private String url;
 @Parameter(property = &amp;ldquo;timeout&amp;rdquo;, required = false, defaultValue = &amp;ldquo;50&amp;rdquo;) private int timeout;
 @Parameter(property = &amp;ldquo;options&amp;rdquo;) private String[] options;
 public void execute() throws MojoExecutionException { &amp;hellip; } }</description>

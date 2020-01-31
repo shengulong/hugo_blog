@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>gerrit on 持之以恒</title>
@@ -25,9 +25,10 @@ gerrit源码：
 https://gerrit.googlesource.com/gerrit/
 https://github.com/GerritCodeReview/gerrit
 构建工具：google内部使用的 bazel bazel安装：https://docs.bazel.build/versions/master/install-os-x.html#install-on-mac-os-x-homebrew bazel介绍：https://www.cnblogs.com/Leo_wl/p/4458115.html
-官网 内容： + 插件链接 + 下载地址 + 在线ppt，解释gerrit的理念 + 线文档
-build gerrit source code Gerrit Code Review - Building with Bazel Gerrit Code Review - IntelliJ IDEA Setup
-git clone --recursive https://gerrit.googlesource.com/gerrit cd gerrit &amp;amp;&amp;amp; bazel build release 上面执行成功的话，会在gerrit目录生成如下war包 bazel-bin/release.war cd gerrit &amp;amp;&amp;amp; bazel build gerrit 上面执行成功的话，会在gerrit目录生成如下war包 bazel-bin/gerrit.war [切换分支](http://127.0.0.1:8080/Documentation/dev-readme.html#_switching_between_branches)要把子模块一起切换 git checkout --recurse-submodules  本地启动一个gerrit server</description>
+官网 内容：
+ 插件链接 下载地址 在线ppt，解释gerrit的理念 线文档  build gerrit source code Gerrit Code Review - Building with Bazel Gerrit Code Review - IntelliJ IDEA Setup
+git clone --recursive https://gerrit.googlesource.com/gerrit cd gerrit &amp;amp;&amp;amp; bazel build release 上面执行成功的话，会在gerrit目录生成如下war包 bazel-bin/release.war cd gerrit &amp;amp;&amp;amp; bazel build gerrit 上面执行成功的话，会在gerrit目录生成如下war包 bazel-bin/gerrit.war [切换分支](http://127.0.0.1:8080/Documentation/dev-readme.html#_switching_between_branches)要把子模块一起切换 git checkout --recurse-submodules  本地启动一个gerrit server
+debug the Gerrit server -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005  gerrit初始化配置 http://127.</description>
     </item>
     
   </channel>

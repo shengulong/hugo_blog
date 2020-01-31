@@ -84,18 +84,12 @@
       </header>
 
 
-
-
 <p>网站是使用<code>hugo</code> + <code>GitHub</code>搭建的静态网页。在这之前，一直用的是<code>cnblogs</code>，自从无意间看到了<a href="https://neojos.com/about/">https://neojos.com/about/</a>,
 其实来源是<a href="https://yihui.name/cn/about/">blog</a>,参考<a href="https://github.com/rbind/yihui">github</a>,<a href="https://github.com/rstudio/blogdown">github</a>。
 不得不说，自己被博主的优秀以及博客的简单明了折服的一塌糊涂。</p>
-
 <p>简单了解<a href="http://gohugo.io/getting-started/">hugo</a>之后，发现它更简单、更方便，所以将自己的博客也做了迁移。</p>
-
-<p>直接git clone git@github.com:GitHubSi/blog.git,然后简单修改里面的内容，删除掉作者的博客，添加自己的博客</p>
-
-<h2 id="使用介绍">使用介绍：</h2>
-
+<p>直接git clone <a href="mailto:git@github.com">git@github.com</a>:GitHubSi/blog.git,然后简单修改里面的内容，删除掉作者的博客，添加自己的博客</p>
+<h2 id="heading">使用介绍：</h2>
 <ol>
 <li><a href="https://www.gohugo.org/">Hugo快速入手</a></li>
 <li><a href="https://github.com/GitHubSi/blog">博客模版</a></li>
@@ -107,77 +101,71 @@
 <li>sh simple-deploy.sh 发布博客到xxx.github.io</li>
 <li>博客里的图片放在目录hogo_blog/static/img/下</li>
 </ol>
-
-<h2 id="评论系统">评论系统</h2>
-
+<h2 id="heading-1">评论系统</h2>
 <p>如果需要，可以考虑<a href="https://posativ.org/isso/">isso</a>，因为涉及交互，就不再是静态网站了，需要存储系统，就需要放存储系统的服务器。暂时不考虑。
 评论系统效果<a href="https://lowentropy.me/flight-rules/20181130-%E4%BD%BF%E7%94%A8pandoc%E5%92%8Ckatex%E4%B8%BAhugo%E6%B7%BB%E5%8A%A0latex%E6%94%AF%E6%8C%81/">参考</a></p>
-
-<h2 id="优化方向">优化方向</h2>
-
+<h2 id="heading-2">优化方向</h2>
 <ol>
 <li>里面内嵌了很多js，需要删除无用的，把有用的js链接本地化，减少网络依赖</li>
 </ol>
-
-<h2 id="注意事项">注意事项：</h2>
-
+<h2 id="heading-3">注意事项：</h2>
 <ol>
-<li><p>修改hugo new xx.md的模版</p>
-
+<li>
+<p>修改hugo new xx.md的模版</p>
 <blockquote>
 <p>位于archetypes/default.md,参考<a href="https://gohugo.io/functions/format/">.Format</a></p>
 </blockquote>
-
-<pre><code>---
-title: &quot;{{ replace .Name &quot;-&quot; &quot; &quot; | title }}&quot;
-date: {{ .Date }}
-categories: {{ dateFormat &quot;2006-01&quot; .Date }}   这里必须是&quot;2006-01&quot;,即必须是2006年，必须是1月
-tags: []
-author: sgl
----
-</code></pre></li>
-
-<li><p>修改样式</p>
-
+<pre><code> ---
+ title: &quot;{{ replace .Name &quot;-&quot; &quot; &quot; | title }}&quot;
+ date: {{ .Date }}
+ categories: {{ dateFormat &quot;2006-01&quot; .Date }}   这里必须是&quot;2006-01&quot;,即必须是2006年，必须是1月
+ tags: []
+ author: sgl
+ ---
+</code></pre>
+</li>
+<li>
+<p>修改样式</p>
 <p>位于static/css/*.css，比如：</p>
-
 <ul>
-<li><p>博客界面的整体宽度：<br />
+<li>
+<p>博客界面的整体宽度：     <br>
 static/css/style.css</p>
-
-<pre><code>body {
-  width: 1360px;
-  margin: 0 auto;
-  padding: 30px 0;
-}
-</code></pre></li>
-
-<li><p>博客界面右侧边栏的宽度：
+<pre><code>  body {
+    width: 1360px;
+    margin: 0 auto;
+    padding: 30px 0;
+  }
+</code></pre>
+</li>
+<li>
+<p>博客界面右侧边栏的宽度：
 static/css/style.css</p>
-
-<pre><code>.main {
-  width: 400px;
-  padding: 32px 10px 20px 50px;
-  margin-left: 260px;
-  border-left: 3px solid black;
-  min-height: calc(100vh - 60px);
-}
-</code></pre></li>
-
-<li><p>博客界面左侧边栏的宽度：<br />
+<pre><code>  .main {
+    width: 400px;
+    padding: 32px 10px 20px 50px;
+    margin-left: 260px;
+    border-left: 3px solid black;
+    min-height: calc(100vh - 60px);
+  }
+</code></pre>
+</li>
+<li>
+<p>博客界面左侧边栏的宽度：     <br>
 static/css/style.css</p>
-
-<pre><code>.masthead {
-  width: 60px;
-  padding: 20px 50px 20px 10px;
-  float: left;
-}
-</code></pre></li>
-</ul></li>
-
-<li><p>hugo配置config.toml含义：<a href="https://gohugo.io/getting-started/configuration/">https://gohugo.io/getting-started/configuration/</a></p>
-
-<p><a href="https://github.com/toml-lang/toml">toml文件</a></p></li>
+<pre><code>  .masthead {
+    width: 60px;
+    padding: 20px 50px 20px 10px;
+    float: left;
+  }
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>hugo配置config.toml含义：https://gohugo.io/getting-started/configuration/</p>
+<p><a href="https://github.com/toml-lang/toml">toml文件</a></p>
+</li>
 </ol>
 
 
@@ -210,7 +198,7 @@ static/css/style.css</p>
 
   
   <hr>
-  <div class="copyright">&copy; 2019 | <a href="https://github.com/shengulong">Github</a> | <a href="https://www.cnblogs.com/shengulong/">cnblogs</a> | <a href="https://shengulong.github.io/">Github Pages</a></div>
+  <div class="copyright">© 2019 | <a href="https://github.com/shengulong">Github</a> | <a href="https://www.cnblogs.com/shengulong/">cnblogs</a> | <a href="https://shengulong.github.io/">Github Pages</a></div>
   
   </footer>
   </article>

@@ -97,65 +97,56 @@
       </header>
 
 
-
-
-<h1 id="模拟cpu消耗">模拟cpu消耗</h1>
-
-<h3 id="用法">用法</h3>
-
+<h1 id="cpu">模拟cpu消耗</h1>
+<h3 id="heading">用法</h3>
 <ol>
-<li>./cpu_exhaust.sh 4 (4为内核数量，这样会把4个cpu使用率都达到100%)</li>
-<li>查看cpu内核数量:lscpu</li>
-
-<li><p>执行后会出现一堆kill命令，方便kill掉进程</p>
-
-<pre><code>脚本 cpu_exhaust.sh
-#!/bin/bash
-endless_loop()
-{
-    echo -ne &quot;i=0
-    while true
-    do
-    i=i+100
-    i=100
-    done&quot; | /bin/bash &amp;
-}
-if [ $# != 1 ]; then
-    echo &quot;USAGE: $0 &lt;cpus&gt;&quot;
-    exit 1;
-fi
-for i in `seq $1`
-    do
-    endless_loop
-    pid_array[$i]=$!;
-done
-for i in &quot;${pid_array[@]}&quot;; do
-    echo 'kill' $i ';';
-done
-</code></pre></li>
+<li>
+<p>./cpu_exhaust.sh 4 (4为内核数量，这样会把4个cpu使用率都达到100%)</p>
+</li>
+<li>
+<p>查看cpu内核数量:lscpu</p>
+</li>
+<li>
+<p>执行后会出现一堆kill命令，方便kill掉进程</p>
+<pre><code> 脚本 cpu_exhaust.sh
+ #!/bin/bash
+ endless_loop()
+ {
+     echo -ne &quot;i=0
+     while true
+     do
+     i=i+100
+     i=100
+     done&quot; | /bin/bash &amp;
+ }
+ if [ $# != 1 ]; then
+     echo &quot;USAGE: $0 &lt;cpus&gt;&quot;
+     exit 1;
+ fi
+ for i in `seq $1`
+     do
+     endless_loop
+     pid_array[$i]=$!;
+ done
+ for i in &quot;${pid_array[@]}&quot;; do
+     echo 'kill' $i ';';
+ done
+</code></pre>
+</li>
 </ol>
-
-<h1 id="模拟硬盘消耗">模拟硬盘消耗</h1>
-
-<h3 id="用法-1">用法</h3>
-
+<h1 id="heading-1">模拟硬盘消耗</h1>
+<h3 id="heading-2">用法</h3>
 <p>使用linux命令：dd</p>
-
 <pre><code>生成1M(bs*count)大小的文件test，里面填充二机制0
 dd if=/dev/zero of=/home/user/test/test bs=1024 count=1024   
 </code></pre>
-
-<h1 id="模拟内存消耗">模拟内存消耗</h1>
-
-<h3 id="方法">方法</h3>
-
+<h1 id="heading-3">模拟内存消耗</h1>
+<h3 id="heading-4">方法</h3>
 <p>利用文件系统tmpfs的特性：tmpfs是内存型文件系统，存储空间来源于实际内存和交换区(swap来自硬盘)。因此里面的文件内存断电后消失。
 tmpfs是Linux/Unix系统上的一种基于内存的文件系统。tmpfs可以使用您的内存或swap分区来存储文件。
 在tmpfs中申请的内存，会在free -h/m命令中的”共享“字段统计到，而这部分的“共享”会被“缓冲/缓存”字段统计到。
 tmpfs的另一个特点，申请的内存只有在真正使用的时候才占用，不使用的时候，其他程序是可以公用的。所以显示在命令free -h/m的shared列和buff/cache列下面</p>
-
 <p>执行: sudo sh memory_exhaust.sh</p>
-
 <pre><code>脚本 memory_exhaust.sh
 #!/bin/bash
 mkdir /tmp/memory
@@ -175,13 +166,12 @@ Mount options for tmpfs
     size=nbytes
                   Override default maximum size of the filesystem.  The size is given in bytes, and rounded up to entire pages.  The default is half of the memory. The size parameter also accepts a suffix %
                   to limit this tmpfs instance to that percentage of your physical RAM: the default, when neither size nor nr_blocks is specified, is size=50%
-
+   
     The tmpfs mount options for sizing ( size, nr_blocks, and nr_inodes) accept a suffix k, m or g for Ki, Mi, Gi (binary kilo, mega and giga) and can be changed on remount.              
 
 
 重新调整挂载点文件系统的大小；但是这种修改是临时修改，重启后会恢复正常，恢复为内存一半大小。永久修改可以修改/etc/fstab
-mount -o remount,size=777M tmpfs-test /tmp/memory
-</code></pre>
+mount -o remount,size=777M tmpfs-test /tmp/memory</code></pre>
 
 
   <footer>
@@ -218,7 +208,7 @@ mount -o remount,size=777M tmpfs-test /tmp/memory
 
   
   <hr>
-  <div class="copyright">&copy; 2019 | <a href="https://github.com/shengulong">Github</a> | <a href="https://www.cnblogs.com/shengulong/">cnblogs</a> | <a href="https://shengulong.github.io/">Github Pages</a></div>
+  <div class="copyright">© 2019 | <a href="https://github.com/shengulong">Github</a> | <a href="https://www.cnblogs.com/shengulong/">cnblogs</a> | <a href="https://shengulong.github.io/">Github Pages</a></div>
   
   </footer>
   </article>

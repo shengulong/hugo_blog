@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>长连接 on 持之以恒</title>
@@ -17,8 +17,8 @@
       <pubDate>Sat, 06 Jul 2019 07:39:09 +0800</pubDate>
       
       <guid>/blog/2019/07/06/requests%E8%BF%9E%E6%8E%A5%E6%B1%A0%E5%8D%B3%E9%95%BF%E8%BF%9E%E6%8E%A5%E5%88%86%E6%9E%90/</guid>
-      <description>requests长连接 遗留问题 为什么requests短连接时，虽然http头中携带了Connection: keep-alive头，服务端却回复Connection: close头？client和server 是如何得知此次连接是短连接的？   requests使用Session()即长连接时，请求头会携带字段Connection: keep-alive,服务端回复相同的http头
-如下5个http连接公用一个tcp连接
+      <description>requests长连接 遗留问题  为什么requests短连接时，虽然http头中携带了Connection: keep-alive头，服务端却回复Connection: close头？client和server 是如何得知此次连接是短连接的？   requests使用Session()即长连接时，请求头会携带字段Connection: keep-alive,服务端回复相同的http头
+  如下5个http连接公用一个tcp连接
  with requests.Session() as s: s.get(&amp;quot;http://www.baidu.com&amp;quot;) s.get(&amp;quot;http://www.baidu.com&amp;quot;) s.get(&amp;quot;http://www.baidu.com&amp;quot;) s.get(&amp;quot;http://www.baidu.com&amp;quot;) s.get(&amp;quot;http://www.baidu.com&amp;quot;)  而下面的请求各自使用一个tcp连接，用完即销毁，请求头里面也有Connection: keep-alive头，但是服务端回复Connection: close
 requests.get(&amp;ldquo;http://www.baidu.com&amp;quot;)
 requests.get(&amp;ldquo;http://www.baidu.com&amp;quot;)
@@ -27,7 +27,7 @@ requests.get(&amp;ldquo;http://www.baidu.com&amp;quot;)
  使用 基本使用方法：申请一个tcp连接，进行多个http请求后，关闭连接
 Basic Usage:: import requests s = requests.Session() 进行多个连接 s.get(&#39;https://httpbin.org/get&#39;) s.get(&#39;https://httpbin.org/get&#39;) 关闭连接 s.close() Or as a context manager:: with requests.Session() as s: 进行多个连接 s.get(&#39;https://httpbin.org/get&#39;) s.get(&#39;https://httpbin.org/get&#39;) &amp;quot;&amp;quot;&amp;quot;  原理  撸下代码
  调用顺序：
-requests.Session().get() --&amp;gt; requests.Session().request() --&amp;gt; requests.Session().send()  查看requests包的Session()类send()方法的第645行和646行代码，表示调用使用某个适配器的send()</description>
+requests.Session().get() --&amp;gt; requests.Session().request() --&amp;gt; requests.</description>
     </item>
     
   </channel>

@@ -97,25 +97,21 @@
       </header>
 
 
-
-
-<h2 id="思路">思路</h2>
-
+<h2 id="heading">思路</h2>
 <p>查看jenkins<a href="https://github.com/jenkinsci/jenkins">源代码</a>，把jenkins依赖单机的代码内容，修改为依赖分布式机器的内容；
-这样做到应用本身无存储状态，容器化后可以做到随便创建和删除。参阅<a href="https://jenkins.io/node/">jenkins&rsquo;s blog</a></p>
-
-<h2 id="jenkins开发相关知识-extend-jenkins-https-wiki-jenkins-io-display-jenkins-extend-jenkins-开发者文档-https-jenkins-io-doc-developer">jenkins开发相关知识<a href="https://wiki.jenkins.io/display/JENKINS/Extend+Jenkins">Extend Jenkins</a>、<a href="https://jenkins.io/doc/developer/">开发者文档</a></h2>
-
+这样做到应用本身无存储状态，容器化后可以做到随便创建和删除。参阅<a href="https://jenkins.io/node/">jenkins's blog</a></p>
+<h2 id="jenkinsextend-jenkinshttpswikijenkinsiodisplayjenkinsextendjenkinshttpsjenkinsiodocdeveloper">jenkins开发相关知识<a href="https://wiki.jenkins.io/display/JENKINS/Extend+Jenkins">Extend Jenkins</a>、<a href="https://jenkins.io/doc/developer/">开发者文档</a></h2>
 <ol>
-<li><a href="https://github.com/jenkinsci/jenkins/blob/master/CONTRIBUTING.md">jenkins本身开发指导说明</a>
-
+<li>
+<p><a href="https://github.com/jenkinsci/jenkins/blob/master/CONTRIBUTING.md">jenkins本身开发指导说明</a></p>
 <ul>
 <li>java8</li>
 <li>mavne&gt;=3.5.3</li>
 <li>OpenJDK</li>
-</ul></li>
-<li><a href="https://jenkins.io/doc/developer/tutorial/prepare/">jenkins插件开发指导说明</a>
-
+</ul>
+</li>
+<li>
+<p><a href="https://jenkins.io/doc/developer/tutorial/prepare/">jenkins插件开发指导说明</a></p>
 <ul>
 <li><a href="https://jenkins.io/doc/developer/tutorial/prepare/">step 1: Preparing for Plugin Development</a></li>
 <li><a href="https://jenkins.io/doc/developer/tutorial/create/">step 2: Create a Plugin</a></li>
@@ -131,40 +127,41 @@
 <li><a href="https://wiki.jenkins.io/display/JENKINS/Manage+global+settings+and+tools+installations">Manage global settings and tools installations</a></li>
 <li><a href="https://wiki.jenkins.io/display/JENKINS/Debugging+native+Maven+jobs">Debugging native Maven jobs</a></li>
 <li><a href="https://stackoverflow.com/questions/975271/remote-debugging-a-java-application">Remote debugging a Java application</a></li>
-</ul></li>
-
-<li><p>快速打包jenkins.war,The WAR file will be created in war/target/jenkins.war</p></li>
-
-<li><p><a href="https://wiki.jenkins.io/display/JENKINS/Starting+and+Accessing+Jenkins">jenkins启动</a></p></li>
-
-<li><p><a href="http://blog.nsfocus.net/intellij-idea-remote-debugging-jenkins/">intellij idea远程调试jenkins</a></p></li>
-
-<li><p><a href="https://jenkins.io/blog/2019/05/30/becoming-contributor-newbie-tickets/">Becoming a Jenkins contributor: Newbie-friendly tickets</a></p></li>
-
-<li><p><a href="https://jenkins.io/zh/blog/2018/10/16/custom-war-packager/">docker打包jenkins</a></p>
-
+</ul>
+</li>
+<li>
+<p>快速打包jenkins.war,The WAR file will be created in war/target/jenkins.war</p>
+</li>
+<li>
+<p><a href="https://wiki.jenkins.io/display/JENKINS/Starting+and+Accessing+Jenkins">jenkins启动</a></p>
+</li>
+<li>
+<p><a href="http://blog.nsfocus.net/intellij-idea-remote-debugging-jenkins/">intellij idea远程调试jenkins</a></p>
+</li>
+<li>
+<p><a href="https://jenkins.io/blog/2019/05/30/becoming-contributor-newbie-tickets/">Becoming a Jenkins contributor: Newbie-friendly tickets</a></p>
+</li>
+<li>
+<p><a href="https://jenkins.io/zh/blog/2018/10/16/custom-war-packager/">docker打包jenkins</a></p>
 <p>mvn clean package -pl war -am -DskipTests -Dfindbugs.skip
-目前来看主要涉及jobs/workspace内容等</p></li>
+目前来看主要涉及jobs/workspace内容等</p>
+</li>
 </ol>
-
-<h2 id="jenkins相关知识点">jenkins相关知识点</h2>
-
+<h2 id="jenkins">jenkins相关知识点</h2>
 <ol>
-<li>Blue Ocean重新定义jenkins的用户体验，侧重pipeline：<a href="https://jenkins.io/zh/doc/book/blueocean/">https://jenkins.io/zh/doc/book/blueocean/</a></li>
-<li>把jenkins的slave/agent的内容存储到其他存储系统，从而降低master和slave的通信压力：<a href="https://jenkins.io/zh/blog/2018/09/10/scaling-network-connections/">https://jenkins.io/zh/blog/2018/09/10/scaling-network-connections/</a></li>
-<li>jenkins的k8s使用：<a href="https://jenkins.io/zh/blog/2018/09/14/kubernetes-and-secret-agents/">https://jenkins.io/zh/blog/2018/09/14/kubernetes-and-secret-agents/</a></li>
-<li>jenkins的python支持：<a href="https://jenkins.io/zh/solutions/python/">https://jenkins.io/zh/solutions/python/</a></li>
+<li>Blue Ocean重新定义jenkins的用户体验，侧重pipeline：https://jenkins.io/zh/doc/book/blueocean/</li>
+<li>把jenkins的slave/agent的内容存储到其他存储系统，从而降低master和slave的通信压力：https://jenkins.io/zh/blog/2018/09/10/scaling-network-connections/</li>
+<li>jenkins的k8s使用：https://jenkins.io/zh/blog/2018/09/14/kubernetes-and-secret-agents/</li>
+<li>jenkins的python支持：https://jenkins.io/zh/solutions/python/</li>
 <li>hudson和jenkins的区别就是mysql和mariadb的区别，前者被oracle收购后，开发团队就开发了后者</li>
 <li><a href="https://wiki.jenkins.io/display/JENKINS/Remote+access+API#space-menu-link-content">jenkins api介绍</a>
-里面介绍了推荐的python和java封装好的api；同时jenkins信息的获取是通过xpath获取的,比如通过<a href="http://127.0.0.1:8080/api/json?depth=1">http://127.0.0.1:8080/api/json?depth=1</a>
-或者<a href="http://127.0.0.1:8080/api/xml?depth=1可以获取一些较少的关键信息,通过http://127.0.0.1:8080/api/json?tree=jobs[name]{0,12">http://127.0.0.1:8080/api/xml?depth=1可以获取一些较少的关键信息,通过http://127.0.0.1:8080/api/json?tree=jobs[name]{0,12</a>}
-或者<a href="http://127.0.0.1:8080/api/xml?tree=jobs[name]{0,12}可以获取前12个job的信息(这里tree=jobs[name]使用了xpath过滤)；每项任务的操作，在web界面上可以">http://127.0.0.1:8080/api/xml?tree=jobs[name]{0,12}可以获取前12个job的信息(这里tree=jobs[name]使用了xpath过滤)；每项任务的操作，在web界面上可以</a>
+里面介绍了推荐的python和java封装好的api；同时jenkins信息的获取是通过xpath获取的,比如通过http://127.0.0.1:8080/api/json?depth=1
+或者http://127.0.0.1:8080/api/xml?depth=1可以获取一些较少的关键信息,通过http://127.0.0.1:8080/api/json?tree=jobs[name]{0,12}
+或者http://127.0.0.1:8080/api/xml?tree=jobs[name]{0,12}可以获取前12个job的信息(这里tree=jobs[name]使用了xpath过滤)；每项任务的操作，在web界面上可以
 看到链接；授权采用的是基本授权(Basic Auth)</li>
-<li><a href="https://jenkins-zh.cn">Jenkins中文社区</a><br /></li>
+<li><a href="https://jenkins-zh.cn">Jenkins中文社区</a></li>
 </ol>
-
-<h2 id="分布式部署实现">分布式部署实现</h2>
-
+<h2 id="heading-1">分布式部署实现</h2>
 <ol>
 <li><a href="https://jenkins-zh.cn/wechat/articles/2019/04/2019-04-23-jenkins-master-shared-home/">关于Jenkins master共享JENKINS_HOME目录的实验</a>验证了当前的jenkins在
 分布式部署时的问题:通过共享强依赖的单机目录(k8s上实现多个容器挂载相同的目录,可以借助ceph分布式存储)，无法实现</li>
@@ -172,79 +169,79 @@
 <li>首先解决job相关的分布式实现，其次解决插件相关的分布式实现，还有Jenkins配置相关的分布式，或许通过配置本地化存储修改为远端数据库存储解决分布式问题</li>
 <li></li>
 </ol>
-
-<h1 id="疑问">疑问</h1>
-
-<ul class="task-list">
-<li><label><input type="checkbox" disabled class="task-list-item"> jenkins是不是把job等信息全部存入<strong><em>内存</em></strong>？因为jenkins不使用数据库，内容全部落磁盘，把磁盘的部分或者全部信息落入内存，无疑可以加快速度</label></li>
+<h1 id="heading-2">疑问</h1>
+<ul>
+<li><input disabled="" type="checkbox">jenkins是不是把job等信息全部存入<em><strong>内存</strong></em>？因为jenkins不使用数据库，内容全部落磁盘，把磁盘的部分或者全部信息落入内存，无疑可以加快速度</li>
 </ul>
-
-<h1 id="调试jenkins源代码">调试jenkins源代码</h1>
-
+<h1 id="jenkins-1">调试jenkins源代码</h1>
 <ol>
-<li>根据源代码生成jenkins.war包</li>
-
-<li><p>debug模式启动jenkins</p>
-
-<pre><code>java -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=8000 -jar war/target/jenkins.war --httpPort=8081
-</code></pre></li>
-
-<li><p>使用idea开启远程调试</p>
-
-<pre><code>1. 第一句日志目前不知道从哪儿打印的？
-Listening for transport dt_socket at address: 8000
-2. 接下来的日志是 [org.jenkins-ci:executable-war:1.45](https://github.com/jenkinsci/extras-executable-war) 的 `Main.java` 的 `main` 函数输出的，既可以认为这是程序的入口
-3. 接着会调用org.jenkins-ci:winstone:5.3到Launcher.java启动jetty服务
-4. 接着调用jenkins/core/src/main/java/hudson/WebAppMain.java，主要是Creates the sole instance of {@link jenkins.model.Jenkins} and register it to the {@link ServletContext}.
-5. 
-</code></pre></li>
+<li>
+<p>根据源代码生成jenkins.war包</p>
+</li>
+<li>
+<p>debug模式启动jenkins</p>
+<pre><code> java -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=8000 -jar war/target/jenkins.war --httpPort=8081
+</code></pre>
+</li>
+<li>
+<p>使用idea开启远程调试</p>
+<pre><code> 1. 第一句日志目前不知道从哪儿打印的？
+ Listening for transport dt_socket at address: 8000
+ 2. 接下来的日志是 [org.jenkins-ci:executable-war:1.45](https://github.com/jenkinsci/extras-executable-war) 的 `Main.java` 的 `main` 函数输出的，既可以认为这是程序的入口
+ 3. 接着会调用org.jenkins-ci:winstone:5.3到Launcher.java启动jetty服务
+ 4. 接着调用jenkins/core/src/main/java/hudson/WebAppMain.java，主要是Creates the sole instance of {@link jenkins.model.Jenkins} and register it to the {@link ServletContext}.
+ 5. 
+</code></pre>
+</li>
 </ol>
-
-<h1 id="删除job的步骤">删除job的步骤</h1>
-
+<h1 id="job">删除job的步骤</h1>
 <ol>
 <li>先删除job下的config.xml文件</li>
-<li>再递归删除其他文件和目录<br /></li>
+<li>再递归删除其他文件和目录</li>
 </ol>
-
-<h1 id="实验结果">实验结果</h1>
-
+<h1 id="heading-3">实验结果</h1>
 <ul>
-<li><p>[x] job的日志是每次从磁盘加载的，不存内存,根据project名字，去磁盘里检索</p>
-
-<pre><code>检索路径格式：项目名字/builds/构建号/log
-举例：demo/builds/1/log
-</code></pre></li>
-
-<li><p>[x] job的日志是每次从磁盘加载的，不存内存</p></li>
+<li>
+<p><input checked="" disabled="" type="checkbox">job的日志是每次从磁盘加载的，不存内存,根据project名字，去磁盘里检索</p>
+<pre><code>  检索路径格式：项目名字/builds/构建号/log
+  举例：demo/builds/1/log
+</code></pre>
+</li>
+<li>
+<p><input checked="" disabled="" type="checkbox">job的日志是每次从磁盘加载的，不存内存</p>
+</li>
 </ul>
-
-<h1 id="jenkins源码主要依赖包说明">jenkins源码主要依赖包说明</h1>
-
+<h1 id="jenkins-2">jenkins源码主要依赖包说明</h1>
 <ol>
-<li><code>org.jenkins-ci:executable-war:1.45</code><a href="https://github.com/jenkinsci/extras-executable-war">源码</a> 执行main依赖</li>
-
-<li><p><code>org.jenkins-ci:winstone:5.3</code> <a href="https://github.com/jenkinsci/winstone">源码</a>只包含winstone部分，打包的时候，把<code>org.eclipse.jetty</code>和<code>javax.servlet</code>也打包进去</p>
-
-<pre><code>Winstone is a command line interface around Jetty 9.4, which implements servlet 3.1, WebSocket/JSR-356, and HTTP/2 support. 
-It is used as the default embedded servlet container in Jenkins (via executable-war module) and can be used by any other web applications that wants to be self-contained
-</code></pre></li>
-
-<li><p><code>org.jenkins-ci:task-reactor:1.5</code> 主要是执行各种任务：加载jobs/加载plugins/准备jenkins全局环境等</p></li>
-
-<li><p><code>org.jenkins-ci.main:remoting:3.33</code> 主要是和远程slave通信，执行远程操作</p></li>
-
-<li><p><code>org.jenkins-ci:commons-jelly:</code> 主要是jenkins前端展示相关</p></li>
-
-<li><p><code>org.jvnet.hudson:xstream:</code> 主要是读写jenkins的job的config.xml配置相关</p></li>
-
-<li><p><code>org.kohsuke.stapler:stapler:</code> 主要是处理jenkins的请求和响应相关</p></li>
-
-<li><p><code>org.kohsuke.stapler:stapler-jelly:</code> 主要是jenkins前端展示相关的补充</p></li>
+<li>
+<p><code>org.jenkins-ci:executable-war:1.45</code><a href="https://github.com/jenkinsci/extras-executable-war">源码</a> 执行main依赖</p>
+</li>
+<li>
+<p><code>org.jenkins-ci:winstone:5.3</code> <a href="https://github.com/jenkinsci/winstone">源码</a>只包含winstone部分，打包的时候，把<code>org.eclipse.jetty</code>和<code>javax.servlet</code>也打包进去</p>
+<pre><code> Winstone is a command line interface around Jetty 9.4, which implements servlet 3.1, WebSocket/JSR-356, and HTTP/2 support. 
+ It is used as the default embedded servlet container in Jenkins (via executable-war module) and can be used by any other web applications that wants to be self-contained
+</code></pre>
+</li>
+<li>
+<p><code>org.jenkins-ci:task-reactor:1.5</code> 主要是执行各种任务：加载jobs/加载plugins/准备jenkins全局环境等</p>
+</li>
+<li>
+<p><code>org.jenkins-ci.main:remoting:3.33</code> 主要是和远程slave通信，执行远程操作</p>
+</li>
+<li>
+<p><code>org.jenkins-ci:commons-jelly:</code> 主要是jenkins前端展示相关</p>
+</li>
+<li>
+<p><code>org.jvnet.hudson:xstream:</code> 主要是读写jenkins的job的config.xml配置相关</p>
+</li>
+<li>
+<p><code>org.kohsuke.stapler:stapler:</code> 主要是处理jenkins的请求和响应相关</p>
+</li>
+<li>
+<p><code>org.kohsuke.stapler:stapler-jelly:</code> 主要是jenkins前端展示相关的补充</p>
+</li>
 </ol>
-
-<h2 id="参与jenkins建设">参与jenkins建设</h2>
-
+<h2 id="jenkins-3">参与jenkins建设</h2>
 <p>注册jenkins的wiki和jira账号，为同一个账号
 <a href="https://wiki.jenkins.io/#all-updates">https://wiki.jenkins.io/#all-updates</a>
 <a href="https://issues.jenkins-ci.org/browse/JENKINS-58948?filter=-4">https://issues.jenkins-ci.org/browse/JENKINS-58948?filter=-4</a></p>
@@ -284,7 +281,7 @@ It is used as the default embedded servlet container in Jenkins (via executable-
 
   
   <hr>
-  <div class="copyright">&copy; 2019 | <a href="https://github.com/shengulong">Github</a> | <a href="https://www.cnblogs.com/shengulong/">cnblogs</a> | <a href="https://shengulong.github.io/">Github Pages</a></div>
+  <div class="copyright">© 2019 | <a href="https://github.com/shengulong">Github</a> | <a href="https://www.cnblogs.com/shengulong/">cnblogs</a> | <a href="https://shengulong.github.io/">Github Pages</a></div>
   
   </footer>
   </article>

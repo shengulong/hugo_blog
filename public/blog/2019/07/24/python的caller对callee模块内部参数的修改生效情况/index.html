@@ -97,10 +97,7 @@
       </header>
 
 
-
-
-<h3 id="被调用方callee代码">被调用方callee代码</h3>
-
+<h3 id="callee">被调用方callee代码</h3>
 <pre><code>callee.py
 
 #!/usr/bin/env python
@@ -147,9 +144,7 @@ class ClassTemplate(object):
     def staticmethod(value):
         print(&quot;my value is {}&quot;.format(value))
 </code></pre>
-
-<h3 id="调用方caller代码">调用方caller代码</h3>
-
+<h3 id="caller">调用方caller代码</h3>
 <pre><code>test_shutter.py
 
 #!/usr/bin/env python
@@ -203,11 +198,8 @@ class TestShutter(TestCase):
 
         self.assertEqual(True, True)
 </code></pre>
-
-<h3 id="django下测试输出">django下测试输出</h3>
-
+<h3 id="django">django下测试输出</h3>
 <p>执行<code>python manage.py test --patter='test_shutter.py' -v 3</code>,输出内容：</p>
-
 <pre><code>我是模块内部的初始值
 模块会在被引入时(import callee)执行一遍,引入本模块会显示此信息
 
@@ -234,14 +226,11 @@ doc: I'm a function
 callee
 ##########
 </code></pre>
-
-<h3 id="结论">结论</h3>
-
+<h3 id="heading">结论</h3>
 <p>通过上面模块test_shutter.py对模块callee.py的引用，以及测试结果输出，理解模块callee的变量范围</p>
-
 <ul>
-<li>当文件是被调用时，<strong>name</strong>的值为模块名；此时并不需要一个可执行的入口main了</li>
-<li>当一个module作为整体被执行时，<strong>name</strong>的值为 &ldquo;<strong>main</strong>&rdquo;, 类似于C语言中的main()函数的作用，即作为入口</li>
+<li>当文件是被调用时，__name__的值为模块名；此时并不需要一个可执行的入口main了</li>
+<li>当一个module作为整体被执行时，__name__的值为 &ldquo;<strong>main</strong>&quot;, 类似于C语言中的main()函数的作用，即作为入口</li>
 </ul>
 
 
@@ -279,7 +268,7 @@ callee
 
   
   <hr>
-  <div class="copyright">&copy; 2019 | <a href="https://github.com/shengulong">Github</a> | <a href="https://www.cnblogs.com/shengulong/">cnblogs</a> | <a href="https://shengulong.github.io/">Github Pages</a></div>
+  <div class="copyright">© 2019 | <a href="https://github.com/shengulong">Github</a> | <a href="https://www.cnblogs.com/shengulong/">cnblogs</a> | <a href="https://shengulong.github.io/">Github Pages</a></div>
   
   </footer>
   </article>

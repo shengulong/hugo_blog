@@ -97,231 +97,204 @@
       </header>
 
 
-
-
-<h1 id="虚拟机栈-java-stack">虚拟机栈(java stack)</h1>
-
+<h1 id="java-stack">虚拟机栈(java stack)</h1>
 <blockquote>
 <p>百度图片搜索里的<code>动图</code>搜索功能不错，可以搜索一些动图，展示操作数栈的操作过程，比较形象。这点google差点意思</p>
 </blockquote>
-
 <ul>
-<li><p>虚拟机栈(jvm stacks)是线程独占的</p></li>
-
-<li><p>里面是多个栈帧(frame)或叫方法帧(class里的每个方法独占一个栈帧，所以也可以称之为方法帧)</p></li>
-
-<li><p>每个栈帧里包含：局部变量区/操作数栈/动态链接/方法的返回地址</p></li>
+<li>
+<p>虚拟机栈(jvm stacks)是线程独占的</p>
+</li>
+<li>
+<p>里面是多个栈帧(frame)或叫方法帧(class里的每个方法独占一个栈帧，所以也可以称之为方法帧)</p>
+</li>
+<li>
+<p>每个栈帧里包含：局部变量区/操作数栈/动态链接/方法的返回地址</p>
+</li>
 </ul>
-
-<h3 id="示例">示例</h3>
-
+<h3 id="heading">示例</h3>
 <ol>
-<li>文件SimpleExample.java</li>
-</ol>
-
-<pre><code class="language-java">   1 class SimpleExample {
-   2 	public static void main(String[] args) {
-   3 		int result = add(2,3);
-   4 		System.out.println(result);
-   5 	}
-   6 	public static int add(int a, int b) {
-   7 		return a+b;
-   8 	}
-   9 }
-</code></pre>
-
-<ol>
-<li>编译源代码生产字节码文件SimpleExample.class</li>
-</ol>
-
+<li>
+<p>文件SimpleExample.java</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">1 <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SimpleExample</span> <span style="color:#f92672">{</span>
+2 	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[</span><span style="color:#f92672">]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+3 		<span style="color:#66d9ef">int</span> result <span style="color:#f92672">=</span> add<span style="color:#f92672">(</span>2<span style="color:#f92672">,</span>3<span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+4 		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>result<span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+5 	<span style="color:#f92672">}</span>
+6 	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> a<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> b<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+7 		<span style="color:#66d9ef">return</span> a<span style="color:#f92672">+</span>b<span style="color:#f92672">;</span>
+8 	<span style="color:#f92672">}</span>
+9 <span style="color:#f92672">}</span>
+</code></pre></div></li>
+<li>
+<p>编译源代码生产字节码文件SimpleExample.class</p>
 <p>-g               Generates all debugging information, including local variables. By default, only line number and source file information is generated.</p>
-
 <p>作用是反编译的时候产生局部变量表</p>
-
-<pre><code>   javac -g SimpleExample.java
-</code></pre>
-
-<ol>
-<li>反编译</li>
-</ol>
-
-<pre><code>   javap -v -l -p SimpleExample.class
-</code></pre>
-
-<p>man -a javap查看帮助信息</p>
-
+<pre><code>javac -g SimpleExample.java
+</code></pre></li>
+<li>
+<p>反编译</p>
+<pre><code>javap -v -l -p SimpleExample.class
+</code></pre><p>man -a javap查看帮助信息</p>
 <p>-l            Prints line and local variable tables.</p>
-
 <p>-v           Prints stack size, number of locals and arguments for methods.</p>
-
 <p>-p           Shows all classes and members.</p>
-
-<pre><code>   ➜  myJavaDir javap -v -l -p  SimpleExample
-   Classfile /Users/xxxx/myJavaDir/SimpleExample.class
-     Last modified Oct 29, 2019; size 642 bytes
-     // 字节码的md5值
-     MD5 checksum e54540b1d2c0620b7e4eb555a8192a78
-     Compiled from &quot;SimpleExample.java&quot;
-   class SimpleExample
-     minor version: 0
-     major version: 52
-     flags: ACC_SUPER
-   //class常量池
-   Constant pool:
-      #1 = Methodref          #6.#26         // java/lang/Object.&quot;&lt;init&gt;&quot;:()V
-      #2 = Methodref          #5.#27         // SimpleExample.add:(II)I
-      #3 = Fieldref           #28.#29        // java/lang/System.out:Ljava/io/PrintStream;
-      #4 = Methodref          #30.#31        // java/io/PrintStream.println:(I)V
-      #5 = Class              #32            // SimpleExample
-      #6 = Class              #33            // java/lang/Object
-      #7 = Utf8               &lt;init&gt;
-      #8 = Utf8               ()V
-      #9 = Utf8               Code
-     #10 = Utf8               LineNumberTable
-     #11 = Utf8               LocalVariableTable
-     #12 = Utf8               this
-     #13 = Utf8               LSimpleExample;
-     #14 = Utf8               main
-     #15 = Utf8               ([Ljava/lang/String;)V
-     #16 = Utf8               args
-     #17 = Utf8               [Ljava/lang/String;
-     #18 = Utf8               result
-     #19 = Utf8               I
-     #20 = Utf8               add
-     #21 = Utf8               (II)I
-     #22 = Utf8               a
-     #23 = Utf8               b
-     #24 = Utf8               SourceFile
-     #25 = Utf8               SimpleExample.java
-     #26 = NameAndType        #7:#8          // &quot;&lt;init&gt;&quot;:()V
-     #27 = NameAndType        #20:#21        // add:(II)I
-     #28 = Class              #34            // java/lang/System
-     #29 = NameAndType        #35:#36        // out:Ljava/io/PrintStream;
-     #30 = Class              #37            // java/io/PrintStream
-     #31 = NameAndType        #38:#39        // println:(I)V
-     #32 = Utf8               SimpleExample
-     #33 = Utf8               java/lang/Object
-     #34 = Utf8               java/lang/System
-     #35 = Utf8               out
-     #36 = Utf8               Ljava/io/PrintStream;
-     #37 = Utf8               java/io/PrintStream
-     #38 = Utf8               println
-     #39 = Utf8               (I)V
-   {
-     // 默认构造函数，即使我们不写，也会自动产生
-     SimpleExample();
-       descriptor: ()V
-       flags:
-       Code:
-         // 栈帧的操作数栈里有一个元素，栈帧的局部变量表里有一个变量(为this即SimpleExample对象)，构造方法有一个入参(this),构建方法的第一个参数(和默认参数)是this
-         stack=1, locals=1, args_size=1
-            // 把局部变量表(数组结构)里的索引为0的数据(this对象)放入操作数栈
-            0: aload_0
-            // 调用(this)父类(这里是Object)的构造方法
-            1: invokespecial #1                  // Method java/lang/Object.&quot;&lt;init&gt;&quot;:()V
-            // 返回,清空操作数栈和局部变量表
-            4: return
-         // 源代码和字节码指令序号的映射表   
-         LineNumberTable:
-           // 代码的第一行(&quot;class SimpleExample {&quot;)对应的指令为0: aload_0
-           line 1: 0
-         // 局部变量表  
-         LocalVariableTable:
-         	// 变量名字是this，长度为5个字节。局部变量表第一项是个reference（引用），它指定的就是对象本身的引用，也就是我们常用的this,但是在静态方法中，没这个引用
-           Start  Length  Slot  Name   Signature
-               0       5     0  this   LSimpleExample;
+<pre><code>➜  myJavaDir javap -v -l -p  SimpleExample
+Classfile /Users/xxxx/myJavaDir/SimpleExample.class
+  Last modified Oct 29, 2019; size 642 bytes
+  // 字节码的md5值
+  MD5 checksum e54540b1d2c0620b7e4eb555a8192a78
+  Compiled from &quot;SimpleExample.java&quot;
+class SimpleExample
+  minor version: 0
+  major version: 52
+  flags: ACC_SUPER
+//class常量池
+Constant pool:
+   #1 = Methodref          #6.#26         // java/lang/Object.&quot;&lt;init&gt;&quot;:()V
+   #2 = Methodref          #5.#27         // SimpleExample.add:(II)I
+   #3 = Fieldref           #28.#29        // java/lang/System.out:Ljava/io/PrintStream;
+   #4 = Methodref          #30.#31        // java/io/PrintStream.println:(I)V
+   #5 = Class              #32            // SimpleExample
+   #6 = Class              #33            // java/lang/Object
+   #7 = Utf8               &lt;init&gt;
+   #8 = Utf8               ()V
+   #9 = Utf8               Code
+  #10 = Utf8               LineNumberTable
+  #11 = Utf8               LocalVariableTable
+  #12 = Utf8               this
+  #13 = Utf8               LSimpleExample;
+  #14 = Utf8               main
+  #15 = Utf8               ([Ljava/lang/String;)V
+  #16 = Utf8               args
+  #17 = Utf8               [Ljava/lang/String;
+  #18 = Utf8               result
+  #19 = Utf8               I
+  #20 = Utf8               add
+  #21 = Utf8               (II)I
+  #22 = Utf8               a
+  #23 = Utf8               b
+  #24 = Utf8               SourceFile
+  #25 = Utf8               SimpleExample.java
+  #26 = NameAndType        #7:#8          // &quot;&lt;init&gt;&quot;:()V
+  #27 = NameAndType        #20:#21        // add:(II)I
+  #28 = Class              #34            // java/lang/System
+  #29 = NameAndType        #35:#36        // out:Ljava/io/PrintStream;
+  #30 = Class              #37            // java/io/PrintStream
+  #31 = NameAndType        #38:#39        // println:(I)V
+  #32 = Utf8               SimpleExample
+  #33 = Utf8               java/lang/Object
+  #34 = Utf8               java/lang/System
+  #35 = Utf8               out
+  #36 = Utf8               Ljava/io/PrintStream;
+  #37 = Utf8               java/io/PrintStream
+  #38 = Utf8               println
+  #39 = Utf8               (I)V
+{
+  // 默认构造函数，即使我们不写，也会自动产生
+  SimpleExample();
+    descriptor: ()V
+    flags:
+    Code:
+      // 栈帧的操作数栈里有一个元素，栈帧的局部变量表里有一个变量(为this即SimpleExample对象)，构造方法有一个入参(this),构建方法的第一个参数(和默认参数)是this
+      stack=1, locals=1, args_size=1
+         // 把局部变量表(数组结构)里的索引为0的数据(this对象)放入操作数栈
+         0: aload_0
+         // 调用(this)父类(这里是Object)的构造方法
+         1: invokespecial #1                  // Method java/lang/Object.&quot;&lt;init&gt;&quot;:()V
+         // 返回,清空操作数栈和局部变量表
+         4: return
+      // 源代码和字节码指令序号的映射表   
+      LineNumberTable:
+        // 代码的第一行(&quot;class SimpleExample {&quot;)对应的指令为0: aload_0
+        line 1: 0
+      // 局部变量表  
+      LocalVariableTable:
+         // 变量名字是this，长度为5个字节。局部变量表第一项是个reference（引用），它指定的就是对象本身的引用，也就是我们常用的this,但是在静态方法中，没这个引用
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   LSimpleExample;
    
-     public static void main(java.lang.String[]);
-       descriptor: ([Ljava/lang/String;)V
-       // 方法修饰符public static
-       flags: ACC_PUBLIC, ACC_STATIC
-       Code:
-         // 栈帧里的操作数栈为2，局部变量数量为2，参数个数为1
-         stack=2, locals=2, args_size=1
-            // 把常量池里的整数2压入操作数栈
-            0: iconst_2
-            // 把常量池里的整数3压入操作数栈
-            1: iconst_3
-            // 调用class常量池里的#2即静态方法add，返回结果入栈顶。由于该方法需要两个整数做参数，所以invokestatic从操作数栈中弹出两个元素，并将它们传给由JVM为add()创建的新栈帧，保存在add方法帧的局部变量表里。main()的操作数栈此时是空的。
-            2: invokestatic  #2                  // Method add:(II)I
-            // 把操作数栈的栈顶的一个整数元素取出，存入局部变量表的索引为1的位置，也就是result的值
-            5: istore_1
-            // getstatic将类型为java/io/PrintStream的静态字段java/lang/System.out压入栈中
-            6: getstatic     #3                  // Field java/lang/System.out:Ljava/io/PrintStream;
-            // iload_1将局部变量表(数组结构)里的索引位置为1处的变量（就是result的值，现在等于5）压入到操作数栈中。所以此时栈保存了两个值：out字段和值5
-            9: iload_1
-            // 现在invokevirtual准备调用PrintSteam.println()方法。它从栈中弹出两个元素：第一个元素是对将要调用println()方法的对象的引用。第二个元素是一个要传递给println()方法的整型参数，它只需要一个参数。这是main()方法打印相加的结果的地方
-           10: invokevirtual #4                  // Method java/io/PrintStream.println:(I)V
-           // return命令完成该方法。主帧被丢弃，JVM进程结束
-           13: return
-         LineNumberTable:
-           // 源代码第3行(int result = add(2,3);)对应字节码指令(0: iconst_2,1: iconst_3, 2: invokestatic #2,5: istore_1)直到（line 4: 6）
-           line 3: 0
-           line 4: 6
-           line 5: 13
-         LocalVariableTable:
-           // main方法栈帧的局部变量变里有两个变量args、result。静态方法，没有this引用，第一个变量就不再是this
-           Start  Length  Slot  Name   Signature
-               0      14     0  args   [Ljava/lang/String;
-               6       8     1 result   I
+  public static void main(java.lang.String[]);
+    descriptor: ([Ljava/lang/String;)V
+    // 方法修饰符public static
+    flags: ACC_PUBLIC, ACC_STATIC
+    Code:
+      // 栈帧里的操作数栈为2，局部变量数量为2，参数个数为1
+      stack=2, locals=2, args_size=1
+         // 把常量池里的整数2压入操作数栈
+         0: iconst_2
+         // 把常量池里的整数3压入操作数栈
+         1: iconst_3
+         // 调用class常量池里的#2即静态方法add，返回结果入栈顶。由于该方法需要两个整数做参数，所以invokestatic从操作数栈中弹出两个元素，并将它们传给由JVM为add()创建的新栈帧，保存在add方法帧的局部变量表里。main()的操作数栈此时是空的。
+         2: invokestatic  #2                  // Method add:(II)I
+         // 把操作数栈的栈顶的一个整数元素取出，存入局部变量表的索引为1的位置，也就是result的值
+         5: istore_1
+         // getstatic将类型为java/io/PrintStream的静态字段java/lang/System.out压入栈中
+         6: getstatic     #3                  // Field java/lang/System.out:Ljava/io/PrintStream;
+         // iload_1将局部变量表(数组结构)里的索引位置为1处的变量（就是result的值，现在等于5）压入到操作数栈中。所以此时栈保存了两个值：out字段和值5
+         9: iload_1
+         // 现在invokevirtual准备调用PrintSteam.println()方法。它从栈中弹出两个元素：第一个元素是对将要调用println()方法的对象的引用。第二个元素是一个要传递给println()方法的整型参数，它只需要一个参数。这是main()方法打印相加的结果的地方
+        10: invokevirtual #4                  // Method java/io/PrintStream.println:(I)V
+        // return命令完成该方法。主帧被丢弃，JVM进程结束
+        13: return
+      LineNumberTable:
+        // 源代码第3行(int result = add(2,3);)对应字节码指令(0: iconst_2,1: iconst_3, 2: invokestatic #2,5: istore_1)直到（line 4: 6）
+        line 3: 0
+        line 4: 6
+        line 5: 13
+      LocalVariableTable:
+        // main方法栈帧的局部变量变里有两个变量args、result。静态方法，没有this引用，第一个变量就不再是this
+        Start  Length  Slot  Name   Signature
+            0      14     0  args   [Ljava/lang/String;
+            6       8     1 result   I
    
-     public static int add(int, int);
-       // (II)I表示方法add为两个int的入参数，返回类型为int
-       descriptor: (II)I
-       flags: ACC_PUBLIC, ACC_STATIC
-       Code:
-         // 栈帧里的操作数栈为2，局部变量数量为2，参数个数为2
-         stack=2, locals=2, args_size=2
-            // 把add方法帧局部变量表里索引为0的元素值(这里为整数2)压入add方法帧的操作数栈
-            0: iload_0
-            // 把add方法帧局部变量表里索引为1的元素值(这里为整数3)压入add方法帧的操作数栈
-            1: iload_1
-            // 把操作数栈的栈顶的2个整数从操作数栈里取出，然后相加，最后把结果再次存入操作数栈
-            2: iadd
-            // 正常情况下，当前帧操作数栈的栈顶值出栈，压入调用方法的操作上栈的栈顶，丢弃当前帧操作数栈的其他值，销毁了add方法帧。恢复到调用方法帧，调用方法(invoker)继续执行
-            3: ireturn
-         LineNumberTable:
-           // 源代码的第7行(return a+b;)对应上面的字节码指令(0: iload_0)及后续指令
-           line 7: 0
-         LocalVariableTable:
-           // 栈帧里的局部变量表里有2个变量a和b,类型为int，大小都为4个字节，在局部变量表里的索引位置为0和1
-           Start  Length  Slot  Name   Signature
-               0       4     0     a   I
-               0       4     1     b   I
-   }
-   SourceFile: &quot;SimpleExample.java&quot;
-   
-</code></pre>
-
-<p>示例：</p>
-
-<pre><code class="language-java">package com.demo3;
-public class Test {
-    public static void foo() {
-        int a = 1;
-        int b = 2;
-        int c = (a + b) * 5;
-    }
-    public static void main(String[] args) {
-        foo();
-    }
+  public static int add(int, int);
+    // (II)I表示方法add为两个int的入参数，返回类型为int
+    descriptor: (II)I
+    flags: ACC_PUBLIC, ACC_STATIC
+    Code:
+      // 栈帧里的操作数栈为2，局部变量数量为2，参数个数为2
+      stack=2, locals=2, args_size=2
+         // 把add方法帧局部变量表里索引为0的元素值(这里为整数2)压入add方法帧的操作数栈
+         0: iload_0
+         // 把add方法帧局部变量表里索引为1的元素值(这里为整数3)压入add方法帧的操作数栈
+         1: iload_1
+         // 把操作数栈的栈顶的2个整数从操作数栈里取出，然后相加，最后把结果再次存入操作数栈
+         2: iadd
+         // 正常情况下，当前帧操作数栈的栈顶值出栈，压入调用方法的操作上栈的栈顶，丢弃当前帧操作数栈的其他值，销毁了add方法帧。恢复到调用方法帧，调用方法(invoker)继续执行
+         3: ireturn
+      LineNumberTable:
+        // 源代码的第7行(return a+b;)对应上面的字节码指令(0: iload_0)及后续指令
+        line 7: 0
+      LocalVariableTable:
+        // 栈帧里的局部变量表里有2个变量a和b,类型为int，大小都为4个字节，在局部变量表里的索引位置为0和1
+        Start  Length  Slot  Name   Signature
+            0       4     0     a   I
+            0       4     1     b   I
 }
-</code></pre>
-
-<p>基于栈的Hotspot的执行过程如下：</p>
-
-<p><img src="/img/blog/2019/虚拟机栈-0.gif" alt="img" /></p>
-
-<h4 id="参考">参考</h4>
-
+SourceFile: &quot;SimpleExample.java&quot;
+   
+</code></pre></li>
+</ol>
+<p>示例：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> com.demo3<span style="color:#f92672">;</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Test</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">foo</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> 1<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">int</span> b <span style="color:#f92672">=</span> 2<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">int</span> c <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>a <span style="color:#f92672">+</span> b<span style="color:#f92672">)</span> <span style="color:#f92672">*</span> 5<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[</span><span style="color:#f92672">]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        foo<span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>基于栈的Hotspot的执行过程如下：</p>
+<p><img src="/img/blog/2019/%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A0%88-0.gif" alt="img"></p>
+<h4 id="heading-1">参考</h4>
 <p><a href="https://zhuanlan.zhihu.com/p/87770605">浅谈虚拟机内存模型</a></p>
-
 <p><a href="https://zhuanlan.zhihu.com/p/45354152">Java虚拟机—栈帧、操作数栈和局部变量表</a></p>
-
 <p><a href="http://baijiahao.baidu.com/s?id=1612843433210953960&amp;wfr=spider&amp;for=pc">JVM体系结构101：了解虚拟机</a></p>
-
 <p><a href="https://docs.oracle.com/javase/specs/jvms/se13/html/jvms-6.html#jvms-6.5.aaload">jvm指令集</a></p>
-
 <p><a href="https://www.jianshu.com/p/6a8997560b05">通过javap命令分析java汇编指令</a></p>
 
 
@@ -359,7 +332,7 @@ public class Test {
 
   
   <hr>
-  <div class="copyright">&copy; 2019 | <a href="https://github.com/shengulong">Github</a> | <a href="https://www.cnblogs.com/shengulong/">cnblogs</a> | <a href="https://shengulong.github.io/">Github Pages</a></div>
+  <div class="copyright">© 2019 | <a href="https://github.com/shengulong">Github</a> | <a href="https://www.cnblogs.com/shengulong/">cnblogs</a> | <a href="https://shengulong.github.io/">Github Pages</a></div>
   
   </footer>
   </article>

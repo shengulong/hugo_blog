@@ -95,142 +95,94 @@
       </header>
 
 
-
-
-<h1 id="gerrit-polymer-frontend-https-gerrit-googlesource-com-gerrit-master-polygerrit-ui-readme-md"><a href="https://gerrit.googlesource.com/gerrit/+/master/polygerrit-ui/README.md">Gerrit Polymer Frontend</a></h1>
-
+<h1 id="gerrit-polymer-frontendhttpsgerritgooglesourcecomgerritmasterpolygerrit-uireadmemd"><a href="https://gerrit.googlesource.com/gerrit/+/master/polygerrit-ui/README.md">Gerrit Polymer Frontend</a></h1>
 <p>Follow the
 <a href="https://gerrit-review.googlesource.com/Documentation/dev-readme.html">setup instructions for Gerrit backend developers</a>
 where applicable.</p>
-
-<h2 id="installing-bazel-https-bazel-build">Installing <a href="https://bazel.build/">Bazel</a></h2>
-
+<h2 id="installing-bazelhttpsbazelbuild">Installing <a href="https://bazel.build/">Bazel</a></h2>
 <p>Follow the instructions
 <a href="https://gerrit-review.googlesource.com/Documentation/dev-bazel.html#_installation">here</a>
 to get and install Bazel.</p>
-
-<h2 id="installing-node-js-https-nodejs-org-en-download-and-npm-packages">Installing <a href="https://nodejs.org/en/download/">Node.js</a> and npm packages</h2>
-
+<h2 id="installing-nodejshttpsnodejsorgendownload-and-npm-packages">Installing <a href="https://nodejs.org/en/download/">Node.js</a> and npm packages</h2>
 <p>The minimum nodejs version supported is 8.x+</p>
-
-<pre><code class="language-sh"># Debian experimental
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># Debian experimental</span>
 sudo apt-get install nodejs-legacy
 sudo apt-get install npm
 
-# OS X with Homebrew
+<span style="color:#75715e"># OS X with Homebrew</span>
 brew install node
 brew install npm
-</code></pre>
-
-<p>All other platforms:
+</code></pre></div><p>All other platforms:
 <a href="https://nodejs.org/en/download/">download from nodejs.org</a>.</p>
-
 <p>Various steps below require installing additional npm packages. The full list of
 dependencies can be installed with:</p>
-
-<pre><code class="language-sh">npm install
-</code></pre>
-
-<p>It may complain about a missing <code>typescript@2.3.4</code> peer dependency, which is
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">npm install
+</code></pre></div><p>It may complain about a missing <code>typescript@2.3.4</code> peer dependency, which is
 harmless.</p>
-
 <h2 id="running-locally-against-production-data">Running locally against production data</h2>
-
 <h4 id="go-server">Go server</h4>
-
 <p>To test the local Polymer frontend against gerrit-review.googlesource.com
 simply execute:</p>
-
-<pre><code class="language-sh">./polygerrit-ui/run-server.sh
-</code></pre>
-
-<p>Then visit <a href="http://localhost:8081">http://localhost:8081</a>.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">./polygerrit-ui/run-server.sh
+</code></pre></div><p>Then visit <a href="http://localhost:8081">http://localhost:8081</a>.</p>
 <p>This method is based on a
 <a href="https://gerrit.googlesource.com/gerrit/+/master/polygerrit-ui/server.go">simple hand-written Go webserver</a>.
 Mostly it just switches between serving files locally and proxying the real
 server based on the file name. It also does some basic response rewriting, e.g.
 it patches the <code>config/server/info</code> response with plugin information provided on
 the command line:</p>
-
-<pre><code class="language-sh">./polygerrit-ui/run-server.sh --plugins=plugins/my_plugin/static/my_plugin.js,plugins/my_plugin/static/my_plugin.html
-</code></pre>
-
-<p>The biggest draw back of this method is that you cannot log in, so cannot test
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">./polygerrit-ui/run-server.sh --plugins<span style="color:#f92672">=</span>plugins/my_plugin/static/my_plugin.js,plugins/my_plugin/static/my_plugin.html
+</code></pre></div><p>The biggest draw back of this method is that you cannot log in, so cannot test
 scenarios that require it.</p>
-
 <h4 id="mitm-proxy">MITM Proxy</h4>
-
 <p><a href="https://mitmproxy.org/">MITM Proxy</a> is an open source product for proxying
 https servers. The
 <a href="https://gerrit.googlesource.com/gerrit/+/master/contrib/mitm-ui/">contrib/mitm-ui/</a>
 directory contains scripts (and documentation) for using this technology
 (instead of the Go server). These scripts are somewhat experimental and
 unmaintained though.</p>
-
 <h2 id="running-locally-against-a-gerrit-test-site">Running locally against a Gerrit test site</h2>
-
 <p>Set up a local test site once:</p>
-
 <ol>
 <li><a href="https://gerrit-review.googlesource.com/Documentation/dev-bazel.html#_gerrit_development_war_file">Build Gerrit</a></li>
 <li><a href="https://gerrit-review.googlesource.com/Documentation/dev-readme.html#init">Set up a local test site</a>.</li>
 <li>Optionally <a href="https://gerrit.googlesource.com/gerrit/+/master/contrib/populate-fixture-data.py">populate</a> your test site with some test data.</li>
 </ol>
-
 <p>For running a locally built Gerrit war against your test instance use
 <a href="https://gerrit-review.googlesource.com/Documentation/dev-readme.html#run_daemon">this command</a>,
 and add the <code>--polygerrit-dev</code> option, if you want to serve the Polymer frontend
 directly from the sources in <code>polygerrit_ui/app/</code> instead of from the war:</p>
-
-<pre><code class="language-sh">$(bazel info output_base)/external/local_jdk/bin/java \
-    -DsourceRoot=$(bazel info workspace) \
-    -jar bazel-bin/gerrit.war daemon \
-    -d $GERRIT_SITE \
-    --console-log \
-    --polygerrit-dev
-</code></pre>
-
-<h2 id="running-tests">Running Tests</h2>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#66d9ef">$(</span>bazel info output_base<span style="color:#66d9ef">)</span>/external/local_jdk/bin/java <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -DsourceRoot<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>bazel info workspace<span style="color:#66d9ef">)</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -jar bazel-bin/gerrit.war daemon <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -d $GERRIT_SITE <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --console-log <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --polygerrit-dev
+</code></pre></div><h2 id="running-tests">Running Tests</h2>
 <p>This step requires the <code>web-component-tester</code> npm module.</p>
-
 <p>Note: it may be necessary to add the options <code>--unsafe-perm=true --allow-root</code>
 to the <code>npm install</code> command to avoid file permission errors.</p>
-
 <p>For daily development you typically only want to run and debug individual tests.
 Run the local <a href="#go-server">Go proxy server</a> and navigate for example to
 <a href="http://localhost:8081/elements/change/gr-account-entry/gr-account-entry_test.html">http://localhost:8081/elements/change/gr-account-entry/gr-account-entry_test.html</a>.
-Check &ldquo;Disable cache&rdquo; in the &ldquo;Network&rdquo; tab of Chrome&rsquo;s dev tools, so code
+Check &ldquo;Disable cache&rdquo; in the &ldquo;Network&rdquo; tab of Chrome's dev tools, so code
 changes are picked up on &ldquo;reload&rdquo;.</p>
-
 <p>Our CI integration ensures that all tests are run when you upload a change to
 Gerrit, but you can also run all tests locally in headless mode:</p>
-
-<pre><code class="language-sh">npm test
-</code></pre>
-
-<p>To allow the tests to run in Safari:</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">npm test
+</code></pre></div><p>To allow the tests to run in Safari:</p>
 <ul>
 <li>In the Advanced preferences tab, check &ldquo;Show Develop menu in menu bar&rdquo;.</li>
 <li>In the Develop menu, enable the &ldquo;Allow Remote Automation&rdquo; option.</li>
 </ul>
-
 <p>To run Chrome tests in headless mode:</p>
-
-<pre><code class="language-sh">WCT_HEADLESS_MODE=1 WCT_ARGS='--verbose -l chrome' ./polygerrit-ui/app/run_test.sh
-</code></pre>
-
-<h2 id="style-guide">Style guide</h2>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">WCT_HEADLESS_MODE<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> WCT_ARGS<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--verbose -l chrome&#39;</span> ./polygerrit-ui/app/run_test.sh
+</code></pre></div><h2 id="style-guide">Style guide</h2>
 <p>We follow the <a href="https://google.github.io/styleguide/javascriptguide.xml">Google JavaScript Style Guide</a>
 with a few exceptions. When in doubt, remain consistent with the code around you.</p>
-
 <p>In addition, we encourage the use of <a href="http://eslint.org/">ESLint</a>.
 It is available as a command line utility, as well as a plugin for most editors
 and IDEs.</p>
-
 <p><code>eslint-config-google</code> is a port of the Google JS Style Guide to an ESLint
 config module, and <code>eslint-plugin-html</code> allows ESLint to lint scripts inside
 HTML.
@@ -241,79 +193,46 @@ In addition, you can supply the <code>--fix</code> flag to apply some suggested 
 simple style issues.
 If you modify JS inside of <code>&lt;script&gt;</code> tags, like for test suites, you may have
 to supply the <code>--ext .html</code> flag.</p>
-
 <p>Some useful commands:</p>
-
 <ul>
 <li>To run ESLint on the whole app, less some dependency code:</li>
 </ul>
-
-<pre><code class="language-sh">npm run eslint
-</code></pre>
-
-<ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">npm run eslint
+</code></pre></div><ul>
 <li>To run ESLint on just the subdirectory you modified:</li>
 </ul>
-
-<pre><code class="language-sh">node_modules/eslint/bin/eslint.js --ext .html,.js polygerrit-ui/app/$YOUR_DIR_HERE
-</code></pre>
-
-<ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">node_modules/eslint/bin/eslint.js --ext .html,.js polygerrit-ui/app/$YOUR_DIR_HERE
+</code></pre></div><ul>
 <li>To run the linter on all of your local changes:</li>
 </ul>
-
-<pre><code class="language-sh">git diff --name-only master | xargs node_modules/eslint/bin/eslint.js --ext .html,.js
-</code></pre>
-
-<p>We also use the <code>polylint</code> tool to lint use of Polymer. To install polylint,
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git diff --name-only master | xargs node_modules/eslint/bin/eslint.js --ext .html,.js
+</code></pre></div><p>We also use the <code>polylint</code> tool to lint use of Polymer. To install polylint,
 execute the following command.</p>
-
 <p>To run polylint, execute the following command.</p>
-
-<pre><code class="language-sh">bazel test //polygerrit-ui/app:polylint_test
-</code></pre>
-
-<p>or</p>
-
-<pre><code class="language-sh">npm run polylint
-</code></pre>
-
-<h2 id="template-type-safety">Template Type Safety</h2>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bazel test //polygerrit-ui/app:polylint_test
+</code></pre></div><p>or</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">npm run polylint
+</code></pre></div><h2 id="template-type-safety">Template Type Safety</h2>
 <p>Polymer elements are not type checked against the element definition, making it
 trivial to break the display when refactoring or moving code. We now run
 additional tests to help ensure that template types are checked.</p>
-
-<p>A few notes to ensure that these tests pass
-- Any functions with optional parameters will need closure annotations.
-- Any Polymer parameters that are nullable or can be multiple types (other than
-  the one explicitly delared) will need type annotations.</p>
-
+<p>A few notes to ensure that these tests pass</p>
+<ul>
+<li>Any functions with optional parameters will need closure annotations.</li>
+<li>Any Polymer parameters that are nullable or can be multiple types (other than
+the one explicitly delared) will need type annotations.</li>
+</ul>
 <p>These tests require the <code>typescript</code> and <code>fried-twinkie</code> npm packages.</p>
-
 <p>To run on all files, execute the following command:</p>
-
-<pre><code class="language-sh">./polygerrit-ui/app/run_template_test.sh
-</code></pre>
-
-<p>or</p>
-
-<pre><code class="language-sh">npm run test-template
-</code></pre>
-
-<p>To run on a specific top level directory (ex: change-list)</p>
-
-<pre><code class="language-sh">TEMPLATE_NO_DEFAULT=true ./polygerrit-ui/app/run_template_test.sh //polygerrit-ui/app:template_test_change-list
-</code></pre>
-
-<p>To run on a specific file (ex: gr-change-list-view), execute the following command:</p>
-
-<pre><code class="language-sh">TEMPLATE_NO_DEFAULT=true ./polygerrit-ui/app/run_template_test.sh //polygerrit-ui/app:template_test_&lt;TOP_LEVEL_DIRECTORY&gt; --test_arg=&lt;VIEW_NAME&gt;
-</code></pre>
-
-<pre><code class="language-sh">TEMPLATE_NO_DEFAULT=true ./polygerrit-ui/app/run_template_test.sh //polygerrit-ui/app:template_test_change-list --test_arg=gr-change-list-view
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">./polygerrit-ui/app/run_template_test.sh
+</code></pre></div><p>or</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">npm run test-template
+</code></pre></div><p>To run on a specific top level directory (ex: change-list)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">TEMPLATE_NO_DEFAULT<span style="color:#f92672">=</span>true ./polygerrit-ui/app/run_template_test.sh //polygerrit-ui/app:template_test_change-list
+</code></pre></div><p>To run on a specific file (ex: gr-change-list-view), execute the following command:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">TEMPLATE_NO_DEFAULT<span style="color:#f92672">=</span>true ./polygerrit-ui/app/run_template_test.sh //polygerrit-ui/app:template_test_&lt;TOP_LEVEL_DIRECTORY&gt; --test_arg<span style="color:#f92672">=</span>&lt;VIEW_NAME&gt;
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">TEMPLATE_NO_DEFAULT<span style="color:#f92672">=</span>true ./polygerrit-ui/app/run_template_test.sh //polygerrit-ui/app:template_test_change-list --test_arg<span style="color:#f92672">=</span>gr-change-list-view
+</code></pre></div>
 
   <footer>
   
@@ -349,7 +268,7 @@ additional tests to help ensure that template types are checked.</p>
 
   
   <hr>
-  <div class="copyright">&copy; 2019 | <a href="https://github.com/shengulong">Github</a> | <a href="https://www.cnblogs.com/shengulong/">cnblogs</a> | <a href="https://shengulong.github.io/">Github Pages</a></div>
+  <div class="copyright">© 2019 | <a href="https://github.com/shengulong">Github</a> | <a href="https://www.cnblogs.com/shengulong/">cnblogs</a> | <a href="https://shengulong.github.io/">Github Pages</a></div>
   
   </footer>
   </article>

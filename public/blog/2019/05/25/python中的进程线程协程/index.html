@@ -94,16 +94,11 @@
       </header>
 
 
-
-
-<h2 id="进程">进程</h2>
-
+<h2 id="heading">进程</h2>
 <ul>
 <li>可以充分利用多核，进程间通信会耗费额外的开销，达不到多线程应有的效率</li>
 </ul>
-
-<h2 id="线程">线程</h2>
-
+<h2 id="heading-1">线程</h2>
 <ul>
 <li>由于GIL的存在，无法利用多核</li>
 <li>适合I/O密集型（IO阻塞期间CPU转去执行其他线程）</li>
@@ -113,48 +108,35 @@
 <li>线程切换是由操作系统的调度器进行控制的</li>
 <li>抢占式调度顺序具有不确定性，需要注意处理数据同步</li>
 </ul>
-
-<h2 id="协程">协程</h2>
-
+<h2 id="heading-2">协程</h2>
 <blockquote>
 <p>是一种用户级的轻量级的线程，拥有自己的寄存器上下文和栈。协程调度切换时，将寄存器和栈存放在指定地方，在切换回来的时候，恢复先前的上下文和栈</p>
 </blockquote>
-
 <ul>
 <li>用户需要自己编写调度逻辑，控制任务的切换，那么自然可以控制任务的执行顺序</li>
 <li>实现：yield(原生)/gevent/greenlet</li>
 <li>比线程消耗更少的资源</li>
 <li>对cpu来说，协程就是单线程，cpu不用考虑上下文调度和切换的问题，省去了cpu调度的开销，所有协程在一定程度上要优于线程</li>
 <li>协程相当于在单个进程里启动里一个单线程，同时又可以实现多线程的效果</li>
-<li>协程本质上是一个线程里面的细分，操作系统层面根本不知道这种区分，只当其是一个线程，程序员自己在应用层面通过yield进行协成间的切换<br /></li>
+<li>协程本质上是一个线程里面的细分，操作系统层面根本不知道这种区分，只当其是一个线程，程序员自己在应用层面通过yield进行协成间的切换</li>
 </ul>
-
 <h2 id="gil">GIL</h2>
-
 <p>GIL，即Global Interpreter Lock全局解释器锁，保证任何时刻仅有一个线程在执行。常见例子有CPython（JPython不使用GIL）与Ruby MRI。
 不是所有的Python解释器都有GIL。</p>
-
 <p>为什么要有GIL这个东西，不能去掉呢？这是为了实现GC，避免Java里Full GC(stop the world)引入的。更多内容参考
 <a href="http://zhuoqiang.me/python-thread-gil-and-ctypes.html">python 线程，GIL 和 ctypes</a></p>
-
 <p>每个进程一把锁🔒，进程里的线程，只能有一个线程可以获得这把锁，进行工作，其他线程必须等待</p>
-
 <p>在Python语言的主流实现CPython中，GIL 是一个货真价实的全局线程锁，在解释器解释执行任何Python代码时，都需要先获得这把锁才行，
 在遇到I/O操作时会释放这把锁。如果是纯计算的程序，没有I/O操作，解释器会每隔100次操作就释放这把锁，让别的线程有机会执行（这个次数可以通过 sys.setcheckinterval 来调整）</p>
-
 <p>同一进程下的多线程共享数据，共享意味着竞争，竞争带来无序，为了数据安全所以需要加锁进行数据保护，GIL本质是一把互斥锁，使并发变为串行，
 保证同一时间只有一条线程访问解释器级别的数据，这样就保证了解释器级别的数据安全，同时也带来了一些问题，同一进程只有一条线程执行任务，
 无法利用多核优势，解决方案可以根据任务的类型来处理，如果是I/O密集型，则需要开多线程提高效率，如果是计算密集型则需要多进程。</p>
-
 <p>遇到阻塞，普通单线程的做法是就地等待，多线程的做法是转去执行其他线程&ndash;这就是开多线程效率提高的原因。
 但如果这种阻塞和放开是我们人为可以预料到的，那么我们可以在阻塞的地方yield返回到另一个可以执行的点，这样也实现了CPU的不浪费，同时还少了线程的切换，效率更高</p>
-
-<h2 id="python锁">python锁</h2>
-
+<h2 id="python">python锁</h2>
 <blockquote>
 <p><a href="https://zhuanlan.zhihu.com/p/33849596">python线程</a></p>
 </blockquote>
-
 <ul>
 <li>同步锁（互斥锁）-解决数据安全问题-threading.Lock</li>
 <li>递归锁-解决线程死锁-threading.R_Lock</li>
@@ -184,7 +166,7 @@
 
   
   <hr>
-  <div class="copyright">&copy; 2019 | <a href="https://github.com/shengulong">Github</a> | <a href="https://www.cnblogs.com/shengulong/">cnblogs</a> | <a href="https://shengulong.github.io/">Github Pages</a></div>
+  <div class="copyright">© 2019 | <a href="https://github.com/shengulong">Github</a> | <a href="https://www.cnblogs.com/shengulong/">cnblogs</a> | <a href="https://shengulong.github.io/">Github Pages</a></div>
   
   </footer>
   </article>

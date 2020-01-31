@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>markdown on 持之以恒</title>
@@ -17,17 +17,17 @@
       <pubDate>Fri, 10 May 2019 21:18:52 +0800</pubDate>
       
       <guid>/blog/2019/05/10/markdown%E8%AF%AD%E6%B3%95%E5%8F%8A%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95%E4%B8%BE%E4%BE%8B/</guid>
-      <description>缩进  标题（Headers）
+      <description>缩进   标题（Headers）
  Markdown 标题支持两种形式：
  1.1 用1~6个#标记
- 在标题开头加上1~6个#，依次代表一级标题、二级标题&amp;hellip;.六级标题
- # 一级标题 ## 二级标题 ### 三级标题 ##### 四级标题 ###### 五级标题 ###### 六级标题  一级标题 二级标题 三级标题 四级标题 五级标题 六级标题 1.2 用=和-标记
+&amp;gt; 在标题开头加上1~6个#，依次代表一级标题、二级标题....六级标题 # 一级标题 ## 二级标题 ### 三级标题 ##### 四级标题 ###### 五级标题 ###### 六级标题  一级标题 二级标题 三级标题 四级标题 五级标题 六级标题 1.2 用=和-标记
  在标题底下 加上任意个=代表一级标题，-代表二级标题
- 一级标题 ====== 二级标题 ----------  一级标题 二级标题 列表（Lists）
+  一级标题 ====== 二级标题 ----------  一级标题 二级标题
+    列表（Lists）
  Markdown 支持有序列表和无序列表。列表不光可以单独使用，也可以使用其他的 Markdown 语法，包括标题、引用、代码区块等
  2.1 无序列表（Unordered Lists）
  无序列表使用-、+和*作为列表标记
- - Red - Green - Blue * Red * Green * Blue + Red + Green + Blue   Red Green Blue</description>
+  - Red - Green - Blue * Red * Green * Blue + Red + Green + Blue   Red Green Blue   Red Green Blue   Red Green Blue  2.</description>
     </item>
     
   </channel>

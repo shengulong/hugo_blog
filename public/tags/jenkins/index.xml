@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>jenkins on 持之以恒</title>
@@ -22,9 +22,9 @@
 如图：在idea上的hpi插件上的run点击debug进入调试模式,然后在源码或者依赖包的源码上打断点。
 执行成功的话，打开网页http://127.0.0.1:8080/jenkins/就可以看到jenkins的web界面
 在idea里修改java文件、jelly文件、html文件，然后就可以在jenkins的web界面及时看的效果
-插件的本土化Localization(比如中文化) 插件默认语言是英文，如何本土化？可以参考org.jenkins-ci.main:jenkins-core:2.176.2这类插件的实现。 jenkins本身以及很多插件都是支持多语言的，选择哪种语言，据说jenkins会根据浏览器语言或者计算机系统语言自动选择的。如果选择的语言没有相应的支持， 则显示英文。 1. 安装本土化插件，中文为Simplified Chinese Plugin 2. 安装的插件自身支持本土化 3. 使用语言切换插件local；配置举例，全局配置里填写：&amp;rdquo;Default Language&amp;rdquo;:zh
-插件支持本土化方法：[示例]() * 帮助文档(添加后缀_zh表示中文文档): help-markupFormatter_zh_TW.html help-markupFormatter_zh.html * 配置文档(添加后缀_zh表示中文文档): config_zh_TW.properties config_zh.properties 对应于配置文件config.jelly或者config.groovy
-插件本土化实现原理：Localization Support
+插件的本土化Localization(比如中文化) 插件默认语言是英文，如何本土化？可以参考org.jenkins-ci.main:jenkins-core:2.176.2这类插件的实现。 jenkins本身以及很多插件都是支持多语言的，选择哪种语言，据说jenkins会根据浏览器语言或者计算机系统语言自动选择的。如果选择的语言没有相应的支持， 则显示英文。
+ 安装本土化插件，中文为Simplified Chinese Plugin 安装的插件自身支持本土化 使用语言切换插件local；配置举例，全局配置里填写：&amp;ldquo;Default Language&amp;rdquo;:zh  插件支持本土化方法：示例
+ 帮助文档(添加后缀_zh表示中文文档): help-markupFormatter_zh_TW.html help-markupFormatter_zh.html 配置文档(添加后缀_zh表示中文文档): config_zh_TW.properties config_zh.properties 对应于配置文件config.jelly或者config.groovy  插件本土化实现原理：Localization Support
 jenkins中的三种视图  global.jelly 全局的配置视图 config.jelly Job的配置视图 help-属性名.html 帮助视图 html片段  jelly相关知识  Jelly form controls core jelly:stapler jelly:core Basic guide to Jelly usage in Jenkins Forms UI Samples Plugin []()  jenkins框架+插件 jenkins本身不提供很多功能，通过插件来实现各种功能</description>
     </item>
     
@@ -34,8 +34,10 @@ jenkins中的三种视图  global.jelly 全局的配置视图 config.jelly Job�
       <pubDate>Sat, 06 Jul 2019 07:43:00 +0800</pubDate>
       
       <guid>/blog/2019/07/06/jenkins%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%9E%E7%8E%B0/</guid>
-      <description>思路 查看jenkins源代码，把jenkins依赖单机的代码内容，修改为依赖分布式机器的内容； 这样做到应用本身无存储状态，容器化后可以做到随便创建和删除。参阅jenkins&amp;rsquo;s blog
-jenkins开发相关知识Extend Jenkins、开发者文档  jenkins本身开发指导说明  java8 mavne&amp;gt;=3.5.3 OpenJDK  jenkins插件开发指导说明  step 1: Preparing for Plugin Development step 2: Create a Plugin step 3: Build and Run the Plugin step 4: Extend the Plugin Plugin tutorial Plugin Cookbook Create a new Plugin with a custom build Step Plugin Structure Making your plugin behave in distributed Jenkins IntelliJ IDEA plugin for Stapler方便在idea里开发jenkins的插件 Exposing data to the remote API Manage global settings and tools installations Debugging native Maven jobs Remote debugging a Java application  快速打包jenkins.</description>
+      <description>思路 查看jenkins源代码，把jenkins依赖单机的代码内容，修改为依赖分布式机器的内容； 这样做到应用本身无存储状态，容器化后可以做到随便创建和删除。参阅jenkins&#39;s blog
+jenkins开发相关知识Extend Jenkins、开发者文档   jenkins本身开发指导说明
+ java8 mavne&amp;gt;=3.5.3 OpenJDK    jenkins插件开发指导说明
+ step 1: Preparing for Plugin Development step 2: Create a Plugin step 3: Build and Run the Plugin step 4: Extend the Plugin Plugin tutorial Plugin Cookbook Create a new Plugin with a custom build Step Plugin Structure Making your plugin behave in distributed Jenkins IntelliJ IDEA plugin for Stapler方便在idea里开发jenkins的插件 Exposing data to the remote API Manage global settings and tools installations Debugging native Maven jobs Remote debugging a Java application    快速打包jenkins.</description>
     </item>
     
   </channel>

@@ -97,66 +97,59 @@
       </header>
 
 
-
-
 <h4 id="jni">JNI</h4>
-
 <p>Java平台有个用户和本地C代码进行互操作的API，称为Java Native Interface (Java本地接口)</p>
-
 <h4 id="native">Native</h4>
-
 <p>使用native关键字说明这个方法是原生函数，也就是这个方法是用C/C++语言实现的，并且被编译成了DLL，由java去调用。这些函数的实现体在DLL中，JDK的源代码中并不包含，你当然看不到。对于不同的平台它们也是不同的。这也是java的底层机制，实际上java就是在不同的平台上调用不同的native方法实现对操作系统的访问的。</p>
-
-<h4 id="mac下写一个jni的demo">Mac下写一个jni的demo</h4>
-
+<h4 id="macjnidemo">Mac下写一个jni的demo</h4>
 <ol>
-<li><p>文件都在目录：/Users/xxxx/myJavaDir下</p></li>
-
-<li><p>HelloNative.java文件：</p>
-
-<pre><code class="language-java">public class HelloNative
+<li>
+<p>文件都在目录：/Users/xxxx/myJavaDir下</p>
+</li>
+<li>
+<p>HelloNative.java文件：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HelloNative</span>
+<span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">static</span>
+    <span style="color:#f92672">{</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">loadLibrary</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;HelloNative&#34;</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+   
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">native</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sayHello</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+   
+    <span style="color:#a6e22e">@SuppressWarnings</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;static-access&#34;</span><span style="color:#f92672">)</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[</span><span style="color:#f92672">]</span> args<span style="color:#f92672">)</span>
+    <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">new</span> HelloNative<span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">.</span><span style="color:#a6e22e">sayHello</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></li>
+<li>
+<p>javac HelloNative编译生成HelloNative.class</p>
+</li>
+<li>
+<p>javah HelloNative生成文件HelloNative.h</p>
+</li>
+<li>
+<p>HelloNative.c文件内容：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&#34;jni.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&#34;HelloNative.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>   
+JNIEXPORT <span style="color:#66d9ef">void</span> JNICALL <span style="color:#a6e22e">Java_HelloNative_sayHello</span>(JNIEnv <span style="color:#f92672">*</span>env,jobject obj)
 {
-    static
-    {
-        System.loadLibrary(&quot;HelloNative&quot;);
-    }
-    
-    public static native void sayHello();
-    
-    @SuppressWarnings(&quot;static-access&quot;)
-    public static void main(String[] args)
-    {
-        new HelloNative().sayHello();
-    }
+    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Hello，JNI</span><span style="color:#e6db74">&#34;</span>);
 }
-</code></pre></li>
-
-<li><p>javac HelloNative编译生成HelloNative.class</p></li>
-
-<li><p>javah HelloNative生成文件HelloNative.h</p></li>
-
-<li><p>HelloNative.c文件内容：</p>
-
-<pre><code class="language-c">#include &quot;jni.h&quot;
-#include &quot;HelloNative.h&quot;
-#include &lt;stdio.h&gt;
-    
-JNIEXPORT void JNICALL Java_HelloNative_sayHello(JNIEnv *env,jobject obj)
-{
-    printf(&quot;Hello，JNI&quot;);
-}
-</code></pre></li>
-
-<li><p>生成dll动态链接库</p>
-
+</code></pre></div></li>
+<li>
+<p>生成dll动态链接库</p>
 <pre><code>gcc -dynamiclib -I&quot;/Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home/include&quot; -I&quot;/Users/xxxx/myJavaDir&quot; -I&quot;/Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home/include/darwin/&quot;  -o libHelloNative.jnilib HelloNative.c
 </code></pre></li>
-
-<li><p>执行java HelloNative输出Hello，JNI%</p></li>
+<li>
+<p>执行java HelloNative输出Hello，JNI%</p>
+</li>
 </ol>
-
-<h4 id="参考">参考：</h4>
-
+<h4 id="heading">参考：</h4>
 <ol>
 <li><a href="https://www.cnblogs.com/Qian123/p/5702574.html#_labelTop">https://www.cnblogs.com/Qian123/p/5702574.html#_labelTop</a></li>
 <li><a href="https://www.cnblogs.com/chenmo-xpw/p/7501325.html">https://www.cnblogs.com/chenmo-xpw/p/7501325.html</a></li>
@@ -199,7 +192,7 @@ JNIEXPORT void JNICALL Java_HelloNative_sayHello(JNIEnv *env,jobject obj)
 
   
   <hr>
-  <div class="copyright">&copy; 2019 | <a href="https://github.com/shengulong">Github</a> | <a href="https://www.cnblogs.com/shengulong/">cnblogs</a> | <a href="https://shengulong.github.io/">Github Pages</a></div>
+  <div class="copyright">© 2019 | <a href="https://github.com/shengulong">Github</a> | <a href="https://www.cnblogs.com/shengulong/">cnblogs</a> | <a href="https://shengulong.github.io/">Github Pages</a></div>
   
   </footer>
   </article>

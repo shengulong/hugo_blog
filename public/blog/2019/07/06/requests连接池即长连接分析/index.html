@@ -99,22 +99,17 @@
       </header>
 
 
-
-
-<h1 id="requests长连接">requests长连接</h1>
-
-<h3 id="遗留问题">遗留问题</h3>
-
-<ul class="task-list">
-<li><label><input type="checkbox" disabled class="task-list-item"> 为什么requests短连接时，虽然http头中携带了<code>Connection: keep-alive</code>头，服务端却回复<code>Connection: close</code>头？client和server
-是如何得知此次连接是短连接的？</label></li>
+<h1 id="requests">requests长连接</h1>
+<h3 id="heading">遗留问题</h3>
+<ul>
+<li><input disabled="" type="checkbox">为什么requests短连接时，虽然http头中携带了<code>Connection: keep-alive</code>头，服务端却回复<code>Connection: close</code>头？client和server
+是如何得知此次连接是短连接的？</li>
 </ul>
-
 <blockquote>
 <p><code>requests</code>使用<code>Session()</code>即长连接时，请求头会携带字段<code>Connection: keep-alive</code>,服务端回复相同的http头</p>
-
+</blockquote>
+<blockquote>
 <p>如下5个http连接公用一个tcp连接</p>
-
 <pre><code>  with requests.Session() as s:
        s.get(&quot;http://www.baidu.com&quot;)
        s.get(&quot;http://www.baidu.com&quot;)
@@ -122,22 +117,14 @@
        s.get(&quot;http://www.baidu.com&quot;)
        s.get(&quot;http://www.baidu.com&quot;)
 </code></pre>
-
 <p>而下面的请求各自使用一个tcp连接，用完即销毁，请求头里面也有<code>Connection: keep-alive</code>头，但是服务端回复<code>Connection: close</code></p>
-
-<p>requests.get(&ldquo;<a href="http://www.baidu.com&quot;">http://www.baidu.com&quot;</a>)</p>
-
-<p>requests.get(&ldquo;<a href="http://www.baidu.com&quot;">http://www.baidu.com&quot;</a>)</p>
-
-<p>requests.get(&ldquo;<a href="http://www.baidu.com&quot;">http://www.baidu.com&quot;</a>)</p>
-
-<p>requests.get(&ldquo;<a href="http://www.baidu.com&quot;">http://www.baidu.com&quot;</a>)</p>
+<p>requests.get(&ldquo;<a href="http://www.baidu.com%22">http://www.baidu.com&quot;</a>)</p>
+<p>requests.get(&ldquo;<a href="http://www.baidu.com%22">http://www.baidu.com&quot;</a>)</p>
+<p>requests.get(&ldquo;<a href="http://www.baidu.com%22">http://www.baidu.com&quot;</a>)</p>
+<p>requests.get(&ldquo;<a href="http://www.baidu.com%22">http://www.baidu.com&quot;</a>)</p>
 </blockquote>
-
-<h3 id="使用">使用</h3>
-
+<h3 id="heading-1">使用</h3>
 <p>基本使用方法：申请一个tcp连接，进行多个http请求后，关闭连接</p>
-
 <pre><code>Basic Usage::
 
   import requests
@@ -149,42 +136,32 @@
   s.close()
 
 Or as a context manager::
-
+    
   with requests.Session() as s:
       进行多个连接  
       s.get('https://httpbin.org/get')      
       s.get('https://httpbin.org/get')          
-
+  
 &quot;&quot;&quot;
 </code></pre>
-
-<h3 id="原理">原理</h3>
-
+<h3 id="heading-2">原理</h3>
 <blockquote>
 <p>撸下代码</p>
 </blockquote>
-
 <p>调用顺序：</p>
-
 <pre><code>requests.Session().get() --&gt; requests.Session().request() --&gt; requests.Session().send()
 </code></pre>
-
 <p>查看<code>requests包</code>的<code>Session()</code>类<code>send()</code>方法的第645行和646行代码，表示调用使用某个适配器的<code>send()</code></p>
-
 <pre><code># Send the request
 r = adapter.send(request, **kwargs)
 </code></pre>
-
 <p>如果使用的默认的<code>HTTPAdapter()</code>，查看其<code>send()</code>方法，下面的<code>conn</code>最终获得一个<code>HTTPConnectionPool</code>对象</p>
-
 <pre><code>try:
     conn = self.get_connection(request.url, proxies)
 except LocationValueError as e:
     raise InvalidURL(e, request=request)
 </code></pre>
-
 <p>最终调用到了<code>urllib3.connectionpool.HTTPConnectionPool()._get_conn()</code></p>
-
 <pre><code>def _get_conn(self, timeout=None):
     &quot;&quot;&quot;
     Get a connection. Will return a pooled connection if one is available.
@@ -224,9 +201,7 @@ except LocationValueError as e:
 
     return conn or self._new_conn()            
 </code></pre>
-
 <p>里面调用了<code>urllib3.util.connection.is_connection_dropped()</code></p>
-
 <pre><code>def is_connection_dropped(conn):  # Platform-specific
     &quot;&quot;&quot;
     Returns True if the connection is dropped and should be closed.
@@ -248,41 +223,35 @@ except LocationValueError as e:
     except NoWayToWaitForSocketError:  # Platform-specific: AppEngine
         return False
 </code></pre>
-
 <p>继而调用了<code>urllib3.util.wait.wait_for_read()</code></p>
-
 <pre><code>def wait_for_read(sock, timeout=None):
     &quot;&quot;&quot; Waits for reading to be available on a given socket.
     Returns True if the socket is readable, or False if the timeout expired.
     &quot;&quot;&quot;
     return wait_for_socket(sock, read=True, timeout=timeout)
 </code></pre>
-
 <p>我们再看下(netstat anp/netstat -ant/netstat -ant 1)处于CLOSE_WAIT状态的tcp连接，查看Recv-Q(数据已经在本地接收缓冲区,但是还没有recv())的值不为零，是不是刚好呼应了上面的wait_for_read</p>
-
 <pre><code>Proto     Recv-Q   Send-Q      Local Address         Foreign Address         State           PID/Program name
 tcp        1          0       127.0.0.1:8071          127.0.0.1:46423        CLOSE_WAIT      5782/java
 tcp        1          0       127.0.0.1:8071          127.0.0.1:41958         CLOSE_WAIT      5782/java
 tcp        1          0       127.0.0.1:8071          127.0.0.1:42004        CLOSE_WAIT      5782/java
 tcp        1          0       127.0.0.1:8071          127.0.0.1:52313         CLOSE_WAIT      5782/java                     
 </code></pre>
-
-<h3 id="结论">结论</h3>
-
+<h3 id="heading-3">结论</h3>
 <p>一般情况下，服务端会维持一段时间的长连接，但是一旦超过闲置时间没有连接发生，则主动断开：如下表示闲置时间为5s</p>
-
 <pre><code>--httpKeepAliveTimeout   = how long idle HTTP keep-alive connections are kept around (in ms; default 5000)
 </code></pre>
-
 <ol>
-<li><p>客户端requests长连接时：各个请求共用同一个tcp长连接，但是超过一定时间不使用，则服务端主动断开连接，服务端处于time_wait状态，直至超时后释放资源；
+<li>
+<p>客户端requests长连接时：各个请求共用同一个tcp长连接，但是超过一定时间不使用，则服务端主动断开连接，服务端处于time_wait状态，直至超时后释放资源；
 而客户端会长时间处于close_wait状态(因为requests长连接时，不会主动自动发送close报文及FIN报文)，那么这个close_wait到什么时候才关闭呢？
 如以上代码走读分析，当新的http请求产生的时候，发现旧的tcp连接不可用(因为已经处于close_wait状态了嘛)，则关闭这个连接，并开启一个新的tcp长连接</p>
-
-<pre><code>requests对于每个新的请求，都去池子里请求一个连接，在请求的过程中，判断连接是否可用，不可用，关闭，然后创建一个新的连接
-</code></pre></li>
-
-<li><p>客户端requests短连接时：每个请求开启新的tcp连接，完成后，主动断开，这时候，客户端存在大量的time_wait状态，服务端没有问题，会迅速关闭tcp连接</p></li>
+<pre><code> requests对于每个新的请求，都去池子里请求一个连接，在请求的过程中，判断连接是否可用，不可用，关闭，然后创建一个新的连接
+</code></pre>
+</li>
+<li>
+<p>客户端requests短连接时：每个请求开启新的tcp连接，完成后，主动断开，这时候，客户端存在大量的time_wait状态，服务端没有问题，会迅速关闭tcp连接</p>
+</li>
 </ol>
 
 
@@ -320,7 +289,7 @@ tcp        1          0       127.0.0.1:8071          127.0.0.1:52313         CL
 
   
   <hr>
-  <div class="copyright">&copy; 2019 | <a href="https://github.com/shengulong">Github</a> | <a href="https://www.cnblogs.com/shengulong/">cnblogs</a> | <a href="https://shengulong.github.io/">Github Pages</a></div>
+  <div class="copyright">© 2019 | <a href="https://github.com/shengulong">Github</a> | <a href="https://www.cnblogs.com/shengulong/">cnblogs</a> | <a href="https://shengulong.github.io/">Github Pages</a></div>
   
   </footer>
   </article>

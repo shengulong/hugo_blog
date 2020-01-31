@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>golang on 持之以恒</title>
@@ -17,9 +17,12 @@
       <pubDate>Sun, 26 May 2019 00:57:43 +0800</pubDate>
       
       <guid>/blog/2019/05/26/goroutine%E5%92%8C%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E5%8D%8F%E7%A8%8B/</guid>
-      <description>进程  内核进行调度，有CPU时间片的概念，进行抢占式调度（有多种调度算法）  线程  内核进行调度(内核级线程)，有CPU时间片的概念，进行抢占式调度（有多种调度算法）  协程  用户级线程，对内核是透明的，也就是系统并不知道有协程的存在，是完全由用户的程序自己调度的；因为是由用户程序自己控制，那么就很难像抢占式 调度那样做到强制的CPU控制权切换到其他进程/线程，通常只能进行协作式调度，需要协程自己主动把控制权转让出去之后，其他协程才能被执行到 用户自己调度  goroutine  goroutine就是协程，不同的是，Golang在runtime、系统调用等多方面对goroutine调度进行了封装和处理，当遇到长时间执行或者进行系统调用时， 会主动把当前goroutine的CPU (P) 转让出去，让其他goroutine能被调度并执行，也就是Golang从语言层面支持了协程 go语言帮助用户进行调度 不要通过共享内存通信，相反，通过通信共享内存 内存消耗方面
-每个 goroutine (协程) 默认占用内存远比 Java 、C 的线程少。 goroutine: 2KB 线程: 8MB  线程/goroutine 切换(调度)开销方面
-线程/goroutine 切换开销方面，goroutine 远比线程小 线程: 涉及模式切换(从用户态切换到内核态)、16个寄存器、PC、SP…等寄存器的刷新等。 goroutine: 只有三个寄存器的值修改 - PC/SP/DX   goroutine和线程区别 从调度上看，goroutine的调度开销远远小于线程调度开销。
+      <description>进程  内核进行调度，有CPU时间片的概念，进行抢占式调度（有多种调度算法）  线程  内核进行调度(内核级线程)，有CPU时间片的概念，进行抢占式调度（有多种调度算法）  协程  用户级线程，对内核是透明的，也就是系统并不知道有协程的存在，是完全由用户的程序自己调度的；因为是由用户程序自己控制，那么就很难像抢占式 调度那样做到强制的CPU控制权切换到其他进程/线程，通常只能进行协作式调度，需要协程自己主动把控制权转让出去之后，其他协程才能被执行到 用户自己调度  goroutine   goroutine就是协程，不同的是，Golang在runtime、系统调用等多方面对goroutine调度进行了封装和处理，当遇到长时间执行或者进行系统调用时， 会主动把当前goroutine的CPU (P) 转让出去，让其他goroutine能被调度并执行，也就是Golang从语言层面支持了协程
+  go语言帮助用户进行调度
+  不要通过共享内存通信，相反，通过通信共享内存
+  内存消耗方面
+ 每个 goroutine (协程) 默认占用内存远比 Java 、C 的线程少。 goroutine: 2KB 线程: 8MB    线程/goroutine 切换(调度)开销方面
+ 线程/goroutine 切换开销方面，goroutine 远比线程小 线程: 涉及模式切换(从用户态切换到内核态)、16个寄存器、PC、SP…等寄存器的刷新等。 goroutine: 只有三个寄存器的值修改 - PC/SP/DX    goroutine和线程区别 从调度上看，goroutine的调度开销远远小于线程调度开销。
 OS的线程由OS内核调度，每隔几毫秒，一个硬件时钟中断发到CPU，CPU调用一个调度器内核函数。这个函数暂停当前正在运行的线程，把他的寄存器信息保存到内存中，查看线程列表并决定接下来运行哪一个线程，再从内存中恢复线程的注册表信息，最后继续执行选中的线程。这种线程切换需要一个完整的上下文切换：即保存一个线程的状态到内存，再恢复另外一个线程的状态，最后更新调度器的数据结构。某种意义上，这种操作还是很慢的。
 Go运行的时候包涵一个自己的调度器，这个调度器使用一个称为一个M:N调度技术，m个goroutine到n个os线程（可以用GOMAXPROCS来控制n的数量），Go的调度器不是由硬件时钟来定期触发的，而是由特定的go语言结构来触发的，他不需要切换到内核语境，所以调度一个goroutine比调度一个线程的成本低很多。
 从栈空间上，goroutine的栈空间更加动态灵活。
@@ -36,7 +39,7 @@ goroutine中没有可供程序员访问的标识，原因是一种纯函数的�
       
       <guid>/blog/2019/05/18/golang%E6%96%87%E4%BB%B6%E9%94%81/</guid>
       <description>多个goroutine同时操作一同一个文件时，很容易出现数据混乱，因此有必要对文件进行加锁 多进程写
-协程：用户控制切换 goroutine：用户控制切换-&amp;gt;语言控制 进程/线程：内核OS控制切换 flock是操作系统级别的锁 使用fopen以&amp;rdquo;a&amp;rdquo;追加模式打开时，多个进程写同一log文件不会发送覆盖写的问题，每次都保证在文件末尾写。但是不保证写入的顺序
+  协程：用户控制切换 goroutine：用户控制切换-&amp;gt;语言控制 进程/线程：内核OS控制切换 flock是操作系统级别的锁 使用fopen以&amp;quot;a&amp;quot;追加模式打开时，多个进程写同一log文件不会发送覆盖写的问题，每次都保证在文件末尾写。但是不保证写入的顺序
  并发与多核利用并不是相同的概念，高并发不一定利用了多核，
 python协程就是一个典型，协程使用一种轻线程机制，避开了传统多线程的切换开销，实现惊人的并发管理。 但协程本身是运行在单线程里的，协程并不能直接利用多核，仍然受GIL影响。 因为python GIL的存在，python多线程是无法利用多核的。 多进程模式，python提供了multiprocessing模块， 可以用共享内存模式，这个模块为利用多核的应用提供了便利。</description>
     </item>
@@ -49,7 +52,7 @@ python协程就是一个典型，协程使用一种轻线程机制，避开了�
       <guid>/blog/2018/12/29/how-to-use-godog/</guid>
       <description>首先访问Git的地址：Godog，它也是用来做Go Test一样的事情，只是换了一种形式。引入了一个概念：BDD。通俗的讲，就是虚拟现实场景，完成一个业务的测试。
 Godog了解 首先介绍Godog是用来干什么的，我也是根据版本库提供的README来解释的，建议大家自己去看看。首先，我们要定义一个场景：feature。这里我们创建一个文件夹feature，专门用来存储这类文件。然后创建一个文件：godogs.feature。文件内容如下：
-# file: $GOPATH/src/godogs/features/godogs.feature Feature: 购买红酒 这里是一堆对这个Feature的描述 描述的继续... Scenario: 买一瓶红酒 Given Neojos Has 5 coins When I buy Red wine Then should be 1 remaining  在控制台执行godog时，控制台会输出默认建议的代码。输出如下：
+# file: $GOPATH/src/godogs/features/godogs.feature Feature: 购买红酒 这里是一堆对这个Feature的描述 描述的继续... Scenario: 买一瓶红酒 Given Neojos Has 5 coins When I buy Red wine Then should be 1 remaining 在控制台执行godog时，控制台会输出默认建议的代码。输出如下：
 You can implement step definitions for undefined steps with these snippets: func neojosHasCoins(arg1 int) error { return godog.ErrPending } func iBuyRedWine() error { return godog.ErrPending } func shouldBeRemaining(arg1 int) error { return godog.ErrPending } func FeatureContext(s *godog.Suite) { s.Step(`^Neojos Has (\d+) coins$`, neojosHasCoins) s.</description>
     </item>
     
@@ -62,9 +65,9 @@ You can implement step definitions for undefined steps with these snippets: func
       <description>版本 0.02
 在调用第三方请求时，正确使用Client也不是一件非常容易的事。
 下面是截取的一段描述，建议Client或Transport在整个服务期间最好是全局单例的，Transport本身会维护连接的状态，而且线程安全。强烈建议，不要使用系统提供的任何默认值。
- The Client&amp;rsquo;s Transport typically has internal state (cached TCP connections), so Clients should be reused instead of created as needed. Clients are safe for concurrent use by multiple goroutines.
+ The Client&#39;s Transport typically has internal state (cached TCP connections), so Clients should be reused instead of created as needed. Clients are safe for concurrent use by multiple goroutines.
  Transport 如下是官方的简要描述。Transport字段在Client中被声明为接口类型，而实现这个接口的是Transport类型（略显绕）。在net包内部也提供了默认的实现变量：DefaultTransport。
-// Transport specifies the mechanism by which individual // HTTP requests are made. // If nil, DefaultTransport is used. Transport RoundTripper  看一下RoundTripper这个接口，官方描述：
+// Transport specifies the mechanism by which individual // HTTP requests are made. // If nil, DefaultTransport is used. Transport RoundTripper 看一下RoundTripper这个接口，官方描述：
  RoundTripper is an interface representing the ability to execute a single HTTP transaction, obtaining the Response for a given Request.</description>
     </item>
     

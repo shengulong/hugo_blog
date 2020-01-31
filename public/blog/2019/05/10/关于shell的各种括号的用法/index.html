@@ -97,14 +97,10 @@
       </header>
 
 
-
-
 <blockquote>
 <p>大部分情况可以通用，建议使用双中括号<code>[[]]</code>，不同的shell表现也不尽相同</p>
 </blockquote>
-
-<h2 id="正确的用法">正确的用法</h2>
-
+<h2 id="heading">正确的用法</h2>
 <pre><code>1. 逻辑与：[ &quot;2&quot; = &quot;2&quot; -a &quot;3&quot; = '3' ]、[[ &quot;2&quot; = &quot;2&quot; &amp;&amp; &quot;3&quot; = '3' ]]、[ &quot;2&quot; = &quot;2&quot; ] &amp;&amp; [ &quot;3&quot; = '3' ]
 2. 逻辑或：[ &quot;2&quot; = &quot;2&quot; -o &quot;3&quot; = '3' ]、[[ &quot;2&quot; = &quot;2&quot; || &quot;3&quot; = '3' ]]、[ &quot;2&quot; = &quot;2&quot; ] || [ &quot;3&quot; = '3' ]
 3. []可以替换为test :if [ -e zshrctest ];then;echo &quot;yes&quot;;fi 
@@ -112,15 +108,11 @@
 3. var=name;[[ $var = na?? ]] 问号代表一个字符
 4. arrary=(aa bb cc);${arrary[@]}表示全部数组元素;echo ${arrary[1]}表示第一个元素，注意是从1开始的
 </code></pre>
-
-<h2 id="错误的用法">错误的用法</h2>
-
+<h2 id="heading-1">错误的用法</h2>
 <pre><code>[[ &quot;2&quot; = &quot;2&quot; -o &quot;3&quot; = '3' ]]
 var=name;[ $var = na?? ]
 </code></pre>
-
-<h2 id="小括号用法">小括号用法</h2>
-
+<h2 id="heading-2">小括号用法</h2>
 <pre><code>1.  `pwd`等同于(pwd)
 2.  数组初始化arrary=(aa bb cc)
 3.  for i in $(seq 0 4);do echo $i;done 
@@ -129,13 +121,10 @@ var=name;[ $var = na?? ]
     for i in {0..4};do echo $i;done
 4.  (pwd;ls) 新开一个shell顺序执行命令组
 </code></pre>
-
-<h2 id="大括号用法">大括号用法</h2>
-
+<h2 id="heading-3">大括号用法</h2>
 <pre><code>1. touch {a,b}.txt 结果为a.txt b.txt ; touch {a..d}.txt 结果为a.txt b.txt c.txt d.txt
 2. 尽量使用${a}代替$a 
-3. 代码块 { pwd;ls }  同一个shell中顺序执行代码块
-</code></pre>
+3. 代码块 { pwd;ls }  同一个shell中顺序执行代码块</code></pre>
 
 
   <footer>
@@ -172,7 +161,7 @@ var=name;[ $var = na?? ]
 
   
   <hr>
-  <div class="copyright">&copy; 2019 | <a href="https://github.com/shengulong">Github</a> | <a href="https://www.cnblogs.com/shengulong/">cnblogs</a> | <a href="https://shengulong.github.io/">Github Pages</a></div>
+  <div class="copyright">© 2019 | <a href="https://github.com/shengulong">Github</a> | <a href="https://www.cnblogs.com/shengulong/">cnblogs</a> | <a href="https://shengulong.github.io/">Github Pages</a></div>
   
   </footer>
   </article>

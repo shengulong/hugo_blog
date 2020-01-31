@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>算法 on 持之以恒</title>
@@ -17,7 +17,7 @@
       <pubDate>Thu, 03 Oct 2019 07:59:15 +0800</pubDate>
       
       <guid>/blog/2019/10/03/%E7%AE%97%E6%B3%95/</guid>
-      <description> idea如何实现各种括号语法检查 idea各类插件的工作原理 p3c的扫描原理 pmd规则自定义 findbugs插件规则原理 </description>
+      <description>idea如何实现各种括号语法检查 idea各类插件的工作原理 p3c的扫描原理 pmd规则自定义 findbugs插件规则原理 </description>
     </item>
     
   </channel>
