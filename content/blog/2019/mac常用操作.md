@@ -35,9 +35,8 @@ author: sgl
     > 在一个设备上复制的内容，可以在另一个设备上粘贴；
     > 在一个设备上浏览的内容，可以在另一个设备上接着浏览
     
-        两个设备属于同一个AppleID/开启蓝牙和接力功能/处于同一个网络
+    两个设备属于同一个AppleID/开启蓝牙和接力功能/处于同一个网络
        
-
 7. 截屏
 
         cmd+shift+3：对整个屏幕进行截图
@@ -56,3 +55,10 @@ author: sgl
 13. 清理dns缓存
     
     sudo dscacheutil -flushcache
+    
+14. 查看已经打开的端口   
++   使用Spotlight搜索 “网络实用工具” 或 “Network Utility”软件，然后使用里面的端口扫描
++ brew install nmap/masscan
++ `sudo lsof -i -P | grep -i "listen"`
+
+

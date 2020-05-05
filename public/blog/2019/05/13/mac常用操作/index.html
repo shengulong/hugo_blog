@@ -132,8 +132,7 @@
 <p>在一个设备上复制的内容，可以在另一个设备上粘贴；
 在一个设备上浏览的内容，可以在另一个设备上接着浏览</p>
 </blockquote>
-<pre><code> 两个设备属于同一个AppleID/开启蓝牙和接力功能/处于同一个网络
-</code></pre>
+<p>两个设备属于同一个AppleID/开启蓝牙和接力功能/处于同一个网络</p>
 </li>
 <li>
 <p>截屏</p>
@@ -164,7 +163,15 @@
 <p>清理dns缓存</p>
 <p>sudo dscacheutil -flushcache</p>
 </li>
+<li>
+<p>查看已经打开的端口</p>
+</li>
 </ol>
+<ul>
+<li>使用Spotlight搜索 “网络实用工具” 或 “Network Utility”软件，然后使用里面的端口扫描</li>
+<li>brew install nmap/masscan</li>
+<li><code>sudo lsof -i -P | grep -i &quot;listen&quot;</code></li>
+</ul>
 
 
   <footer>
