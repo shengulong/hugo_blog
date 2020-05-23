@@ -6,7 +6,8 @@ tags: [crack]
 author: sgl
 ---
 
-+ 方法来自[Navicat Keygen](https://github.com/DoubleLabyrinth/navicat-keygen/blob/mac/README.zh-CN.md),已经`fork`
++ 方法来自[Navicat Keygen](https://github.com/DoubleLabyrinth/navicat-keygen/blob/mac/README.zh-CN.md) ,已经`fork`；
+github已经被封，可以区gitee上搜索下同名项目
 
 + Navicat Premium For Mac 12.1.21 ***简体中文版*** 已通过测试
     - &#10003; navicat121_premium_cs.dmg
@@ -25,6 +26,10 @@ author: sgl
         /Applications/Navicat Premium.app/Contents/Resources/rpk
     
 + 生成一份自签名的代码证书，并总是信任该证书；创建证书颁发机构时，名称和电子邮件地址随便写
+  - 在 Mac 上的“钥匙串访问”中创建自签名证书
+  - 在 Mac 上的“钥匙串访问” App 中，选取“钥匙串访问”>“证书助理”>“创建证书颁发机构”。
+  - 选择"代码签名"的用户证书
+    ![](image/09f1f6a9.png)
          
 + 下载Navicat Premium中文版：https://www.navicat.com.cn/download/navicat-premium ，破解时，选择Simplified Chinese语言
 

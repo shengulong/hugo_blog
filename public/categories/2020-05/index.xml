@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>2020-05 on 持之以恒</title>
+    <link>/categories/2020-05/</link>
+    <description>Recent content in 2020-05 on 持之以恒</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 09 May 2020 14:17:01 +0800</lastBuildDate>
+    
+	<atom:link href="/categories/2020-05/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Git下载加速</title>
+      <link>/blog/2020/05/09/git%E4%B8%8B%E8%BD%BD%E5%8A%A0%E9%80%9F/</link>
+      <pubDate>Sat, 09 May 2020 14:17:01 +0800</pubDate>
+      
+      <guid>/blog/2020/05/09/git%E4%B8%8B%E8%BD%BD%E5%8A%A0%E9%80%9F/</guid>
+      <description>解决部分github仓库下载慢的办法  vpn 使用迅雷下载压缩包 使用gitee下载github仓库，然后从gitee下载，gitee上有很多同步仓库 git clone git仓库地址 &amp;ndash;depth==1 设置下载深度，少下载些历史版本  </description>
+    </item>
+    
+  </channel>
+</rss>

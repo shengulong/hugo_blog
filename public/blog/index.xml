@@ -6,10 +6,19 @@
     <description>Recent content in SGL&#39;s Blog on 持之以恒</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 29 Nov 2019 19:26:17 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 09 May 2020 14:17:01 +0800</lastBuildDate>
     
 	<atom:link href="/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Git下载加速</title>
+      <link>/blog/2020/05/09/git%E4%B8%8B%E8%BD%BD%E5%8A%A0%E9%80%9F/</link>
+      <pubDate>Sat, 09 May 2020 14:17:01 +0800</pubDate>
+      
+      <guid>/blog/2020/05/09/git%E4%B8%8B%E8%BD%BD%E5%8A%A0%E9%80%9F/</guid>
+      <description>解决部分github仓库下载慢的办法  vpn 使用迅雷下载压缩包 使用gitee下载github仓库，然后从gitee下载，gitee上有很多同步仓库 git clone git仓库地址 &amp;ndash;depth==1 设置下载深度，少下载些历史版本  </description>
+    </item>
     
     <item>
       <title>Jni</title>
@@ -417,17 +426,14 @@ python锁  python线程
       <pubDate>Wed, 22 May 2019 21:22:49 +0800</pubDate>
       
       <guid>/blog/2019/05/22/%E7%A0%B4%E8%A7%A3navicat-premium/</guid>
-      <description>方法来自Navicat Keygen,已经fork
+      <description>方法来自Navicat Keygen ,已经fork； github已经被封，可以区gitee上搜索下同名项目
   Navicat Premium For Mac 12.1.21 简体中文版 已通过测试
  ✓ navicat121_premium_cs.dmg ✘ navicat121_premium_en.dmg    仅对 Navicat Premium 版本 &amp;lt; 12.0.24 的说明：
 如果你的Navicat版本小于12.0.24，那么navicat-patcher将会终止并且不会修改目标文件。
 你必须使用openssl生成RegPrivateKey.pem和rpk文件：
  $ openssl genrsa -out RegPrivateKey.pem 2048 $ openssl rsa -in RegPrivateKey.pem -pubout -out rpk  接着用刚生成的rpk文件替换
  /Applications/Navicat Premium.app/Contents/Resources/rpk    生成一份自签名的代码证书，并总是信任该证书；创建证书颁发机构时，名称和电子邮件地址随便写
-  下载Navicat Premium中文版：https://www.navicat.com.cn/download/navicat-premium ，破解时，选择Simplified Chinese语言
-  关掉自动升级吧，省的再次破解
-  参考123
-  https://www.zhb127.com/archives/macos-navicat-keygen.html &amp;#x21a9;&amp;#xfe0e;</description>
+ 在 Mac 上的“钥匙串访问”中创建自签名证书 在 Mac 上的“钥匙串访问” App 中，选取“钥匙串访问”&amp;gt;“证书助理”&amp;gt;“创建证书颁发机构”。 选择&amp;quot;代码签名&amp;quot;的用户证书     下载Navicat Premium中文版：https://www.</description>
     </item>
     
     <item>
