@@ -61,4 +61,8 @@ author: sgl
 + brew install nmap/masscan
 + `sudo lsof -i -P | grep -i "listen"`
 
+15. 查看隐藏文件
+shift+command+.
+
+
 
